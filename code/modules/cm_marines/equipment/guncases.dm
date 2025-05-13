@@ -3,6 +3,7 @@
 	desc = "It has space for firearm(s). Sometimes magazines or other munitions as well."
 	icon = 'icons/obj/items/storage/kits.dmi'
 	icon_state = "guncase"
+	item_state = "guncase"
 	w_class = SIZE_HUGE
 	max_w_class = SIZE_HUGE //shouldn't be a problem since we can only store the guns and ammo.
 	storage_slots = 1
@@ -143,10 +144,10 @@
 	name = "\improper M240 incinerator case"
 	desc = "A gun case containing the M240A1 incinerator unit. It does come loaded, but you'll still have to find extra tanks as you go."
 	storage_slots = 4
-	can_hold = list(/obj/item/weapon/gun/flamer, /obj/item/ammo_magazine/flamer_tank, /obj/item/attachable/attached_gun/extinguisher)
+	can_hold = list(/obj/item/weapon/gun/flamer/m240, /obj/item/ammo_magazine/flamer_tank, /obj/item/attachable/attached_gun/extinguisher)
 
 /obj/item/storage/box/guncase/flamer/fill_preset_inventory()
-	new /obj/item/weapon/gun/flamer(src)
+	new /obj/item/weapon/gun/flamer/m240(src)
 	new /obj/item/ammo_magazine/flamer_tank(src)
 	new /obj/item/ammo_magazine/flamer_tank(src)
 	new /obj/item/attachable/attached_gun/extinguisher(src)
@@ -313,6 +314,7 @@
 	name = "\improper M707 anti-materiel rifle case"
 	desc = "A gun case containing the M707 \"Vulture\" anti-materiel rifle and its requisite spotting tools."
 	icon_state = "guncase_blue"
+	item_state = "guncase_blue"
 	storage_slots = 7
 	can_hold = list(
 		/obj/item/weapon/gun/boltaction/vulture,

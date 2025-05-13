@@ -268,6 +268,7 @@
 		/obj/item/storage/belt/gun/m44,
 		/obj/item/storage/belt/gun/mateba,
 		/obj/item/storage/belt/gun/smartpistol,
+		/obj/item/storage/belt/gun/type47,
 		/obj/item/weapon/gun,
 
 		/obj/item/device/flashlight,
@@ -350,15 +351,6 @@
 	icon_state = "red_pyjamas"
 	item_state = "red_pyjamas"
 	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_ARMS|BODY_FLAG_LEGS
-
-/obj/item/clothing/suit/xenos
-	name = "xenos suit"
-	desc = "A suit made out of chitinous alien hide."
-	icon_state = "xenos"
-	item_state = "xenos_suit"
-	flags_armor_protection = BODY_FLAG_CHEST|BODY_FLAG_GROIN|BODY_FLAG_LEGS|BODY_FLAG_FEET|BODY_FLAG_ARMS|BODY_FLAG_HANDS
-	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	siemens_coefficient = 2
 
 //swimsuit
 
@@ -462,9 +454,9 @@
 /obj/item/clothing/suit/storage/manager
 	name = "manager's jacket"
 	desc = "A suit that belongs to someone important. It is made of insulating material and offers minor protection from all forms of damage."
-	icon = 'icons/obj/items/clothing/suits/jackets.dmi'
+	icon = 'icons/obj/items/clothing/suits/suits_by_faction/WY.dmi'
 	item_icons = list(
-		WEAR_JACKET = 'icons/mob/humans/onmob/clothing/suits/jackets.dmi'
+		WEAR_JACKET = 'icons/mob/humans/onmob/clothing/suits/suits_by_faction/WY.dmi'
 	)
 	item_state = "manager_suit"
 	icon_state = "manager_suit"
@@ -495,9 +487,9 @@
 /obj/item/clothing/suit/storage/director
 	name = "director's jacket"
 	desc = "A jacket that belongs to someone very important. It is made of insulating material and offers minor protection from all forms of damage."
-	icon = 'icons/obj/items/clothing/suits/jackets.dmi'
+	icon = 'icons/obj/items/clothing/suits/suits_by_faction/WY.dmi'
 	item_icons = list(
-		WEAR_JACKET = 'icons/mob/humans/onmob/clothing/suits/jackets.dmi'
+		WEAR_JACKET = 'icons/mob/humans/onmob/clothing/suits/suits_by_faction/WY.dmi'
 	)
 	item_state = "director_suit"
 	icon_state = "director_suit"

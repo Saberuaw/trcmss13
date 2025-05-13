@@ -1,14 +1,15 @@
 /obj/effect/landmark/start/upp
 	name = "UPP start join"
+	icon_state = "base_upp"
 	job_list = UPP_JOB_LIST
 
 /obj/effect/landmark/late_join/upp
 	name = "UPP late join"
+	icon_state = "late_join_upp"
 	job_list = UPP_JOB_LIST
 
-/datum/job/antag/upp
+/datum/job/antag/upp // Abstract type (null title)
 	allow_additional = TRUE
-	title = FACTION_UPP
 	selection_class = "job_synth" //setup colour
 	total_positions = 1
 	spawn_positions = 1
@@ -29,9 +30,6 @@
 	origin_override = ORIGIN_UPP
 	paygrades = list(PAY_SHORT_UE1 = JOB_PLAYTIME_TIER_0, PAY_SHORT_UE2 = JOB_PLAYTIME_TIER_1)
 
-/datum/equipment_preset/upp/New()
-	. = ..()
-	access = get_access(ACCESS_LIST_UPP_ALL) //ACCESS_COME_BACK_TO_ME
 /datum/equipment_preset/upp
 	flags = EQUIPMENT_PRESET_START_OF_ROUND
 
@@ -88,6 +86,12 @@
 //=====================//
 //  Frontline Roles  //
 //=================//
+
+/datum/job/antag/upp/rifleman
+	title = JOB_UPP
+	flags_startup_parameters = ROLE_ADD_TO_SQUAD
+	gear_preset = /datum/equipment_preset/upp/soldier
+
 /datum/equipment_preset/upp/soldier
 	name = "UPP Soldier (Cryo)"
 	flags = EQUIPMENT_PRESET_START_OF_ROUND
@@ -98,16 +102,18 @@
 	role_comm_title = "Sol"
 	minimap_icon = "upp_pvt"
 	paygrades = list(PAY_SHORT_UE1 = JOB_PLAYTIME_TIER_0, PAY_SHORT_UE2 = JOB_PLAYTIME_TIER_1)
-
-/datum/job/antag/upp/rifleman
-	title = JOB_UPP
-	flags_startup_parameters = ROLE_ADD_TO_SQUAD
-	gear_preset = /datum/equipment_preset/upp/soldier
+	access = list(
+		ACCESS_UPP_GENERAL,
+	)
 
 /datum/equipment_preset/upp/soldier/dressed
 	name = "UPP Soldier"
 	flags = EQUIPMENT_PRESET_EXTRA
 	skills = /datum/skills/upp
+
+/datum/equipment_preset/upp/soldier/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
 
 /datum/equipment_preset/upp/soldier/dressed/load_gear(mob/living/carbon/human/new_human)
 	//face
@@ -144,11 +150,10 @@
 /datum/equipment_preset/upp/soldier/proc/load_upp_rifleman(mob/living/carbon/human/new_human)
 	//back
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack/upp, WEAR_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK) //.75
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK) //1.5
-	new_human.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, WEAR_IN_BACK) //2.25
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK) //.75
+	new_human.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, WEAR_IN_BACK) //1.5
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/m94, WEAR_IN_BACK) //2.25
 	new_human.equip_to_slot_or_del(new /obj/item/storage/box/m94, WEAR_IN_BACK) //3.25
-	new_human.equip_to_slot_or_del(new /obj/item/storage/box/m94, WEAR_IN_BACK) //4.25
 	//body
 	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/type71/rifleman, WEAR_J_STORE)
 	//waist
@@ -164,11 +169,10 @@
 /datum/equipment_preset/upp/soldier/proc/load_upp_breacher(mob/living/carbon/human/new_human)
 	//back
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack/upp, WEAR_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK) //.75
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK) //1.5
-	new_human.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, WEAR_IN_BACK) //2.25
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK) //.75
+	new_human.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, WEAR_IN_BACK) //1.5
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/m94, WEAR_IN_BACK) //2.25
 	new_human.equip_to_slot_or_del(new /obj/item/storage/box/m94, WEAR_IN_BACK) //3.25
-	new_human.equip_to_slot_or_del(new /obj/item/storage/box/m94, WEAR_IN_BACK) //4.25
 	//waist
 	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/gun/type47/np92, WEAR_WAIST)
 	load_upp_shotgun(new_human)
@@ -190,9 +194,10 @@
 	return list(
 		list("STANDARD EQUIPMENT (TAKE ALL)", 0, null, null, null),
 		list("Standard Apparel", 0, list (/obj/item/clothing/under/marine/veteran/UPP, /obj/item/clothing/shoes/marine/upp/knife, /obj/item/clothing/gloves/marine/veteran/upp, /obj/item/device/radio/headset/distress/UPP), MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
-		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
-		list("Map", 0, /obj/item/map/current_map, MARINE_CAN_BUY_KIT, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("Map", 0, /obj/item/map/current_map, MARINE_CAN_BUY_MAP, VENDOR_ITEM_MANDATORY),
 		list("Combat Pack", 0, /obj/item/storage/backpack/lightpack/upp, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
+		list("Combat Lubricant", 0, /obj/item/stack/repairable/gunlube, MARINE_CAN_BUY_REPAIRABLE, VENDOR_ITEM_MANDATORY),
 
 		list("ARMOR", 0, null, null, null),
 		list("UM5 Personal Armor", 0, /obj/item/clothing/suit/storage/marine/faction/UPP, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_MANDATORY),
@@ -234,6 +239,7 @@
 		list("Black Webbing Vest", 10, /obj/item/clothing/accessory/storage/black_vest, MARINE_CAN_BUY_ACCESSORY, VENDOR_ITEM_RECOMMENDED),
 		list("Shoulder Holster", 10, /obj/item/clothing/accessory/storage/holster, MARINE_CAN_BUY_ACCESSORY, VENDOR_ITEM_REGULAR),
 		list("Webbing", 10, /obj/item/clothing/accessory/storage/webbing, MARINE_CAN_BUY_ACCESSORY, VENDOR_ITEM_REGULAR),
+		list("Black Webbing", 10, /obj/item/clothing/accessory/storage/webbing/black, MARINE_CAN_BUY_ACCESSORY, VENDOR_ITEM_REGULAR),
 		list("Drop Pouch", 10, /obj/item/clothing/accessory/storage/droppouch, MARINE_CAN_BUY_ACCESSORY, VENDOR_ITEM_REGULAR),
 
 		list("ENGINEERING SUPPLIES", 0, null, null, null),
@@ -268,13 +274,53 @@
 
 /datum/equipment_preset/upp/soldier/get_antag_gear_equipment()
 	return list(
+		list("ENGINEERING SUPPLIES", 0, null, null, null),
+		list("E-Tool", 5, /obj/item/tool/shovel/etool/folded, null, VENDOR_ITEM_REGULAR),
+		list("Sandbags", 20, /obj/item/stack/sandbags_empty/half, null, VENDOR_ITEM_REGULAR),
+		list("ES-11 Mobile Fuel Canister", 5, /obj/item/tool/weldpack/minitank, null, VENDOR_ITEM_REGULAR),
+		list("ME3 Hand Welder", 5, /obj/item/tool/weldingtool/simple, null, VENDOR_ITEM_REGULAR),
 
+		list("SPECIAL AMMUNITION", 0, null, null, null),
+		list("Type 71 AP Magazine (5.45x39mm)", 10, /obj/item/ammo_magazine/rifle/type71/ap , null, VENDOR_ITEM_REGULAR),
+
+		list("EXPLOSIVES", 0, null, null, null),
+		list("Smoke Grenade", 5, /obj/item/explosive/grenade/smokebomb, null, VENDOR_ITEM_REGULAR),
+		list("Type 6 Shrapnel Grenade", 15, /obj/item/explosive/grenade/high_explosive/upp, null, VENDOR_ITEM_REGULAR),
+		list("Type 8 WP Grenade", 20, /obj/item/explosive/grenade/phosphorus/upp, null, VENDOR_ITEM_REGULAR),
+
+		list("UTILITIES", 0, null, null, null),
+		list("Roller Bed", 5, /obj/item/roller, null, VENDOR_ITEM_REGULAR),
+		list("Fulton Device Stack", 5, /obj/item/stack/fulton, null, VENDOR_ITEM_REGULAR),
+		list("Fire Extinguisher (Portable)", 5, /obj/item/tool/extinguisher/mini, null, VENDOR_ITEM_REGULAR),
+		list("Large General Pouch", 15, /obj/item/storage/pouch/general/large, null, VENDOR_ITEM_REGULAR),
+
+
+		list("ATTACHMENTS", 0, null, null, null),
+		list("Angled Grip", 10, /obj/item/attachable/angledgrip, null, VENDOR_ITEM_REGULAR),
+		list("Extended Barrel", 10, /obj/item/attachable/extended_barrel, null, VENDOR_ITEM_REGULAR),
+		list("Laser Sight", 10, /obj/item/attachable/lasersight, null, VENDOR_ITEM_REGULAR),
+		list("Red-Dot Sight", 10, /obj/item/attachable/reddot, null, VENDOR_ITEM_REGULAR),
+		list("Reflex Sight", 10, /obj/item/attachable/reflex, null, VENDOR_ITEM_REGULAR),
+		list("Suppressor", 10, /obj/item/attachable/suppressor, null, VENDOR_ITEM_REGULAR),
+		list("Vertical Grip", 10, /obj/item/attachable/verticalgrip, null, VENDOR_ITEM_REGULAR),
+
+		list("HELMET OPTICS", 0, null, null, null),
+		list("Welding Visor", 5, /obj/item/device/helmet_visor/welding_visor, null, VENDOR_ITEM_REGULAR),
+
+		list("BINOCULARS", 0, null, null, null),
+		list("Binoculars", 5, /obj/item/device/binoculars, null, VENDOR_ITEM_REGULAR),
+		list("Range Finder", 10, /obj/item/device/binoculars/range, null, VENDOR_ITEM_REGULAR),
+		list("Laser Designator", 15, /obj/item/device/binoculars/range/designator, null, VENDOR_ITEM_REGULAR),
+
+		list("PAMPHLETS", 0, null, null, null),
+		list("JTAC Pamphlet", 15, /obj/item/pamphlet/skill/jtac, null, VENDOR_ITEM_REGULAR),
+		list("Engineering Pamphlet", 15, /obj/item/pamphlet/skill/engineer, null, VENDOR_ITEM_REGULAR),
 	)
 
 //*****************************************************************************************************/
 
 
-/datum/job/antag/upp/cryo/medic
+/datum/job/antag/upp/medic
 	title = JOB_UPP_MEDIC
 	gear_preset = /datum/equipment_preset/upp/medic
 	flags_startup_parameters = ROLE_ADD_TO_SQUAD
@@ -289,6 +335,10 @@
 	role_comm_title = "Med"
 	minimap_icon = "upp_med"
 	paygrades = list(PAY_SHORT_UE3 = JOB_PLAYTIME_TIER_0)
+	access = list(
+		ACCESS_UPP_GENERAL,
+		ACCESS_UPP_MEDICAL,
+	)
 
 /datum/equipment_preset/upp/medic/dressed
 	name = "UPP Medic"
@@ -296,14 +346,17 @@
 	skills = /datum/skills/upp/combat_medic
 	flags = EQUIPMENT_PRESET_EXTRA
 
+/datum/equipment_preset/upp/medic/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
+
 /datum/equipment_preset/upp/medic/dressed/load_gear(mob/living/carbon/human/new_human)
 	//back
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack/upp, WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/defibrillator/compact, WEAR_IN_BACK) //1
 	new_human.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv, WEAR_IN_BACK) //2
 	new_human.equip_to_slot_or_del(new /obj/item/roller, WEAR_IN_BACK) //2.33
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK) //3
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK) //3.33
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK) //3
 	//face
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/UPP/medic, WEAR_L_EAR)
 	if(new_human.disabilities & NEARSIGHTED)
@@ -341,9 +394,10 @@
 	return list(
 		list("STANDARD EQUIPMENT (TAKE ALL)", 0, null, null, null),
 		list("Standard Apparel", 0, list (/obj/item/clothing/under/marine/veteran/UPP/medic, /obj/item/clothing/shoes/marine/upp/knife, /obj/item/clothing/gloves/marine/veteran/upp, /obj/item/device/radio/headset/distress/UPP/medic), MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
-		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
-		list("Map", 0, /obj/item/map/current_map, MARINE_CAN_BUY_KIT, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("Map", 0, /obj/item/map/current_map, MARINE_CAN_BUY_MAP, VENDOR_ITEM_MANDATORY),
 		list("Combat Pack", 0, /obj/item/storage/backpack/lightpack/upp, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
+		list("Combat Lubricant", 0, /obj/item/stack/repairable/gunlube, MARINE_CAN_BUY_REPAIRABLE, VENDOR_ITEM_MANDATORY),
 
 		list("MEDICAL OPTICS", 0, null, null, null),
 		list("HealthMate HUD", 0, /obj/item/clothing/glasses/hud/health, MARINE_CAN_BUY_GLASSES, VENDOR_ITEM_MANDATORY),
@@ -491,6 +545,10 @@
 	role_comm_title = "Sap"
 	minimap_icon = "upp_sapper"
 	paygrades = list(PAY_SHORT_UE3 = JOB_PLAYTIME_TIER_0)
+	access = list(
+		ACCESS_UPP_GENERAL,
+		ACCESS_UPP_ENGINEERING,
+	)
 
 /datum/equipment_preset/upp/sapper/dressed
 	name = "UPP Sapper"
@@ -498,15 +556,18 @@
 	skills = /datum/skills/upp/combat_engineer
 	flags = EQUIPMENT_PRESET_EXTRA
 
+/datum/equipment_preset/upp/sapper/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
+
 /datum/equipment_preset/upp/sapper/dressed/load_gear(mob/living/carbon/human/new_human)
 	//Sappers should have lots of gear and whatnot that helps them attack or siege marines
 	//But that'll need a lot of effort so for now they are just soldiers with a toolbox.
 	//back
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/engineerpack/upp, WEAR_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK) //.33
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK) //.66
-	new_human.equip_to_slot_or_del(new /obj/item/device/motiondetector/hacked, WEAR_IN_BACK) //1.66
-	new_human.equip_to_slot_or_del(new /obj/item/defenses/handheld/sentry/upp/light, WEAR_IN_BACK) //2.66
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK) //.33
+	new_human.equip_to_slot_or_del(new /obj/item/device/motiondetector/hacked, WEAR_IN_BACK) //.66
+	new_human.equip_to_slot_or_del(new /obj/item/defenses/handheld/sentry/upp/light, WEAR_IN_BACK) //1.66
 	//face
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/UPP/cct, WEAR_L_EAR)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(new_human), WEAR_EYES)
@@ -537,9 +598,10 @@
 	return list(
 		list("STANDARD EQUIPMENT (TAKE ALL)", 0, null, null, null),
 		list("Standard Apparel", 0, list(/obj/item/clothing/under/marine/veteran/UPP/engi, /obj/item/clothing/shoes/marine/upp/knife, /obj/item/clothing/gloves/yellow, /obj/item/device/radio/headset/distress/UPP/cct), MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
-		list("Map", 0, /obj/item/map/current_map, MARINE_CAN_BUY_KIT, VENDOR_ITEM_MANDATORY),
-		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("Map", 0, /obj/item/map/current_map, MARINE_CAN_BUY_MAP, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("Welderpack", 0, /obj/item/storage/backpack/marine/engineerpack/upp, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
+		list("Combat Lubricant", 0, /obj/item/stack/repairable/gunlube, MARINE_CAN_BUY_REPAIRABLE, VENDOR_ITEM_MANDATORY),
 
 		list("WELDING PROTECTION (CHOOSE 1)", 0, null, null, null),
 		list("Welding Goggles", 0, /obj/item/clothing/glasses/welding, MARINE_CAN_BUY_GLASSES, VENDOR_ITEM_REGULAR),
@@ -612,7 +674,7 @@
 		list("Sandbags x25", 10, /obj/item/stack/sandbags_empty/half, null, VENDOR_ITEM_RECOMMENDED),
 		list("Super-Capacity Power Cell", 10, /obj/item/cell/super, null, VENDOR_ITEM_REGULAR),
 		list("ES-11 Mobile Fuel Canister", 4, /obj/item/tool/weldpack/minitank, null, VENDOR_ITEM_REGULAR),
-		list("Synthetic Reset Key", 10, /obj/item/device/defibrillator/synthetic, null, VENDOR_ITEM_REGULAR),
+		list("Synthetic Reset Key", 10, /obj/item/device/defibrillator/synthetic/hyperdyne, null, VENDOR_ITEM_REGULAR),
 
 		list("SPECIAL AMMUNITION", 0, null, null, null),
 		list("Type 71 AP Magazine (5.45x39mm)", 10, /obj/item/ammo_magazine/rifle/type71/ap , null, VENDOR_ITEM_REGULAR),
@@ -656,18 +718,23 @@
 	role_comm_title = "Spc"
 	minimap_icon = "upp_spec"
 	paygrades = list(PAY_SHORT_UE5 = JOB_PLAYTIME_TIER_0)
+	access = list(
+		ACCESS_UPP_GENERAL,
+	)
 
 /datum/equipment_preset/upp/specialist/dressed
 	name = "UPP Specialist"
 	flags = EQUIPMENT_PRESET_EXTRA
 
+/datum/equipment_preset/upp/specialist/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
 
 /datum/equipment_preset/upp/specialist/dressed/load_gear(mob/living/carbon/human/new_human)
 	//back
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack/upp, WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/tool/extinguisher, WEAR_IN_BACK) //1
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK) //1.33
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK) //1.66
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK) //1.33
 	//face
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/UPP, WEAR_L_EAR)
 	//head
@@ -706,8 +773,9 @@
 	return list(
 		list("STANDARD EQUIPMENT (TAKE ALL)", 0, null, null, null),
 		list("Standard Apparel", 0, list (/obj/item/clothing/under/marine/veteran/UPP, /obj/item/clothing/shoes/marine/upp/knife, /obj/item/clothing/gloves/marine/veteran/upp, /obj/item/device/radio/headset/distress/UPP), MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
-		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("Combat Pack", 0, /obj/item/storage/backpack/lightpack, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
+		list("Combat Lubricant", 0, /obj/item/stack/repairable/gunlube, MARINE_CAN_BUY_REPAIRABLE, VENDOR_ITEM_MANDATORY),
 
 		list("ARMOR", 0, null, null, null),
 		list("UH7 Heavy Plated Armor", 0, /obj/item/clothing/suit/storage/marine/faction/UPP/heavy, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_MANDATORY),
@@ -795,18 +863,23 @@
 	role_comm_title = "Spc"
 	minimap_icon = "upp_spec"
 	paygrades = list(PAY_SHORT_UE5 = JOB_PLAYTIME_TIER_0)
+	access = list(
+		ACCESS_UPP_GENERAL,
+	)
 
 /datum/equipment_preset/upp/machinegunner/dressed
 	name = "UPP Machinegunner"
 	flags = EQUIPMENT_PRESET_EXTRA
 
+/datum/equipment_preset/upp/machinegunner/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
 
 /datum/equipment_preset/upp/machinegunner/dressed/load_gear(mob/living/carbon/human/new_human)
 	//back
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack/upp, WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/tool/extinguisher, WEAR_IN_BACK) //1
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK) //1.33
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK) //1.66
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK) //1.33
 	//face
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/UPP, WEAR_L_EAR)
 	//head
@@ -843,8 +916,9 @@
 	return list(
 		list("STANDARD EQUIPMENT (TAKE ALL)", 0, null, null, null),
 		list("Standard Apparel", 0, list (/obj/item/clothing/under/marine/veteran/UPP, /obj/item/clothing/shoes/marine/upp/knife, /obj/item/clothing/gloves/marine/veteran/upp, /obj/item/device/radio/headset/distress/UPP), MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
-		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("Combat Pack", 0, /obj/item/storage/backpack/lightpack, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
+		list("Combat Lubricant", 0, /obj/item/stack/repairable/gunlube, MARINE_CAN_BUY_REPAIRABLE, VENDOR_ITEM_MANDATORY),
 
 		list("ARMOR", 0, null, null, null),
 		list("UH7 Heavy Plated Armor", 0, /obj/item/clothing/suit/storage/marine/faction/UPP/heavy, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_MANDATORY),
@@ -945,12 +1019,23 @@
 	role_comm_title = "SL"
 	minimap_icon = "upp_sl"
 	paygrades = list(PAY_SHORT_UE6 = JOB_PLAYTIME_TIER_0)
+	access = list(
+		ACCESS_UPP_GENERAL,
+		ACCESS_UPP_MEDICAL,
+		ACCESS_UPP_ENGINEERING,
+		ACCESS_UPP_FLIGHT,
+		ACCESS_UPP_LEADERSHIP,
+	)
 
 /datum/equipment_preset/upp/leader/dressed
 	name = "UPP Squad Leader"
 
 	skills = /datum/skills/upp/SL
 	flags = EQUIPMENT_PRESET_EXTRA
+
+/datum/equipment_preset/upp/leader/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
 
 /datum/equipment_preset/upp/leader/dressed/load_gear(mob/living/carbon/human/new_human)
 	var/UPPleadsidearm = rand(1,4)
@@ -960,9 +1045,8 @@
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, WEAR_IN_BACK) //1.33
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, WEAR_IN_BACK) //2
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, WEAR_IN_BACK) //2.66
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK) //3.33
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK) //4
-	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71/ap, WEAR_IN_BACK) //5
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK) //3.33
+	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71/ap, WEAR_IN_BACK) //4
 	//face
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/UPP/command, WEAR_L_EAR)
 	//head
@@ -1005,8 +1089,9 @@
 	return list(
 		list("STANDARD EQUIPMENT (TAKE ALL)", 0, null, null, null),
 		list("Standard Apparel", 0, list (/obj/item/clothing/under/marine/veteran/UPP, /obj/item/clothing/shoes/marine/upp/knife, /obj/item/clothing/gloves/marine/veteran/upp, /obj/item/device/radio/headset/distress/UPP/command), MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
-		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("Combat Pack", 0, /obj/item/storage/backpack/lightpack/upp, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
+		list("Combat Lubricant", 0, /obj/item/stack/repairable/gunlube, MARINE_CAN_BUY_REPAIRABLE, VENDOR_ITEM_MANDATORY),
 
 		list("ARMOR", 0, null, null, null),
 		list("UH7 Heavy Plated Armor", 0, /obj/item/clothing/suit/storage/marine/faction/UPP/heavy, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_MANDATORY),
@@ -1144,6 +1229,13 @@
 	role_comm_title = "MP"
 	minimap_icon = "upp_mp"
 	paygrades = list(PAY_SHORT_UE6 = JOB_PLAYTIME_TIER_0)
+	access = list(
+		ACCESS_UPP_GENERAL,
+		ACCESS_UPP_MEDICAL,
+		ACCESS_UPP_ENGINEERING,
+		ACCESS_UPP_SECURITY,
+		ACCESS_UPP_LEADERSHIP,
+	)
 
 /datum/job/antag/upp/military_police
 	title = JOB_UPP_POLICE
@@ -1165,10 +1257,14 @@
 	name = "UPP Military Police"
 	flags = EQUIPMENT_PRESET_EXTRA
 
+/datum/equipment_preset/upp/military_police/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
+
 /datum/equipment_preset/upp/military_police/dressed/load_gear(mob/living/carbon/human/new_human)
 	//back
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack/upp, WEAR_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK)
 	//face
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/UPP, WEAR_L_EAR)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/pmc/upp, WEAR_FACE)
@@ -1201,9 +1297,10 @@
 		list("UL4 camouflaged jacket", 0, /obj/item/clothing/suit/storage/marine/faction/UPP/mp, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_MANDATORY),
 		list("Gloves", 0, /obj/item/clothing/gloves/marine/veteran/upp, MARINE_CAN_BUY_GLOVES, VENDOR_ITEM_MANDATORY),
 		list("Headset", 0, /obj/item/device/radio/headset/distress/UPP, MARINE_CAN_BUY_EAR, VENDOR_ITEM_MANDATORY),
-		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("Combat Pack", 0, /obj/item/storage/backpack/lightpack/upp, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
 		list("Binoculars", 0, /obj/item/device/binoculars, null, VENDOR_ITEM_MANDATORY),
+		list("Combat Lubricant", 0, /obj/item/stack/repairable/gunlube, MARINE_CAN_BUY_REPAIRABLE, VENDOR_ITEM_MANDATORY),
 
 		list("HELMET (CHOOSE 1)", 0, null, null, null),
 		list("Armored Beret", 0, /obj/item/clothing/head/uppcap/beret, MARINE_CAN_BUY_HELMET, VENDOR_ITEM_REGULAR),
@@ -1327,6 +1424,11 @@
 	rank = JOB_UPP_LT_DOKTOR
 	role_comm_title = "Lt. Med."
 	paygrades = list(PAY_SHORT_UO1 = JOB_PLAYTIME_TIER_0)
+	access = list(
+		ACCESS_UPP_GENERAL,
+		ACCESS_UPP_MEDICAL,
+		ACCESS_UPP_RESEARCH,
+	)
 
 /datum/equipment_preset/upp/doctor/load_gear(mob/living/carbon/human/new_human)
 	. = ..()
@@ -1347,6 +1449,10 @@
 /datum/equipment_preset/upp/doctor/dressed
 	name = "UPP Doctor"
 	flags = EQUIPMENT_PRESET_EXTRA
+
+/datum/equipment_preset/upp/doctor/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
 
 /datum/equipment_preset/upp/doctor/dressed/load_gear(mob/living/carbon/human/new_human)
 	//back
@@ -1380,9 +1486,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/upp, WEAR_HANDS)
 	//póckets
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large, WEAR_R_STORE)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_R_STORE)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_R_STORE)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_R_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_R_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/medical, WEAR_L_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/tool/surgery/synthgraft, WEAR_IN_L_STORE)
 	new_human.equip_to_slot_or_del(new /obj/item/device/healthanalyzer, WEAR_IN_L_STORE)
@@ -1400,7 +1504,7 @@
 		list("UL6 Personal Armor", 0, /obj/item/clothing/suit/storage/marine/faction/UPP/support, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_MANDATORY),
 		list("Gloves", 0, /obj/item/clothing/gloves/marine/veteran/upp, MARINE_CAN_BUY_GLOVES, VENDOR_ITEM_MANDATORY),
 		list("Headset", 0, /obj/item/device/radio/headset/distress/UPP, MARINE_CAN_BUY_EAR, VENDOR_ITEM_MANDATORY),
-		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("Combat Pack", 0, /obj/item/storage/backpack/lightpack, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
 		list("HealthMate HUD", 0, /obj/item/clothing/glasses/hud/health, MARINE_CAN_BUY_GLASSES, VENDOR_ITEM_MANDATORY),
 		list("Binoculars", 0, /obj/item/device/binoculars, null, VENDOR_ITEM_MANDATORY),
@@ -1499,6 +1603,12 @@
 	role_comm_title = "Log."
 	minimap_icon = "upp_cargo"
 	paygrades = list(PAY_SHORT_UE3 = JOB_PLAYTIME_TIER_0)
+	access = list(
+		ACCESS_UPP_GENERAL,
+		ACCESS_UPP_MEDICAL,
+		ACCESS_UPP_ENGINEERING,
+		ACCESS_UPP_ARMORY,
+	)
 
 /datum/equipment_preset/upp/supply/load_gear(mob/living/carbon/human/new_human)
 	//face
@@ -1518,11 +1628,14 @@
 	name = "UPP Logistics Technician"
 	flags = EQUIPMENT_PRESET_EXTRA
 
+/datum/equipment_preset/upp/supply/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
+
 /datum/equipment_preset/upp/supply/dressed/load_gear(mob/living/carbon/human/new_human)
 	//back
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/engineerpack/upp, WEAR_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/motiondetector/hacked, WEAR_IN_BACK)
 	//face
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/UPP/cct, WEAR_L_EAR)
@@ -1552,7 +1665,7 @@
 		list("Gloves", 0, /obj/item/clothing/gloves/marine/veteran/upp, MARINE_CAN_BUY_GLOVES, VENDOR_ITEM_MANDATORY),
 		list("Headset", 0, /obj/item/device/radio/headset/distress/UPP/cct, MARINE_CAN_BUY_EAR, VENDOR_ITEM_MANDATORY),
 		list("Welding Goggles", 0, /obj/item/clothing/glasses/welding, MARINE_CAN_BUY_GLASSES, VENDOR_ITEM_MANDATORY),
-		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("Welderpack", 0, /obj/item/storage/backpack/marine/engineerpack/upp, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
 		list("Binoculars", 0, /obj/item/device/binoculars, null, VENDOR_ITEM_MANDATORY),
 
@@ -1602,10 +1715,20 @@
 	role_comm_title = "Lt."
 	minimap_icon = "upp_lt"
 	paygrades = list(PAY_SHORT_UO1 = JOB_PLAYTIME_TIER_0)
+	access = list(
+		ACCESS_UPP_GENERAL,
+		ACCESS_UPP_MEDICAL,
+		ACCESS_UPP_ENGINEERING,
+		ACCESS_UPP_SECURITY,
+		ACCESS_UPP_ARMORY,
+		ACCESS_UPP_FLIGHT,
+		ACCESS_UPP_RESEARCH,
+		ACCESS_UPP_COMMANDO,
+		ACCESS_UPP_LEADERSHIP,
+	)
 
 
 /datum/job/antag/upp/officer //this is placeholder for stuff that is supposed to be the same for all officers
-	title = JOB_UPP_SRLT_OFFICER
 	selection_class = "job_command"
 
 /datum/equipment_preset/upp/officer/load_gear(mob/living/carbon/human/new_human)
@@ -1624,12 +1747,15 @@
 	name = "UPP Lieutenant"
 	flags = EQUIPMENT_PRESET_EXTRA
 
+/datum/equipment_preset/upp/officer/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
 
 /datum/equipment_preset/upp/officer/dressed/load_gear(mob/living/carbon/human/new_human)
 	//back
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack/upp, WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/tool/extinguisher, WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/motiondetector/hacked, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/megaphone, WEAR_IN_BACK)
 	//face
@@ -1672,8 +1798,10 @@
 		list("Boots", 0, /obj/item/clothing/shoes/marine/upp/knife, MARINE_CAN_BUY_SHOES, VENDOR_ITEM_MANDATORY),
 		list("Fatigues", 0, /obj/item/clothing/under/marine/veteran/UPP/officer, MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
 		list("Gloves", 0, /obj/item/clothing/gloves/marine/veteran/upp, MARINE_CAN_BUY_GLOVES, VENDOR_ITEM_MANDATORY),
-		list("Headset", 0, /obj/item/device/radio/headset/distress/UPP/command, MARINE_CAN_BUY_EAR, VENDOR_ITEM_MANDATORY),		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("Headset", 0, /obj/item/device/radio/headset/distress/UPP/command, MARINE_CAN_BUY_EAR, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("Combat Pack", 0, /obj/item/storage/backpack/lightpack/upp, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
+		list("Combat Lubricant", 0, /obj/item/stack/repairable/gunlube, MARINE_CAN_BUY_REPAIRABLE, VENDOR_ITEM_MANDATORY),
 
 		list("HELMET (CHOOSE 1)", 0, null, null, null),
 		list("Armored Beret", 0, /obj/item/clothing/head/uppcap/beret, MARINE_CAN_BUY_HELMET, VENDOR_ITEM_REGULAR),
@@ -1792,15 +1920,31 @@
 	role_comm_title = "Sr-Lt."
 	minimap_icon = "upp_slt"
 	paygrades = list(PAY_SHORT_UO2 = JOB_PLAYTIME_TIER_0)
+	access = list(
+		ACCESS_UPP_GENERAL,
+		ACCESS_UPP_MEDICAL,
+		ACCESS_UPP_ENGINEERING,
+		ACCESS_UPP_SECURITY,
+		ACCESS_UPP_ARMORY,
+		ACCESS_UPP_FLIGHT,
+		ACCESS_UPP_RESEARCH,
+		ACCESS_UPP_COMMANDO,
+		ACCESS_UPP_LEADERSHIP,
+		ACCESS_UPP_SENIOR_LEAD,
+	)
 
 /datum/equipment_preset/upp/officer/senior/dressed
 	name = "UPP Senior Lieutenant"
+
+/datum/equipment_preset/upp/officer/senior/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
 
 /datum/equipment_preset/upp/officer/senior/dressed/load_gear(mob/living/carbon/human/new_human)
 	//back
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack/upp, WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/tool/extinguisher, WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/motiondetector/hacked, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/megaphone, WEAR_IN_BACK)
 	//face
@@ -1843,8 +1987,10 @@
 		list("Boots", 0, /obj/item/clothing/shoes/marine/upp/knife, MARINE_CAN_BUY_SHOES, VENDOR_ITEM_MANDATORY),
 		list("Fatigues", 0, /obj/item/clothing/under/marine/veteran/UPP/officer, MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
 		list("Gloves", 0, /obj/item/clothing/gloves/marine/veteran/upp, MARINE_CAN_BUY_GLOVES, VENDOR_ITEM_MANDATORY),
-		list("Headset", 0, /obj/item/device/radio/headset/distress/UPP/command, MARINE_CAN_BUY_EAR, VENDOR_ITEM_MANDATORY),		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("Headset", 0, /obj/item/device/radio/headset/distress/UPP/command, MARINE_CAN_BUY_EAR, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("Combat Pack", 0, /obj/item/storage/backpack/lightpack/upp, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
+		list("Combat Lubricant", 0, /obj/item/stack/repairable/gunlube, MARINE_CAN_BUY_REPAIRABLE, VENDOR_ITEM_MANDATORY),
 
 		list("HELMET (CHOOSE 1)", 0, null, null, null),
 		list("Armored Beret", 0, /obj/item/clothing/head/uppcap/beret, MARINE_CAN_BUY_HELMET, VENDOR_ITEM_REGULAR),
@@ -1956,11 +2102,15 @@
 /datum/equipment_preset/upp/officer/kapitan/dressed
 	name = "UPP Kapitan"
 
+/datum/equipment_preset/upp/officer/kapitan/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
+
 /datum/equipment_preset/upp/officer/kapitan/load_gear(mob/living/carbon/human/new_human)
 	//back
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack/upp, WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/tool/extinguisher, WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/motiondetector/hacked, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/megaphone, WEAR_IN_BACK)
 	//face
@@ -2004,9 +2154,10 @@
 		list("Fatigues", 0, /obj/item/clothing/under/marine/veteran/UPP/officer, MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
 		list("Gloves", 0, /obj/item/clothing/gloves/marine/veteran, MARINE_CAN_BUY_GLOVES, VENDOR_ITEM_MANDATORY),
 		list("Headset", 0, /obj/item/device/radio/headset/distress/UPP/command, MARINE_CAN_BUY_EAR, VENDOR_ITEM_MANDATORY),
-		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("Combat Pack", 0, /obj/item/storage/backpack/lightpack/upp, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
 		list("Binoculars", 0, /obj/item/device/binoculars/range, null, VENDOR_ITEM_MANDATORY),
+		list("Combat Lubricant", 0, /obj/item/stack/repairable/gunlube, MARINE_CAN_BUY_REPAIRABLE, VENDOR_ITEM_MANDATORY),
 
 		list("HELMET (CHOOSE 1)", 0, null, null, null),
 		list("Beret", 0, /obj/item/clothing/head/uppcap/beret, MARINE_CAN_BUY_HELMET, VENDOR_ITEM_REGULAR),
@@ -2114,10 +2265,10 @@
 
 //*****************************************************************************************************/
 /datum/job/antag/upp/officer/co_whitelist
-	flags_startup_parameters = ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED
-	flags_whitelist = WHITELIST_COMMANDER
 	title = JOB_UPP_CO_OFFICER
 	gear_preset = /datum/equipment_preset/upp/officer/major/co
+	flags_startup_parameters = ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED
+	flags_whitelist = WHITELIST_COMMANDER
 
 /datum/job/antag/upp/officer/co_whitelist/New()
 	. = ..()
@@ -2128,10 +2279,10 @@
 	)
 
 /datum/job/antag/upp/officer/major
-	flags_startup_parameters = ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED
-	flags_whitelist = WHITELIST_COMMANDER
 	title = JOB_UPP_MAY_OFFICER
 	gear_preset = /datum/equipment_preset/upp/officer/major
+	flags_startup_parameters = ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED
+	flags_whitelist = WHITELIST_COMMANDER
 
 /datum/equipment_preset/upp/officer/major
 	name = "UPP Mayjor (Cryo)"
@@ -2150,11 +2301,15 @@
 /datum/equipment_preset/upp/officer/major/dressed
 	name = "UPP Major"
 
+/datum/equipment_preset/upp/officer/major/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
+
 /datum/equipment_preset/upp/officer/major/dressed/load_gear(mob/living/carbon/human/new_human)
 	//back
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack/upp, WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/tool/extinguisher, WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/motiondetector/hacked, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/megaphone, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/cotablet/upp, WEAR_IN_BACK)
@@ -2202,8 +2357,9 @@
 		list("Headset", 0, /obj/item/device/radio/headset/distress/UPP/command, MARINE_CAN_BUY_EAR, VENDOR_ITEM_MANDATORY),
 		list("Binoculars", 0, /obj/item/device/binoculars/range, null, VENDOR_ITEM_MANDATORY),
 
-		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("Combat Pack", 0, /obj/item/storage/backpack/lightpack/upp, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
+		list("Combat Lubricant", 0, /obj/item/stack/repairable/gunlube, MARINE_CAN_BUY_REPAIRABLE, VENDOR_ITEM_MANDATORY),
 
 		list("HELMET (CHOOSE 1)", 0, null, null, null),
 		list("Peaked Cap", 0, /obj/item/clothing/head/uppcap/peaked, MARINE_CAN_BUY_HELMET, VENDOR_ITEM_REGULAR),
@@ -2311,11 +2467,10 @@
 
 //*****************************************************************************************************/
 /datum/job/antag/upp/officer/podpolkovnik
-	flags_startup_parameters = ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED
-	flags_whitelist =  WHITELIST_COMMANDER_COUNCIL
 	title = JOB_UPP_LTKOL_OFFICER
 	gear_preset = /datum/equipment_preset/upp/officer/flag/podpolkovnik
-
+	flags_startup_parameters = ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED
+	flags_whitelist =  WHITELIST_COMMANDER_COUNCIL
 
 /datum/equipment_preset/upp/officer/flag/podpolkovnik
 	name = "UPP Podpolkovnik (Cryo)"
@@ -2339,6 +2494,10 @@
 	minimap_icon = "upp_co"
 	paygrades = list(PAY_SHORT_UO5 = JOB_PLAYTIME_TIER_0)
 
+/datum/equipment_preset/upp/officer/flag/dressed/podpolkovnik/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
+
 //*****************************************************************************************************/
 /datum/equipment_preset/upp/officer/flag
 	name = "UPP Flag Officer Base"
@@ -2352,7 +2511,7 @@
 	//back
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack/upp, WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/tool/extinguisher, WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/motiondetector/hacked, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/megaphone, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/device/cotablet/upp, WEAR_IN_BACK)
@@ -2397,7 +2556,7 @@
 		list("Fatigues", 0, /obj/item/clothing/under/marine/veteran/UPP/officer, MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
 		list("Gloves", 0, /obj/item/clothing/gloves/marine/veteran/upp, MARINE_CAN_BUY_GLOVES, VENDOR_ITEM_MANDATORY),
 		list("Headset", 0, /obj/item/device/radio/headset/distress/UPP/command, MARINE_CAN_BUY_EAR, VENDOR_ITEM_MANDATORY),
-		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("Combat Pack", 0, /obj/item/storage/backpack/lightpack/upp, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
 		list("Binoculars", 0, /obj/item/device/binoculars, null, VENDOR_ITEM_MANDATORY),
 
@@ -2506,11 +2665,10 @@
 
 
 /datum/job/antag/upp/officer/kolonel
-	flags_startup_parameters = ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED
-	flags_whitelist = WHITELIST_COMMANDER_COLONEL|WHITELIST_COMMANDER_LEADER
 	title = JOB_UPP_KOL_OFFICER
 	gear_preset = /datum/equipment_preset/upp/officer/flag/podpolkovnik
-
+	flags_startup_parameters = ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED
+	flags_whitelist = WHITELIST_COMMANDER_COLONEL|WHITELIST_COMMANDER_LEADER
 
 /datum/equipment_preset/upp/officer/flag/polkovnik
 	name = "UPP Polkovnik (Cryo)"
@@ -2568,11 +2726,14 @@
 	minimap_icon = "upp_co"
 	paygrades = list(PAY_SHORT_UO8 = JOB_PLAYTIME_TIER_0)
 
+/datum/equipment_preset/upp/officer/flag/may_gen/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
+
 //*****************************************************************************************************/
 /datum/job/antag/upp/officer/ley_gen
 	title = JOB_UPP_LT_GENERAL
 	gear_preset = /datum/equipment_preset/upp/officer/flag/ley_gen
-
 	flags_whitelist =  WHITELIST_COMMANDER
 
 /datum/equipment_preset/upp/officer/flag/ley_gen
@@ -2590,7 +2751,10 @@
 	rank = JOB_UPP_LT_GENERAL
 	role_comm_title = "Lt. Gen."
 	minimap_icon = "upp_co"
-	paygrades = list(PAY_SHORT_UO9 = JOB_PLAYTIME_TIER_0)
+
+/datum/equipment_preset/upp/officer/flag/ley_gen/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
 
 //*****************************************************************************************************/
 /datum/job/antag/upp/officer/gen
@@ -2612,7 +2776,10 @@
 	rank = JOB_UPP_GENERAL
 	role_comm_title = "Gen."
 	minimap_icon = "upp_co"
-	paygrades = list(PAY_SHORT_UO10 = JOB_PLAYTIME_TIER_0)
+
+/datum/equipment_preset/upp/officer/flag/gen/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
 
 //*****************************************************************************************************/
 /datum/equipment_preset/upp/sapper/survivor
@@ -2661,6 +2828,13 @@
 	gear_preset = /datum/equipment_preset/upp/synth
 
 	flags_whitelist =  WHITELIST_SYNTHETIC
+	flags_startup_parameters = ROLE_WHITELISTED
+
+/datum/job/antag/upp/synth/check_whitelist_status(mob/user)
+	if(user.client.check_whitelist_status(WHITELIST_SYNTHETIC))
+		return TRUE
+
+	return ..()
 
 /datum/equipment_preset/upp/synth
 	name = "UPP Synthetic (Cryo)"
@@ -2673,10 +2847,21 @@
 	minimap_icon = "upp_synth"
 	paygrades = list(PAY_SHORT_SYN = JOB_PLAYTIME_TIER_0)
 	idtype = /obj/item/card/id/dogtag/upp
+	access = list(
+		ACCESS_UPP_GENERAL,
+		ACCESS_UPP_MEDICAL,
+		ACCESS_UPP_ENGINEERING,
+		ACCESS_UPP_FLIGHT,
+		ACCESS_UPP_LEADERSHIP,
+	)
 
 
 /datum/equipment_preset/upp/synth/dressed
 	name = "UPP Synthetic"
+
+/datum/equipment_preset/upp/synth/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
 
 /datum/equipment_preset/upp/synth/load_gear(mob/living/carbon/human/new_human)
 	. = ..()
@@ -2738,7 +2923,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/blood/OMinus, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/blood/OMinus, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/roller/surgical, WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/device/defibrillator/synthetic, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/device/defibrillator/synthetic/hyperdyne, WEAR_IN_BACK)
 	//face
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/UPP/command, WEAR_L_EAR)
 	new_human.equip_to_slot_or_del(new /obj/item/tool/screwdriver, WEAR_R_EAR)
@@ -2908,6 +3093,10 @@
 	name = "UPP Combat Synthetic"
 	flags = EQUIPMENT_PRESET_EXTRA
 
+/datum/equipment_preset/upp/synth/combat/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
+
 
 /datum/equipment_preset/upp/synth/combat/load_skills(mob/living/carbon/human/new_human)
 	. = ..()
@@ -2973,13 +3162,14 @@
 
 	languages = list(LANGUAGE_RUSSIAN, LANGUAGE_ENGLISH, LANGUAGE_TSL, LANGUAGE_SPANISH, LANGUAGE_CHINESE)
 
+/datum/equipment_preset/upp/commando/New() //commando has full access
+	. = ..()
+	access = get_access(ACCESS_LIST_GLOBAL)
+
 /datum/equipment_preset/upp/commando/dressed
 	name = "UPP Commando (!DEATHSQUAD!)"
 	flags = EQUIPMENT_PRESET_EXTRA
 
-/datum/equipment_preset/upp/commando/dressed/New()
-	. = ..()
-	access = get_access(ACCESS_LIST_GLOBAL)
 
 /datum/equipment_preset/upp/commando/dressed/load_gear(mob/living/carbon/human/new_human)
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/UPP/kdo, WEAR_L_EAR)
@@ -2997,7 +3187,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/pmc/upp, WEAR_FACE)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m42_night_goggles/upp, WEAR_EYES)
 
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/plastic, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/plastic, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, WEAR_IN_BACK)
@@ -3018,11 +3208,12 @@
 		list("Gloves", 0, /obj/item/clothing/gloves/marine/veteran/upp, MARINE_CAN_BUY_GLOVES, VENDOR_ITEM_MANDATORY),
 		list("Headset", 0, /obj/item/device/radio/headset/distress/UPP/kdo, MARINE_CAN_BUY_EAR, VENDOR_ITEM_MANDATORY),
 		list("Night Vision Goggles", 0, /obj/item/clothing/glasses/night/m42_night_goggles/upp, MARINE_CAN_BUY_GLASSES, VENDOR_ITEM_MANDATORY),
-		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("UM5CU Personal Armor", 0, /obj/item/clothing/suit/storage/marine/faction/UPP/commando, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_MANDATORY),
 		list("UPP Cloak", 0, /obj/item/storage/backpack/marine/satchel/scout_cloak/upp, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
 		list("UPP Balaclava", 0, /obj/item/clothing/mask/gas/pmc/upp, MARINE_CAN_BUY_MASK, VENDOR_ITEM_MANDATORY),
 		list("Binoculars", 0, /obj/item/device/binoculars/range, null, VENDOR_ITEM_MANDATORY),
+		list("Combat Lubricant", 0, /obj/item/stack/repairable/gunlube, MARINE_CAN_BUY_REPAIRABLE, VENDOR_ITEM_MANDATORY),
 
 		list("HELMET (CHOOSE 1)", 0, null, null, null),
 		list("Armored Cap", 0, /obj/item/clothing/head/uppcap, MARINE_CAN_BUY_HELMET, VENDOR_ITEM_REGULAR),
@@ -3137,7 +3328,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/tool/crowbar, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large, WEAR_R_STORE)
 
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/explosive/C4, WEAR_L_STORE)
 
 	new_human.equip_to_slot_or_del(new /obj/item/restraint/handcuffs, WEAR_IN_JACKET)
@@ -3151,11 +3342,12 @@
 		list("Standard Apparel", 0, list(/obj/item/clothing/under/marine/veteran/UPP/medic, /obj/item/clothing/shoes/marine/upp/knife, /obj/item/clothing/gloves/marine/veteran/upp, /obj/item/device/radio/headset/distress/UPP/kdo/medic), MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
 		list("HealthMate HUD", 0, /obj/item/clothing/glasses/hud/health, MARINE_CAN_BUY_GLASSES, VENDOR_ITEM_MANDATORY),
 		list("Night Vision Goggles", 0, /obj/item/clothing/glasses/night/m42_night_goggles/upp, MARINE_CAN_BUY_GLASSES, VENDOR_ITEM_MANDATORY),
-		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("UM5CU Personal Armor", 0, /obj/item/clothing/suit/storage/marine/faction/UPP/commando, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_MANDATORY),
 		list("UPP Cloak", 0, /obj/item/storage/backpack/marine/satchel/scout_cloak/upp, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
 		list("UPP Balaclava", 0, /obj/item/clothing/mask/gas/pmc/upp, MARINE_CAN_BUY_MASK, VENDOR_ITEM_MANDATORY),
 		list("Binoculars", 0, /obj/item/device/binoculars/range, null, VENDOR_ITEM_MANDATORY),
+		list("Combat Lubricant", 0, /obj/item/stack/repairable/gunlube, MARINE_CAN_BUY_REPAIRABLE, VENDOR_ITEM_MANDATORY),
 
 		list("HELMET (CHOOSE 1)", 0, null, null, null),
 		list("Armored Cap", 0, /obj/item/clothing/head/uppcap, MARINE_CAN_BUY_HELMET, VENDOR_ITEM_REGULAR),
@@ -3297,7 +3489,7 @@
 
 	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/gun/type47/np92/suppressed, WEAR_WAIST)
 
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/tool/crowbar, WEAR_IN_BACK)
@@ -3316,11 +3508,12 @@
 		list("STANDARD EQUIPMENT (TAKE ALL)", 0, null, null, null),
 		list("Standard Apparel", 0, list(/obj/item/clothing/suit/storage/marine/faction/UPP/commando, /obj/item/clothing/shoes/marine/upp/knife, /obj/item/clothing/gloves/marine/veteran/upp, /obj/item/device/radio/headset/distress/UPP/kdo/command), MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
 		list("Night Vision Goggles", 0, /obj/item/clothing/glasses/night/m42_night_goggles/upp, MARINE_CAN_BUY_GLASSES, VENDOR_ITEM_MANDATORY),
-		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("UM5CU Personal Armor", 0, /obj/item/clothing/suit/storage/marine/faction/UPP/commando, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_MANDATORY),
 		list("UPP Cloak", 0, /obj/item/storage/backpack/marine/satchel/scout_cloak/upp, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
 		list("UPP Balaclava", 0, /obj/item/clothing/mask/gas/pmc/upp, MARINE_CAN_BUY_MASK, VENDOR_ITEM_MANDATORY),
 		list("Binoculars", 0, /obj/item/device/binoculars/range, null, VENDOR_ITEM_MANDATORY),
+		list("Combat Lubricant", 0, /obj/item/stack/repairable/gunlube, MARINE_CAN_BUY_REPAIRABLE, VENDOR_ITEM_MANDATORY),
 
 		list("HELMET (CHOOSE 1)", 0, null, null, null),
 		list("Armored Cap", 0, /obj/item/clothing/head/uppcap, MARINE_CAN_BUY_HELMET, VENDOR_ITEM_REGULAR),
@@ -3441,7 +3634,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/pmc/upp, WEAR_FACE)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m42_night_goggles/upp, WEAR_EYES)
 
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/plastic, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/plastic, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, WEAR_IN_BACK)
@@ -3486,7 +3679,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/tool/crowbar, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large, WEAR_R_STORE)
 
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/explosive/C4, WEAR_L_STORE)
 
 	new_human.equip_to_slot_or_del(new /obj/item/restraint/handcuffs, WEAR_IN_JACKET)
@@ -3514,7 +3707,7 @@
 
 	new_human.equip_to_slot_or_del(new /obj/item/storage/belt/gun/type47/np92/suppressed, WEAR_WAIST)
 
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/tool/crowbar, WEAR_IN_BACK)
@@ -3545,9 +3738,19 @@
 
 	minimum_age = 30
 	skills = /datum/skills/tank_crew
+	access = list(
+		ACCESS_UPP_GENERAL,
+		ACCESS_UPP_ENGINEERING,
+		ACCESS_UPP_FLIGHT,
+		ACCESS_UPP_LEADERSHIP,
+	)
 
 /datum/equipment_preset/upp/tank/dressed
 	name = "UPP Vehicle Crewman (TANK)"
+
+/datum/equipment_preset/upp/tank/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
 
 
 /datum/equipment_preset/upp/tank/dressed/load_gear(mob/living/carbon/human/new_human)
@@ -3577,8 +3780,9 @@
 		list("UM5 Personal Armor", 0, /obj/item/clothing/suit/storage/marine/faction/UPP, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_MANDATORY),
 		list("UM4-V Helmet", 0, /obj/item/clothing/head/helmet/marine/veteran/UPP/engi, MARINE_CAN_BUY_HELMET, VENDOR_ITEM_MANDATORY),
 		list("Welding Kit", 0, /obj/item/tool/weldpack, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
-		list("MRE", 0, /obj/item/storage/box/MRE, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("Binoculars", 0, /obj/item/device/binoculars, null, VENDOR_ITEM_MANDATORY),
+		list("Combat Lubricant", 0, /obj/item/stack/repairable/gunlube, MARINE_CAN_BUY_REPAIRABLE, VENDOR_ITEM_MANDATORY),
 
 		list("PERSONAL SIDEARM (CHOOSE 1)", 0, null, null, null),
 		list("Type 73 Pistol", 0, /obj/item/weapon/gun/pistol/t73, MARINE_CAN_BUY_ATTACHMENT, VENDOR_ITEM_RECOMMENDED),
@@ -3657,8 +3861,7 @@
 
 	//back
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/engineerpack/upp, WEAR_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK)
 	//face
 	new_human.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/UPP/cct, WEAR_L_EAR)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/aviator(new_human), WEAR_EYES)
@@ -3687,9 +3890,10 @@
 		list("UM5 Personal Armor", 0, /obj/item/clothing/suit/storage/marine/faction/UPP, MARINE_CAN_BUY_ARMOR, VENDOR_ITEM_MANDATORY),
 		list("Gloves", 0, /obj/item/clothing/gloves/marine/veteran/upp, MARINE_CAN_BUY_GLOVES, VENDOR_ITEM_MANDATORY),
 		list("Headset", 0, /obj/item/device/radio/headset/distress/UPP/cct, MARINE_CAN_BUY_EAR, VENDOR_ITEM_MANDATORY),
-		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("Welderpack", 0, /obj/item/storage/backpack/marine/engineerpack/upp, MARINE_CAN_BUY_BACKPACK, VENDOR_ITEM_MANDATORY),
 		list("Binoculars", 0, /obj/item/device/binoculars, null, VENDOR_ITEM_MANDATORY),
+		list("Combat Lubricant", 0, /obj/item/stack/repairable/gunlube, MARINE_CAN_BUY_REPAIRABLE, VENDOR_ITEM_MANDATORY),
 
 		list("HELMET (CHOOSE 1)", 0, null, null, null),
 		list("Armored Cap", 0, /obj/item/clothing/head/uppcap, MARINE_CAN_BUY_HELMET, VENDOR_ITEM_REGULAR),
@@ -3749,12 +3953,18 @@
 	rank = JOB_UPP_COMMISSAR
 	paygrades = list(PAY_SHORT_UO4P = JOB_PLAYTIME_TIER_0)
 	role_comm_title = "Commissar"
+	minimap_icon = "upp_plt"
 	minimum_age = 30
 	skills = /datum/skills/upp/commissar
+	access = list(ACCESS_UPP_GENERAL, ACCESS_UPP_LEADERSHIP)
 
 /datum/equipment_preset/upp/commissar/dressed
 	name = "UPP Political Commissar"
 	flags = EQUIPMENT_PRESET_EXTRA
+
+/datum/equipment_preset/upp/commissar/dressed/New()
+	.=..()
+	access = get_access(ACCESS_LIST_UPP_ALL)
 
 /datum/equipment_preset/upp/commissar/load_gear(mob/living/carbon/human/new_human)
 	. = ..()
@@ -3781,7 +3991,7 @@
 /datum/equipment_preset/upp/commissar/get_antag_clothing_equipment()
 	return list(
 		list("STANDARD EQUIPMENT (TAKE ALL)", 0, null, null, null),
-		list("MRE", 0, /obj/item/storage/box/MRE, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 
 		list("HELMET (CHOOSE 1)", 0, null, null, null),
 		list("UL2 Cap", 0, /obj/item/clothing/head/uppcap, MARINE_CAN_BUY_HELMET, VENDOR_ITEM_REGULAR),
@@ -3866,6 +4076,9 @@
 	role_comm_title = "Cons"
 	minimap_icon = "upp_pvt"
 	paygrades = list(PAY_SHORT_UE1 = JOB_PLAYTIME_TIER_0)
+	access = list(
+		ACCESS_UPP_GENERAL,
+	)
 
 /datum/equipment_preset/upp/conscript/load_gear(mob/living/carbon/human/new_human)
 	//back
@@ -3927,8 +4140,9 @@
 		list("Boots", 0, /obj/item/clothing/shoes/marine/upp/knife, MARINE_CAN_BUY_SHOES, VENDOR_ITEM_MANDATORY),
 		list("Fatigues", 0, /obj/item/clothing/under/marine/veteran/UPP, MARINE_CAN_BUY_UNIFORM, VENDOR_ITEM_MANDATORY),
 		list("Headset", 0, /obj/item/device/radio/headset/distress/UPP, MARINE_CAN_BUY_EAR, VENDOR_ITEM_MANDATORY),
-		list("Ration", 0, /obj/item/reagent_container/food/snacks/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
+		list("IRP", 0, /obj/item/storage/box/mre/upp, MARINE_CAN_BUY_MRE, VENDOR_ITEM_MANDATORY),
 		list("Binoculars", 0, /obj/item/device/binoculars, null, VENDOR_ITEM_MANDATORY),
+		list("Combat Lubricant", 0, /obj/item/stack/repairable/gunlube, MARINE_CAN_BUY_REPAIRABLE, VENDOR_ITEM_MANDATORY),
 
 		list("HELMET", 0, null, null, null),
 		list("Armored Cap", 0, /obj/item/clothing/head/uppcap, MARINE_CAN_BUY_HELMET, VENDOR_ITEM_MANDATORY),
@@ -3969,7 +4183,7 @@
 
 /datum/equipment_preset/upp/soldier/hunted
 	name = "UPP Soldier (Hunted)"
-	faction = FACTION_HUNTED
+	faction = FACTION_HUNTED_UPP
 
 /datum/equipment_preset/upp/soldier/hunted/load_gear(mob/living/carbon/human/new_human)
 	//head
@@ -3984,6 +4198,9 @@
 	//limbs
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/upp/knife, WEAR_FEET)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/upp, WEAR_HANDS)
+	//pockets
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/ert, WEAR_L_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full/alternate, WEAR_R_STORE)
 
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather/scarf/tacticalmask/green, WEAR_FACE)
@@ -4003,14 +4220,13 @@
 
 /datum/equipment_preset/upp/machinegunner/hunted
 	name = "UPP Machinegunner (Hunted)"
-	faction = FACTION_HUNTED
+	faction = FACTION_HUNTED_UPP
 
 /datum/equipment_preset/upp/machinegunner/hunted/load_gear(mob/living/carbon/human/new_human)
 	//back
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack/upp, WEAR_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/tool/extinguisher, WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK)
 	//head
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/UPP/heavy, WEAR_HEAD)
 	//body
@@ -4024,6 +4240,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/upp, WEAR_HANDS)
 	//pockets
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/ert, WEAR_L_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full/alternate, WEAR_R_STORE)
 
 	//body
 	new_human.equip_to_slot_or_del(new /obj/item/weapon/gun/minigun/upp, WEAR_J_STORE)
@@ -4035,7 +4252,7 @@
 
 /datum/equipment_preset/upp/leader/hunted
 	name = "UPP Squad Leader (Hunted)"
-	faction = FACTION_HUNTED
+	faction = FACTION_HUNTED_UPP
 
 /datum/equipment_preset/upp/leader/hunted/load_gear(mob/living/carbon/human/new_human)
 	var/UPPleadsidearm = rand(1,4)
@@ -4045,8 +4262,7 @@
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71, WEAR_IN_BACK)
 	//head
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/head/uppcap/beret, WEAR_HEAD)
@@ -4077,16 +4293,16 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/upp, WEAR_HANDS)
 	//pockets
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/ert, WEAR_L_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full/alternate, WEAR_R_STORE)
 
 /datum/equipment_preset/upp/sapper/hunted
 	name = "UPP Sapper (Hunted)"
-	faction = FACTION_HUNTED
+	faction = FACTION_HUNTED_UPP
 
-/datum/equipment_preset/upp/sapper/load_gear(mob/living/carbon/human/new_human)
+/datum/equipment_preset/upp/sapper/hunted/load_gear(mob/living/carbon/human/new_human)
 
 	new_human.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/engineerpack/upp, WEAR_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
-	new_human.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/upp, WEAR_IN_BACK)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/box/mre/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/defenses/handheld/sentry/upp, WEAR_IN_BACK)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(new_human), WEAR_EYES)
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/mask/gas, WEAR_FACE)
@@ -4110,3 +4326,4 @@
 	new_human.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine/upp/knife, WEAR_FEET)
 	//pockets
 	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/ert(new_human), WEAR_L_STORE)
+	new_human.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full/alternate, WEAR_R_STORE)

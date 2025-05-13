@@ -170,16 +170,6 @@
 		WEAR_HEAD = 'icons/mob/humans/onmob/clothing/head/formal_hats.dmi'
 	)
 
-/obj/item/clothing/head/fedora
-	name = "\improper fedora"
-	desc = "A sharp, stylish hat."
-	icon_state = "fedora"
-	item_state = "fedora"
-	icon = 'icons/obj/items/clothing/hats/formal_hats.dmi'
-	item_icons = list(
-		WEAR_HEAD = 'icons/mob/humans/onmob/clothing/head/formal_hats.dmi'
-	)
-
 /obj/item/clothing/head/feathertrilby
 	name = "\improper feather trilby"
 	desc = "A sharp, stylish hat with a feather."
@@ -207,14 +197,3 @@
 	flags_inv_hide = HIDEALLHAIR
 	siemens_coefficient = 2
 	flags_armor_protection = BODY_FLAG_HEAD|BODY_FLAG_FACE|BODY_FLAG_EYES
-
-/obj/item/clothing/head/xenos
-	name = "xenos helmet"
-	icon_state = "xenos"
-	item_state = "xenos_helm"
-	desc = "A helmet made out of chitinous alien hide."
-	flags_inventory = COVERMOUTH|COVEREYES|BLOCKSHARPOBJ
-	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
-	siemens_coefficient = 2
-	flags_armor_protection = BODY_FLAG_HEAD|BODY_FLAG_FACE|BODY_FLAG_EYES
-	anti_hug = 10 //Lel

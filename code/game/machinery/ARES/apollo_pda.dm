@@ -1,8 +1,13 @@
 /obj/item/device/working_joe_pda
-	icon = 'icons/obj/items/synth/wj_pda.dmi'
 	name = "KN5500 PDA"
 	desc = "A portable interface used by Working-Joes, capable of connecting to the local command AI to relay tasking information. Built to withstand a nuclear bomb."
 	icon_state = "karnak_off"
+	item_state = "wj_pda"
+	icon = 'icons/obj/items/synth/wj_pda.dmi'
+	item_icons = list(
+		WEAR_L_HAND = 'icons/mob/humans/onmob/inhands/equipment/devices_lefthand.dmi',
+		WEAR_R_HAND = 'icons/mob/humans/onmob/inhands/equipment/devices_righthand.dmi',
+	)
 	unacidable = TRUE
 	explo_proof = TRUE
 	req_one_access = list(ACCESS_MARINE_AI_TEMP, ACCESS_MARINE_AI, ACCESS_ARES_DEBUG)
@@ -407,6 +412,18 @@
 				to_chat(user, SPAN_BOLDWARNING("AI Core Lockdown procedures are on cooldown! They will be ready in [COOLDOWN_SECONDSLEFT(datacore, aicore_lockdown)] seconds!"))
 				return FALSE
 			aicore_lockdown(user)
+			return TRUE
+
+		if("update_sentries")
+			var/new_iff = params["chosen_iff"]
+			if(!new_iff)
+				to_chat(user, SPAN_WARNING("ERROR: Unknown setting."))
+				return FALSE
+			if(new_iff == link.faction_label)
+				return FALSE
+			link.change_iff(new_iff)
+			message_admins("ARES: [key_name(user)] updated ARES Sentry IFF to [new_iff].")
+			to_chat(user, SPAN_WARNING("Sentry IFF settings updated!"))
 			return TRUE
 
 	if(playsound)

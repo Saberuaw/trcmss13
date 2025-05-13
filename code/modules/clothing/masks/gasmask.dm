@@ -17,7 +17,6 @@
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROT
 	w_class = SIZE_SMALL
 	gas_transfer_coefficient = 0.01
-	permeability_coefficient = 0.9
 	armor_melee = CLOTHING_ARMOR_NONE
 	armor_bullet = CLOTHING_ARMOR_NONE
 	armor_laser = CLOTHING_ARMOR_NONE
@@ -46,7 +45,6 @@
 	item_icons = list(
 		WEAR_FACE = 'icons/mob/humans/onmob/clothing/masks/masks_by_faction/WY.dmi'
 	)
-	anti_hug = 3
 	vision_impair = VISION_IMPAIR_NONE
 	armor_melee = CLOTHING_ARMOR_LOW
 	armor_bullet = CLOTHING_ARMOR_NONE
