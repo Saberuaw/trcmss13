@@ -186,14 +186,14 @@
 	var/hours = mills / 36000
 
 	var/dat = "<html><body onselectstart='return false;'><center>"
-	dat += "Round Duration: [floor(hours)]h [floor(mins)]m<br>"
+	dat += "Round Süresi: [floor(hours)]h [floor(mins)]m<br>"
 
 	if(SShijack)
 		switch(SShijack.evac_status)
 			if(EVACUATION_STATUS_INITIATED)
 				dat += "<font color='red'><b>The [MAIN_SHIP_NAME] is being evacuated.</b></font><br>"
 
-	dat += "Choose from the following open positions:<br>"
+	dat += "Aşağıdaki Açık Pozisyonlardan Birini Seçin:<br>"
 	var/roles_show = FLAG_SHOW_ALL_JOBS
 
 	for(var/i in GLOB.RoleAuthority.roles_for_mode)
@@ -206,27 +206,27 @@
 			if(M.client && M.job == J.title)
 				active++
 		if(roles_show & FLAG_SHOW_CIC && GLOB.ROLES_CIC.Find(J.title))
-			dat += "Command:<br>"
+			dat += "Komuta:<br>"
 			roles_show ^= FLAG_SHOW_CIC
 
 		else if(roles_show & FLAG_SHOW_AUXIL_SUPPORT && GLOB.ROLES_AUXIL_SUPPORT.Find(J.title))
-			dat += "<hr>Auxiliary Combat Support:<br>"
+			dat += "<hr>Savaş Desteği:<br>"
 			roles_show ^= FLAG_SHOW_AUXIL_SUPPORT
 
 		else if(roles_show & FLAG_SHOW_MISC && GLOB.ROLES_MISC.Find(J.title))
-			dat += "<hr>Other:<br>"
+			dat += "<hr>Diğer:<br>"
 			roles_show ^= FLAG_SHOW_MISC
 
 		else if(roles_show & FLAG_SHOW_POLICE && GLOB.ROLES_POLICE.Find(J.title))
-			dat += "<hr>Military Police:<br>"
+			dat += "<hr>İnzibat:<br>"
 			roles_show ^= FLAG_SHOW_POLICE
 
 		else if(roles_show & FLAG_SHOW_ENGINEERING && GLOB.ROLES_ENGINEERING.Find(J.title))
-			dat += "<hr>Engineering:<br>"
+			dat += "<hr>Mühendislik:<br>"
 			roles_show ^= FLAG_SHOW_ENGINEERING
 
 		else if(roles_show & FLAG_SHOW_REQUISITION && GLOB.ROLES_REQUISITION.Find(J.title))
-			dat += "<hr>Requisitions:<br>"
+			dat += "<hr>Lojistik:<br>"
 			roles_show ^= FLAG_SHOW_REQUISITION
 
 		else if(roles_show & FLAG_SHOW_MEDICAL && GLOB.ROLES_MEDICAL.Find(J.title))
@@ -234,7 +234,7 @@
 			roles_show ^= FLAG_SHOW_MEDICAL
 
 		else if(roles_show & FLAG_SHOW_MARINES && GLOB.ROLES_MARINES.Find(J.title))
-			dat += "<hr>Marines:<br>"
+			dat += "<hr>Denizci:<br>"
 			roles_show ^= FLAG_SHOW_MARINES
 
 		dat += "<a href='byond://?src=\ref[src];lobby_choice=SelectedJob;antag=0;job_selected=[J.title]'>[J.disp_title] ([J.current_positions]) (Active: [active])</a><br>"
@@ -256,7 +256,7 @@
 			if(EVACUATION_STATUS_INITIATED)
 				dat += "<font color='red'><b>The [MAIN_SHIP_NAME] is being evacuated.</b></font><br>"
 
-	dat += "Choose from the following open positions:<br>"
+	dat += "Aşağıdaki Açık Pozisyonlardan Birini Seçin:<br>"
 	var/roles_show = FLAG_SHOW_ALL_JOBS
 
 	for(var/i in GLOB.RoleAuthority.roles_for_mode)

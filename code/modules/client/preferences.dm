@@ -366,26 +366,26 @@ GLOBAL_LIST_INIT(be_special_flags, list(
 		return
 
 	dat += "<center>"
-	dat += "<a href=\"byond://?src=\ref[user];preference=open_load_dialog\"><b>Load Slot</b></a> - "
-	dat += "<a href=\"byond://?src=\ref[user];preference=save\"><b>Save Slot</b></a> - "
-	dat += "<a href=\"byond://?src=\ref[user];preference=reload\"><b>Reload Slot</b></a>"
+	dat += "<a href=\"byond://?src=\ref[user];preference=open_load_dialog\"><b>Karakter Yükle</b></a> - "
+	dat += "<a href=\"byond://?src=\ref[user];preference=save\"><b>Karakterini Kaydet</b></a> - "
+	dat += "<a href=\"byond://?src=\ref[user];preference=reload\"><b>Tekrardan Yükle</b></a>"
 	dat += "</center>"
 
 	dat += "<hr>"
 
 	dat += "<center>"
-	dat += "<a[current_menu == MENU_MARINE ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_MARINE]\"><b>Human</b></a> - "
+	dat += "<a[current_menu == MENU_MARINE ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_MARINE]\"><b>İnsan</b></a> - "
 	dat += "<a[current_menu == MENU_XENOMORPH ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_XENOMORPH]\"><b>Xenomorph</b></a> - "
 	if(owner.check_whitelist_status(WHITELIST_COMMANDER))
-		dat += "<a[current_menu == MENU_CO ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_CO]\"><b>Commanding Officer</b></a> - "
+		dat += "<a[current_menu == MENU_CO ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_CO]\"><b>Birlik Komutanı</b></a> - "
 	if(owner.check_whitelist_status(WHITELIST_SYNTHETIC))
-		dat += "<a[current_menu == MENU_SYNTHETIC ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SYNTHETIC]\"><b>Synthetic</b></a> - "
+		dat += "<a[current_menu == MENU_SYNTHETIC ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SYNTHETIC]\"><b>Sentetik</b></a> - "
 	if(owner.check_whitelist_status(WHITELIST_YAUTJA))
 		dat += "<a[current_menu == MENU_YAUTJA ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=yautja\"><b>Yautja</b></a> - "
 	if(owner.check_whitelist_status(WHITELIST_MENTOR))
 		dat += "<a[current_menu == MENU_MENTOR ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_MENTOR]\"><b>Mentor</b></a> - "
-	dat += "<a[current_menu == MENU_SETTINGS ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SETTINGS]\"><b>Settings</b></a> - "
-	dat += "<a[current_menu == MENU_SPECIAL ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SPECIAL]\"><b>Special Roles</b></a>"
+	dat += "<a[current_menu == MENU_SETTINGS ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SETTINGS]\"><b>Ayarlar</b></a> - "
+	dat += "<a[current_menu == MENU_SPECIAL ? " class='linkOff'" : ""] href=\"byond://?src=\ref[user];preference=change_menu;menu=[MENU_SPECIAL]\"><b>Özel Roller</b></a>"
 	dat += "</center>"
 
 	dat += "<hr>"
@@ -393,71 +393,71 @@ GLOBAL_LIST_INIT(be_special_flags, list(
 	switch(current_menu)
 		if(MENU_MARINE)
 			dat += "<div id='column1'>"
-			dat += "<h1><u><b>Name:</b></u> "
+			dat += "<h1><u><b>İsim:</b></u> "
 			dat += "<a href='byond://?_src_=prefs;preference=name;task=input'><b>[real_name]</b></a>"
 			dat += "<a href='byond://?_src_=prefs;preference=name;task=random'>&reg</A></h1>"
 			dat += "<b>Always Pick Random Name:</b> <a href='byond://?_src_=prefs;preference=rand_name'><b>[be_random_name ? "Yes" : "No"]</b></a><br>"
 			dat += "<b>Always Pick Random Appearance:</b> <a href='byond://?_src_=prefs;preference=rand_body'><b>[be_random_body ? "Yes" : "No"]</b></a><br><br>"
 
-			dat += "<h2><b><u>Physical Information:</u></b>"
+			dat += "<h2><b><u>Fiziksel Özellikler:</u></b>"
 			dat += "<a href='byond://?_src_=prefs;preference=all;task=random'>&reg;</A></h2>"
-			dat += "<b>Age:</b> <a href='byond://?_src_=prefs;preference=age;task=input'><b>[age]</b></a><br>"
-			dat += "<b>Gender:</b> <a href='byond://?_src_=prefs;preference=gender'><b>[gender == MALE ? "Male" : "Female"]</b></a><br><br>"
+			dat += "<b>Yaş:</b> <a href='byond://?_src_=prefs;preference=age;task=input'><b>[age]</b></a><br>"
+			dat += "<b>Cinsiyet:</b> <a href='byond://?_src_=prefs;preference=gender'><b>[gender == MALE ? "Male" : "Female"]</b></a><br><br>"
 
-			dat += "<b>Skin Color:</b> [skin_color]<br>"
-			dat += "<b>Body Size:</b> [body_size]<br>"
-			dat += "<b>Body Muscularity:</b> [body_type]<br>"
-			dat += "<b>Edit Body:</b> <a href='byond://?_src_=prefs;preference=body;task=input'><b>Picker</b></a><br><br>"
+			dat += "<b>Ten Rengi:</b> [skin_color]<br>"
+			dat += "<b>Vücut Büyüklüğü:</b> [body_size]<br>"
+			dat += "<b>Vücut Tipi:</b> [body_type]<br>"
+			dat += "<b>Vücudu Düzenle:</b> <a href='byond://?_src_=prefs;preference=body;task=input'><b>Picker</b></a><br><br>"
 
-			dat += "<b>Traits:</b> <a href='byond://?src=\ref[user];preference=traits'><b>Character Traits</b></a>"
+			dat += "<b>Özellikler:</b> <a href='byond://?src=\ref[user];preference=traits'><b>Character Traits</b></a>"
 			dat += "<br>"
 
-			dat += "<h2><b><u>Occupation Choices:</u></b></h2>"
+			dat += "<h2><b><u>Meslek Seçimi:</u></b></h2>"
 			dat += "<br>"
-			dat += "\t<a href='byond://?_src_=prefs;preference=job;task=menu'><b>Set Role Preferences</b></a>"
+			dat += "\t<a href='byond://?_src_=prefs;preference=job;task=menu'><b>Rol Seçimlerini Düzenle</b></a>"
 			dat += "<br>"
-			dat += "\t<a href='byond://?_src_=prefs;preference=job_slot;task=menu'><b>Assign Character Slots to Roles</b></a>"
+			dat += "\t<a href='byond://?_src_=prefs;preference=job_slot;task=menu'><b>Rollere Karakter Ata</b></a>"
 			dat += "</div>"
 
 			dat += "<div id='column2'>"
-			dat += "<h2><b><u>Hair and Eyes:</u></b></h2>"
-			dat += "<b>Hair:</b> [h_style]"
+			dat += "<h2><b><u>Saç ve Göz:</u></b></h2>"
+			dat += "<b>Saç:</b> [h_style]"
 			dat += " | "
 			dat += "<span class='square' style='background-color: #[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair)];'></span>"
 			dat += "<br>"
 
-			dat += "<b>Facial Hair:</b> [f_style]"
+			dat += "<b>Sakal:</b> [f_style]"
 			dat += " | "
 			dat += "<span class='square' style='background-color: #[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial)];'></span>"
 			dat += "<br>"
 
 			if(/datum/character_trait/hair_dye in traits)
-				dat += "<b>Hair Gradient:</b> [grad_style]"
+				dat += "<b>Saç Tonu:</b> [grad_style]"
 				dat += " | "
 				dat += "<span class='square' style='background-color: #[num2hex(r_gradient, 2)][num2hex(g_gradient, 2)][num2hex(b_gradient)];'></span>"
 				dat += "<br>"
 
-			dat += "<b>Edit Hair:</b> <a href='byond://?_src_=prefs;preference=hair;task=input'><b>Picker</b></a><br><br>"
+			dat += "<b>Saçı Düzenle:</b> <a href='byond://?_src_=prefs;preference=hair;task=input'><b>Picker</b></a><br><br>"
 
-			dat += "<b>Eye:</b> "
+			dat += "<b>Göz:</b> "
 			dat += "<a href='byond://?_src_=prefs;preference=eyes;task=input'>"
 			dat += "<b>Color</b> <span class='square' style='background-color: #[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes)];'></span>"
 			dat += "</a>"
 			dat += "<br><br>"
 
-			dat += "<h2><b><u>Marine Gear:</u></b></h2>"
-			dat += "<b>Underwear:</b> <a href='byond://?_src_=prefs;preference=underwear;task=input'><b>[underwear]</b></a><br>"
-			dat += "<b>Undershirt:</b> <a href='byond://?_src_=prefs;preference=undershirt;task=input'><b>[undershirt]</b></a><br>"
+			dat += "<h2><b><u>Teçhizat:</u></b></h2>"
+			dat += "<b>İç Çamaşırı:</b> <a href='byond://?_src_=prefs;preference=underwear;task=input'><b>[underwear]</b></a><br>"
+			dat += "<b>Atlet:</b> <a href='byond://?_src_=prefs;preference=undershirt;task=input'><b>[undershirt]</b></a><br>"
 
-			dat += "<b>Backpack Type:</b> <a href='byond://?_src_=prefs;preference=bag;task=input'><b>[GLOB.backbaglist[backbag]]</b></a><br>"
+			dat += "<b>Çanta Tipi:</b> <a href='byond://?_src_=prefs;preference=bag;task=input'><b>[GLOB.backbaglist[backbag]]</b></a><br>"
 
-			dat += "<b>Preferred Armor:</b> <a href='byond://?_src_=prefs;preference=prefarmor;task=input'><b>[preferred_armor]</b></a><br>"
+			dat += "<b>Zırh Tercihi:</b> <a href='byond://?_src_=prefs;preference=prefarmor;task=input'><b>[preferred_armor]</b></a><br>"
 
-			dat += "<b>Show Job Gear:</b> <a href='byond://?_src_=prefs;preference=toggle_job_gear'><b>[show_job_gear ? "True" : "False"]</b></a><br>"
-			dat += "<b>Background:</b> <a href='byond://?_src_=prefs;preference=cycle_bg'><b>Cycle Background</b></a><br><br>"
-			dat += "<b>Night Vision Color:</b> <a href='byond://?_src_=prefs;preference=prefnvg;task=input'><b>[night_vision_preference]</b></a><br>"
+			dat += "<b>Teçhizatı Göster:</b> <a href='byond://?_src_=prefs;preference=toggle_job_gear'><b>[show_job_gear ? "True" : "False"]</b></a><br>"
+			dat += "<b>Arkaplan:</b> <a href='byond://?_src_=prefs;preference=cycle_bg'><b>Cycle Background</b></a><br><br>"
+			dat += "<b>Gece Görüşü Rengi:</b> <a href='byond://?_src_=prefs;preference=prefnvg;task=input'><b>[night_vision_preference]</b></a><br>"
 
-			dat += "<b>Custom Loadout:</b> "
+			dat += "<b>Özel Teçhizat:</b> "
 			var/total_cost = 0
 
 			if(!islist(gear))
@@ -477,25 +477,25 @@ GLOBAL_LIST_INIT(be_special_flags, list(
 			else
 				dat += "None"
 
-			dat += "<br><a href='byond://?src=\ref[user];preference=loadout'><b>Open Loadout</b></a>"
+			dat += "<br><a href='byond://?src=\ref[user];preference=loadout'><b>Özel Teçhizatı Göster</b></a>"
 
 			dat += "</div>"
 
 			dat += "<div id='column3'>"
-			dat += "<h2><b><u>Background Information:</u></b></h2>"
-			dat += "<b>Origin:</b> <a href='byond://?_src_=prefs;preference=origin;task=input'><b>[origin]</b></a><br/>"
-			dat += "<b>Religion:</b> <a href='byond://?_src_=prefs;preference=religion;task=input'><b>[religion]</b></a><br/>"
+			dat += "<h2><b><u>Karakter Bilgileri:</u></b></h2>"
+			dat += "<b>Memleket:</b> <a href='byond://?_src_=prefs;preference=origin;task=input'><b>[origin]</b></a><br/>"
+			dat += "<b>Din:</b> <a href='byond://?_src_=prefs;preference=religion;task=input'><b>[religion]</b></a><br/>"
 
-			dat += "<b>Corporate Relation:</b> <a href='byond://?_src_=prefs;preference=wy_relation;task=input'><b>[weyland_yutani_relation]</b></a><br>"
-			dat += "<b>Preferred Squad:</b> <a href='byond://?_src_=prefs;preference=prefsquad;task=input'><b>[preferred_squad]</b></a><br>"
+			dat += "<b>Şirkete Karşı Tutumun:</b> <a href='byond://?_src_=prefs;preference=wy_relation;task=input'><b>[weyland_yutani_relation]</b></a><br>"
+			dat += "<b>Tercih Edilen Manga:</b> <a href='byond://?_src_=prefs;preference=prefsquad;task=input'><b>[preferred_squad]</b></a><br>"
 
-			dat += "<h2><b><u>Fluff Information:</u></b></h2>"
+			dat += "<h2><b><u>Ekstra Bilgiler:</u></b></h2>"
 			if(jobban_isbanned(user, "Records"))
 				dat += "<b>You are banned from using character records.</b><br>"
 			else
-				dat += "<b>Records:</b> <a href=\"byond://?src=\ref[user];preference=records;record=1\"><b>Character Records</b></a><br>"
+				dat += "<b>Kayıtlar:</b> <a href=\"byond://?src=\ref[user];preference=records;record=1\"><b>Character Records</b></a><br>"
 
-			dat += "<b>Flavor Text:</b> <a href='byond://?src=\ref[user];preference=flavor_text;task=open'><b>[TextPreview(flavor_texts["general"], 15)]</b></a><br>"
+			dat += "<b>Karakter Metni:</b> <a href='byond://?src=\ref[user];preference=flavor_text;task=open'><b>[TextPreview(flavor_texts["general"], 15)]</b></a><br>"
 			dat += "</div>"
 
 		if(MENU_XENOMORPH)
@@ -507,8 +507,8 @@ GLOBAL_LIST_INIT(be_special_flags, list(
 			dat += "<b>Xeno postfix:</b> <a href='byond://?_src_=prefs;preference=xeno_postfix;task=input'><b>[display_postfix]</b></a><br>"
 
 			dat += "<b>Enable Playtime Perks:</b> <a href='byond://?_src_=prefs;preference=playtime_perks'><b>[playtime_perks? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Show Queen Name:</b> <a href='byond://?_src_=prefs;preference=show_queen_name'><b>[show_queen_name? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Default Xeno Night Vision Level:</b> <a href='byond://?_src_=prefs;preference=xeno_vision_level_pref;task=input'><b>[xeno_vision_level_pref]</b></a><br>"
+			dat += "<b>Queen Adını Göster:</b> <a href='byond://?_src_=prefs;preference=show_queen_name'><b>[show_queen_name? "Yes" : "No"]</b></a><br>"
+			dat += "<b>Varsayılan Gece Görüş Seviyesi:</b> <a href='byond://?_src_=prefs;preference=xeno_vision_level_pref;task=input'><b>[xeno_vision_level_pref]</b></a><br>"
 
 			var/tempnumber = rand(1, 999)
 			var/postfix_text = xeno_postfix ? ("-"+xeno_postfix) : ""
@@ -522,21 +522,21 @@ GLOBAL_LIST_INIT(be_special_flags, list(
 		if(MENU_CO)
 			if(owner.check_whitelist_status(WHITELIST_COMMANDER))
 				dat += "<div id='column1'>"
-				dat += "<h2><b><u>Commander Settings:</u></b></h2>"
-				dat += "<b>Commander Whitelist Status:</b> <a href='byond://?_src_=prefs;preference=commander_status;task=input'><b>[commander_status]</b></a><br>"
-				dat += "<b>Commander Sidearm:</b> <a href='byond://?_src_=prefs;preference=co_sidearm;task=input'><b>[commander_sidearm]</b></a><br>"
-				dat += "<b>Commander Affiliation:</b> <a href='byond://?_src_=prefs;preference=co_affiliation;task=input'><b>[affiliation]</b></a><br>"
-				dat += "<b>Commander Career Path:</b> <a href='byond://?_src_=prefs;preference=co_career_path;task=input'><b>[co_career_path]</b></a><br>"
+				dat += "<h2><b><u>Komutan Ayarları:</u></b></h2>"
+				dat += "<b>Whitelist Statüsü:</b> <a href='byond://?_src_=prefs;preference=commander_status;task=input'><b>[commander_status]</b></a><br>"
+				dat += "<b>Tabanca:</b> <a href='byond://?_src_=prefs;preference=co_sidearm;task=input'><b>[commander_sidearm]</b></a><br>"
+				dat += "<b>Bağlılık:</b> <a href='byond://?_src_=prefs;preference=co_affiliation;task=input'><b>[affiliation]</b></a><br>"
+				dat += "<b>Kariyer Yolu:</b> <a href='byond://?_src_=prefs;preference=co_career_path;task=input'><b>[co_career_path]</b></a><br>"
 				dat += "</div>"
 			else
 				dat += "<b>You do not have the whitelist for this role.</b>"
 		if(MENU_SYNTHETIC)
 			if(owner.check_whitelist_status(WHITELIST_SYNTHETIC))
 				dat += "<div id='column1'>"
-				dat += "<h2><b><u>Synthetic Settings:</u></b></h2>"
-				dat += "<b>Synthetic Name:</b> <a href='byond://?_src_=prefs;preference=synth_name;task=input'><b>[synthetic_name]</b></a><br>"
-				dat += "<b>Synthetic Type:</b> <a href='byond://?_src_=prefs;preference=synth_type;task=input'><b>[synthetic_type]</b></a><br>"
-				dat += "<b>Synthetic Whitelist Status:</b> <a href='byond://?_src_=prefs;preference=synth_status;task=input'><b>[synth_status]</b></a><br>"
+				dat += "<h2><b><u>Sentetik Ayarları:</u></b></h2>"
+				dat += "<b>Sentetik Adı:</b> <a href='byond://?_src_=prefs;preference=synth_name;task=input'><b>[synthetic_name]</b></a><br>"
+				dat += "<b>Sentetik Türü:</b> <a href='byond://?_src_=prefs;preference=synth_type;task=input'><b>[synthetic_type]</b></a><br>"
+				dat += "<b>Whitelist Statüsü:</b> <a href='byond://?_src_=prefs;preference=synth_status;task=input'><b>[synth_status]</b></a><br>"
 				dat += "</div>"
 			else
 				dat += "<b>You do not have the whitelist for this role.</b>"
@@ -643,18 +643,18 @@ GLOBAL_LIST_INIT(be_special_flags, list(
 			dat += "<a href='byond://?src=\ref[src];action=proccall;procpath=/client/proc/toggle_auto_shove'>Toggle Auto Shove</a><br>"
 		if(MENU_SPECIAL) //wart
 			dat += "<div id='column1'>"
-			dat += "<h2><b><u>ERT Settings:</u></b></h2>"
-			dat += "<b>Spawn as Leader:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_LEADER]'><b>[toggles_ert & PLAY_LEADER ? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Spawn as Medic:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_MEDIC]'><b>[toggles_ert & PLAY_MEDIC ? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Spawn as Engineer:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_ENGINEER]'><b>[toggles_ert & PLAY_ENGINEER ? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Spawn as Specialist:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_HEAVY]'><b>[toggles_ert & PLAY_HEAVY ? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Spawn as Smartgunner:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_SMARTGUNNER]'><b>[toggles_ert & PLAY_SMARTGUNNER ? "Yes" : "No"]</b></a><br>"
+			dat += "<h2><b><u>ERT Ayarları:</u></b></h2>"
+			dat += "<b>Lider Olmak İster Misin:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_LEADER]'><b>[toggles_ert & PLAY_LEADER ? "Yes" : "No"]</b></a><br>"
+			dat += "<b>Sıhhiyeci Olmak İster Misin:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_MEDIC]'><b>[toggles_ert & PLAY_MEDIC ? "Yes" : "No"]</b></a><br>"
+			dat += "<b>Mühendis Olmak İster Misin:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_ENGINEER]'><b>[toggles_ert & PLAY_ENGINEER ? "Yes" : "No"]</b></a><br>"
+			dat += "<b>Uzman Olmak İster Misin:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_HEAVY]'><b>[toggles_ert & PLAY_HEAVY ? "Yes" : "No"]</b></a><br>"
+			dat += "<b>Smartgunner Olmak İster Misin:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_SMARTGUNNER]'><b>[toggles_ert & PLAY_SMARTGUNNER ? "Yes" : "No"]</b></a><br>"
 
 			if(owner.check_whitelist_status(WHITELIST_SYNTHETIC))
-				dat += "<b>Spawn as Synth:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_SYNTH]'><b>[toggles_ert & PLAY_SYNTH ? "Yes" : "No"]</b></a><br>"
-			dat += "<b>Spawn as Miscellaneous:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_MISC]'><b>[toggles_ert & PLAY_MISC ? "Yes" : "No"]</b></a><br>"
+				dat += "<b>Sentetik Olmak İster Misin:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_SYNTH]'><b>[toggles_ert & PLAY_SYNTH ? "Yes" : "No"]</b></a><br>"
+			dat += "<b>Diğer Roller:</b> <a href='byond://?_src_=prefs;preference=toggles_ert;flag=[PLAY_MISC]'><b>[toggles_ert & PLAY_MISC ? "Yes" : "No"]</b></a><br>"
 
-			dat += "<br><h2><b><u>Special Roles:</u></b></h2>"
+			dat += "<br><h2><b><u>Özel Roller:</u></b></h2>"
 
 			for(var/role_name in GLOB.be_special_flags)
 				var/flag = GLOB.be_special_flags[role_name]

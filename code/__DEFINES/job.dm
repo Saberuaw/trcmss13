@@ -16,12 +16,12 @@
 #define SQUAD_SOLAR "Solar Devils"
 
 // Job name defines
-#define JOB_SQUAD_MARINE "Er"
+#define JOB_SQUAD_MARINE "Piyade"
 #define JOB_SQUAD_LEADER "Manga Lideri"
 #define JOB_SQUAD_ENGI "Muharebe Teknisyeni"
-#define JOB_SQUAD_MEDIC "Sihhiyeci"
-#define JOB_SQUAD_SPECIALIST "Muharebe Uzmani"
-#define JOB_SQUAD_TEAM_LEADER "Tim Lideri"
+#define JOB_SQUAD_MEDIC "Sıhhiyeci"
+#define JOB_SQUAD_SPECIALIST "Uzman"
+#define JOB_SQUAD_TEAM_LEADER "Radyo Telsiz Operatörü"
 #define JOB_SQUAD_SMARTGUN "Smartgunner"
 #define JOB_SQUAD_ROLES /datum/timelock/squad
 #define JOB_SQUAD_ROLES_LIST list(JOB_SQUAD_MARINE, JOB_SQUAD_LEADER, JOB_SQUAD_ENGI, JOB_SQUAD_MEDIC, JOB_SQUAD_SPECIALIST, JOB_SQUAD_SMARTGUN, JOB_SQUAD_TEAM_LEADER)
@@ -29,18 +29,18 @@
 GLOBAL_LIST_INIT(job_squad_roles, JOB_SQUAD_ROLES_LIST)
 
 #define JOB_COLONIST "Kolonist"
-#define JOB_PASSENGER "Ziyaretci"
+#define JOB_PASSENGER "Ziyaretçi"
 #define JOB_SURVIVOR "Kazazede"
 #define JOB_SYNTH_SURVIVOR "Kazazede Sentetik"
 #define JOB_CO_SURVIVOR "Kazazede BK"
 
-#define ANY_SURVIVOR "Any Survivor"
+#define ANY_SURVIVOR "Kazazede"
 #define CIVILIAN_SURVIVOR "Kazazede Sivil"
 #define SECURITY_SURVIVOR "Kazazede Güvenlik"
-#define SCIENTIST_SURVIVOR "Kazazede Bilim İnsani"
-#define MEDICAL_SURVIVOR "Kazazede Hekim"
-#define ENGINEERING_SURVIVOR "Kazazede Muhendis"
-#define CORPORATE_SURVIVOR "Kazazede Sirket Calisani"
+#define SCIENTIST_SURVIVOR "Kazazede Araştırma Görevlisi"
+#define MEDICAL_SURVIVOR "Kazazede Doktor"
+#define ENGINEERING_SURVIVOR "Kazazede Mühendis"
+#define CORPORATE_SURVIVOR "Kazazede Temsilci"
 #define SURVIVOR_VARIANT_LIST list(ANY_SURVIVOR = "Any", CIVILIAN_SURVIVOR = "Civ", SECURITY_SURVIVOR = "Sec", SCIENTIST_SURVIVOR = "Sci", MEDICAL_SURVIVOR = "Med", ENGINEERING_SURVIVOR = "Eng", CORPORATE_SURVIVOR = "W-Y")
 
 //-1 is infinite amount, these are soft caps and can be bypassed by randomization
@@ -53,13 +53,13 @@ GLOBAL_LIST_INIT(job_squad_roles, JOB_SQUAD_ROLES_LIST)
 #define SPAWN_PRIORITY_VERY_LOW 5
 #define LOWEST_SPAWN_PRIORITY 5
 
-#define JOB_CMO "Bashekim"
-#define JOB_DOCTOR "Hekim"
+#define JOB_CMO "Başhekim"
+#define JOB_DOCTOR "Doktor"
 #define JOB_SURGEON "Cerrah"
-#define JOB_FIELD_DOCTOR "Saha Hekimi"
+#define JOB_FIELD_DOCTOR "Saha Doktoru"
 
-#define JOB_NURSE "Hemsire"
-#define JOB_RESEARCHER "Arastirmaci"
+#define JOB_NURSE "Hemşire"
+#define JOB_RESEARCHER "Araştırma Görevlisi"
 #define JOB_MEDIC_ROLES /datum/timelock/medic
 #define JOB_MEDIC_ROLES_LIST list(JOB_SQUAD_MEDIC, JOB_CMO, JOB_DOCTOR, JOB_FIELD_DOCTOR, JOB_NURSE, JOB_RESEARCHER, JOB_SURGEON)
 #define JOB_DOCTOR_ROLES /datum/timelock/doctor
@@ -67,51 +67,51 @@ GLOBAL_LIST_INIT(job_squad_roles, JOB_SQUAD_ROLES_LIST)
 #define JOB_RESEARCH_ROLES /datum/timelock/research
 #define JOB_RESEARCH_ROLES_LIST list(JOB_RESEARCHER)
 
-#define JOB_CORPORATE_LIAISON "Sirket Calisani"
+#define JOB_CORPORATE_LIAISON "Kurumsal Temsilci"
 
-#define JOB_COMBAT_REPORTER "Muharebe Muhabiri"
+#define JOB_COMBAT_REPORTER "Savaş Muhabiri"
 #define JOB_CIVIL_ROLES    /datum/timelock/civil
 #define JOB_CIVIL_ROLES_LIST   list(JOB_COMBAT_REPORTER)
 
-#define JOB_MESS_SERGEANT "Asci"
+#define JOB_MESS_SERGEANT "Aşçı"
 #define JOB_SYNTH "Sentetik"
-#define JOB_SYNTH_K9 "Sentetik K9"
-#define JOB_WORKING_JOE "Is Joe'su"
+#define JOB_SYNTH_K9 "K9 Sentetik"
+#define JOB_WORKING_JOE "Amele Mehmet"
 
-#define JOB_CO "Boluk Komutani"
-#define JOB_XO "Askomutan"
-#define JOB_SO "Manga Gozetmeni"
-#define JOB_AUXILIARY_OFFICER "Yardimci Subay"
+#define JOB_CO "Birlik Komutanı"
+#define JOB_XO "İkinci Komutan"
+#define JOB_SO "Kurmay Subay"
+#define JOB_AUXILIARY_OFFICER "Destek Subayı"
 #define JOB_COMMAND_ROLES /datum/timelock/command
 #define JOB_COMMAND_ROLES_LIST   list(JOB_CO, JOB_XO, JOB_SO, JOB_AUXILIARY_OFFICER)
 GLOBAL_LIST_INIT(job_command_roles, JOB_COMMAND_ROLES_LIST)
 
-#define JOB_CAS_PILOT "Savas Pilotu"
-#define JOB_DROPSHIP_PILOT "Ulastirma Pilotu"
-#define JOB_TANK_CREW "Tank Murettebati"
-#define JOB_DROPSHIP_CREW_CHIEF "Ulastirma Ucagi Murettebati"
-#define JOB_INTEL "Istihbarat Gorevlisi"
+#define JOB_CAS_PILOT "Muharip Pilot"
+#define JOB_DROPSHIP_PILOT "Dropship Pilot"
+#define JOB_TANK_CREW "Tank Mürettebatı"
+#define JOB_DROPSHIP_CREW_CHIEF "Dropship Mürettebat Şefi"
+#define JOB_INTEL "İstihbarat Subayı"
 #define JOB_DROPSHIP_ROLES   /datum/timelock/dropship
 #define JOB_DROPSHIP_ROLES_LIST   list(JOB_DROPSHIP_CREW_CHIEF, JOB_CAS_PILOT, JOB_DROPSHIP_PILOT)
 #define JOB_AUXILIARY_ROLES    /datum/timelock/auxiliary
 #define JOB_AUXILIARY_ROLES_LIST   list(JOB_CAS_PILOT, JOB_DROPSHIP_PILOT, JOB_DROPSHIP_CREW_CHIEF, JOB_INTEL, JOB_TANK_CREW)
 
-#define JOB_POLICE "Askeri Inzibat"
-#define JOB_WARDEN "Inzibat Subayi"
-#define JOB_CHIEF_POLICE "Inzibat Sefi"
+#define JOB_POLICE "İnzibat"
+#define JOB_WARDEN "Gardiyan"
+#define JOB_CHIEF_POLICE "İnzibat Şefi"
 #define JOB_POLICE_ROLES /datum/timelock/mp
 #define JOB_POLICE_ROLES_LIST    list(JOB_POLICE, JOB_WARDEN, JOB_CHIEF_POLICE, JOB_CO)
 
-#define JOB_SEA "Kidemli Danisman"
+#define JOB_SEA "Kıdemli Danışman"
 
-#define JOB_CHIEF_ENGINEER "Basmuhendis"
-#define JOB_MAINT_TECH "Bakim Teknisyeni"
-#define JOB_ORDNANCE_TECH "Muhimmat Teknisyeni"
+#define JOB_CHIEF_ENGINEER "Başmühendis"
+#define JOB_MAINT_TECH "Bakım Teknisyeni"
+#define JOB_ORDNANCE_TECH "Mühimmat Teknisyeni"
 #define JOB_ENGINEER_ROLES   /datum/timelock/engineer
 #define JOB_ENGINEER_ROLES_LIST  list(JOB_SQUAD_ENGI, JOB_MAINT_TECH, JOB_ORDNANCE_TECH, JOB_CHIEF_ENGINEER)
 
-#define JOB_CHIEF_REQUISITION "Kargo Sefi"
-#define JOB_CARGO_TECH "Kargo Teknisyeni"
+#define JOB_CHIEF_REQUISITION "Lojistik Şefi"
+#define JOB_CARGO_TECH "Lojistik Teknisyeni"
 #define JOB_REQUISITION_ROLES    /datum/timelock/requisition
 #define JOB_REQUISITION_ROLES_LIST   list(JOB_CHIEF_REQUISITION, JOB_CARGO_TECH)
 
@@ -367,13 +367,13 @@ GLOBAL_LIST_INIT(job_command_roles, JOB_COMMAND_ROLES_LIST)
 #define JOB_UPP_COMMISSAR "UPP Political Commissar"
 
 //-------- CLF --------//
-#define JOB_CLF "CLF Guerilla"
-#define JOB_CLF_ENGI "CLF Field Technician"
-#define JOB_CLF_MEDIC "CLF Field Medic"
-#define JOB_CLF_SPECIALIST "CLF Field Specialist"
-#define JOB_CLF_LEADER "CLF Cell Leader"
-#define JOB_CLF_COMMANDER "CLF Cell Commander"
-#define JOB_CLF_SYNTH "CLF Multipurpose Synthetic"
+#define JOB_CLF "CLF Gerilla"
+#define JOB_CLF_ENGI "CLF Teknisyen"
+#define JOB_CLF_MEDIC "CLF Sıhhiyeci"
+#define JOB_CLF_SPECIALIST "CLF Uzman"
+#define JOB_CLF_LEADER "CLF Hücre Lideri"
+#define JOB_CLF_COMMANDER "CLF Hücre Komutanı"
+#define JOB_CLF_SYNTH "CLF Sentetik"
 
 #define CLF_JOB_LIST list(JOB_CLF, JOB_CLF_ENGI, JOB_CLF_MEDIC, JOB_CLF_SPECIALIST, JOB_CLF_LEADER, JOB_CLF_COMMANDER, JOB_CLF_SYNTH)
 

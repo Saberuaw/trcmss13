@@ -342,7 +342,7 @@ const LobbyButtons = (props: {
                 <Stack.Item>
                   <Stack justify="center">
                     <Stack.Item>
-                      <Box className="typeEffect styledText">Welcome,</Box>
+                      <Box className="typeEffect styledText">Hoş Geldin,</Box>
                     </Stack.Item>
                   </Stack>
                 </Stack.Item>
@@ -392,22 +392,22 @@ const LobbyButtons = (props: {
           }
           icon="book-open"
         >
-          Tutorial
+          Öğretici
         </LobbyButton>
         <LobbyButton
           index={2}
           onClick={() => act('preferences')}
           icon="file-lines"
         >
-          Setup Character
+          Karakterini Hazırla
         </LobbyButton>
 
         <LobbyButton index={3} icon="check-to-slot" onClick={() => act('poll')}>
-          Polls
+          Oylamalar
         </LobbyButton>
 
         <LobbyButton index={4} onClick={() => act('playtimes')} icon="list-ul">
-          View Playtimes
+          Oyun Süreni Görüntüle
         </LobbyButton>
 
         <TimedDivider />
@@ -420,13 +420,15 @@ const LobbyButtons = (props: {
               <ModalConfirm>
                 <Box>
                   <Stack vertical>
-                    <Stack.Item>Are you sure you wish to observe?</Stack.Item>
                     <Stack.Item>
-                      When you observe, you will not be able to join as marine.
+                      Gözlemci Olmak İstediğinden Emin Misin?
                     </Stack.Item>
                     <Stack.Item>
-                      It might also take some time to become a xeno or
-                      responder!
+                      Eğer oyuna Gözlemci olarak girersen asker olarak
+                      katılamazsın.
+                    </Stack.Item>
+                    <Stack.Item>
+                      Xeno veya ERT olman da Biraz zaman alabilir!
                     </Stack.Item>
                   </Stack>
                   <Stack justify="center">
@@ -439,7 +441,7 @@ const LobbyButtons = (props: {
             );
           }}
         >
-          Observe
+          Gözlemci Olarak Gir
         </LobbyButton>
 
         {round_start ? (
@@ -466,7 +468,7 @@ const LobbyButtons = (props: {
                     onClick={() => act('late_join')}
                     icon="users"
                   >
-                    Join the USCM
+                    USCM'ye Katıl
                   </LobbyButton>
                 </Stack.Item>
                 <Stack.Item>
@@ -487,7 +489,7 @@ const LobbyButtons = (props: {
                     icon="viruses"
                     onClick={() => act('late_join_xeno')}
                   >
-                    Join the Hive
+                    Hive'a Katıl
                   </LobbyButton>
                 </Stack.Item>
                 <Stack.Item>
@@ -521,14 +523,13 @@ const LobbyButtons = (props: {
                         <Box>
                           <Stack vertical>
                             <Stack.Item>
-                              Are you sure want to attempt joining as a
-                              Predator?
+                              Yautja Olarak Oynamak İstediğinden Emin Misin?
                             </Stack.Item>
                           </Stack>
                           <Stack justify="center">
                             <Stack.Item>
                               <Button onClick={() => act('late_join_pred')}>
-                                Confirm
+                                Onayla
                               </Button>
                             </Stack.Item>
                           </Stack>
@@ -541,7 +542,7 @@ const LobbyButtons = (props: {
                     <Flex.Item>
                       <Box className="pred" inline />
                     </Flex.Item>
-                    <Flex.Item>Join the Hunt</Flex.Item>
+                    <Flex.Item>Ava Katıl</Flex.Item>
                   </Flex>
                 </LobbyButton>
               </Stack.Item>
@@ -557,14 +558,13 @@ const LobbyButtons = (props: {
                         <Box>
                           <Stack vertical>
                             <Stack.Item>
-                              Are you sure want to attempt joining as a Fax
-                              Responder?
+                              Faks Yanıtlamak İstediğinden Emin Misin?
                             </Stack.Item>
                           </Stack>
                           <Stack justify="center">
                             <Stack.Item>
                               <Button onClick={() => act('late_join_faxes')}>
-                                Confirm
+                                Onayla
                               </Button>
                             </Stack.Item>
                           </Stack>
@@ -573,7 +573,7 @@ const LobbyButtons = (props: {
                     );
                   }}
                 >
-                  Respond to Faxes
+                  Faks Yanıtla
                 </LobbyButton>
               </Stack.Item>
             )}
