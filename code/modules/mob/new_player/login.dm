@@ -222,7 +222,7 @@
 
 			return TRUE
 
-		if("")
+		if("unready")
 			if((SSticker.current_state <= GAME_STATE_PREGAME) && ready) // Make sure we don't ready up after the round has started
 				ready = FALSE
 				GLOB.readied_players--
