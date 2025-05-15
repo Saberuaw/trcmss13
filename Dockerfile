@@ -21,7 +21,7 @@ RUN update-alternatives --install /usr/local/bin/python python /usr/bin/python3 
 ARG BYOND_MAJOR
 ARG BYOND_MINOR
 ARG BYOND_DOWNLOAD_URL=http://www.byond.com/download/build/${BYOND_MAJOR}/${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip
-RUN curl -H "User-Agent: CMSS13/1.0 CI Script" ${BYOND_DOWNLOAD_URL} -o byond.zip -A "CMSS13/1.0 Continuous Integration"\
+RUN curl -H "User-Agent: CMSS13/1.0 Continuous Integration" ${BYOND_DOWNLOAD_URL} -o byond.zip \
     && unzip byond.zip \
 	&& rm -rf byond.zip
 RUN DEBIAN_FRONTEND=noninteractive apt-get clean && rm -rf /var/lib/apt/lists/*
