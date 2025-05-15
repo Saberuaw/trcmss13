@@ -142,7 +142,7 @@
 			// a  .. z
 			if(97 to 122)			//Lowercase Letters
 				if(last_char_group == NO_CHARS_DETECTED || last_char_group == SPACES_DETECTED || last_char_group == SYMBOLS_DETECTED) //start of a word
-					char = uppertext(char)
+					char = locale_uppertext(char)
 				number_of_alphanumeric++
 				last_char_group = LETTERS_DETECTED
 
@@ -280,7 +280,15 @@
 //Returns a string with the first element of the string capitalized.
 /proc/capitalize(t as text)
 	. = t[1]
-	return uppertext(.) + copytext(t, 1 + length(.))
+	return locale_uppertext(.) + copytext(t, 1 + length(.))
+
+/proc/locale_uppertext(t)
+	. = ""
+	for(var/c in text2charlist(t))
+		if(c == "\u0131") // ı
+			. += "\u0049" // I
+		else
+			. += uppertext(c)
 
 /proc/stringmerge(text,compare,replace = "*")
 //This proc fills in all spaces with the "replace" var (* by default) with whatever
