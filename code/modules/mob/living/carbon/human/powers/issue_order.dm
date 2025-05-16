@@ -54,11 +54,11 @@
 		var/spoken_order = ""
 		switch(order)
 			if(COMMAND_ORDER_MOVE)
-				spoken_order = pick("*HAREKETE GEÇİN*!", "*İLERLE, İLERLE*!", "*HÜCUM*!", "*HAREKET ET, ASKKER*!", "*ÇABUK*!", "*ÇABUK OL, ASKER*!", "*HEPSİ ÖLENE KADAR DURMAK YOK*!", "HADİ, HADİ, HADİ*!", "*İLERİ*!", "*KIÇINIZI KALDIRIN*!", "*AYAĞA KALK, ASKER. GİDİYORUZ, ASKER*!", "*İLERİ, ASKER*!", "*HÜCUM*!", "*HIZLI OL, ASKER*!", "*BENİ TAKİP ET, ASKER*!", "*İLERİ, HÜCUM*!", "*BENİ TAKİP ET*!", "*HAREKETE GEÇİYORUZ, ASKER*!", "*ÇABUK OLUN, İLERLİYORUZ*!", "*HAREKET ET, ASKER *!", "*BENİMLE BİRLİKTE*!")
+				spoken_order = pick("*HAREKETE GEÇİN*!", "*GİDİYORUZ*!", "*İLERLE, İLERLE*!", "*HÜCUM*!", "*HAREKET ET, ASKER*!", "*ÇABUK*!", "*ÇABUK OL, ASKER*!", "*HEPSİ ÖLENE KADAR DURMAK YOK*!", "HADİ, HADİ, HADİ*!", "*İLERİ*!", "*KIÇINIZI KALDIRIN*!", "*CESUR OL, ASKER.*!", "GİDİYORUZ, ASKER*!", "*İLERİ, ASKER*!", "*HÜCUM*!", "*HIZLI OL, ASKER*!", "*İLERİ, HÜCUM*!", "*HAREKETE GEÇİYORUZ, ASKER*!", "*ÇABUK OLUN, İLERLİYORUZ*!", "*HAREKET ET, ASKER *!")
 			if(COMMAND_ORDER_HOLD)
 				spoken_order = pick("*YAT VE KAPAN*!", "*HATTI TUTUN*!", "*MEVZİNİZİ KORUYUN*!", "*YERİNDE KAL*!", "*DİREN VE SAVAŞ*!", "*MEVZİNİ TERKETME, ASKER*!", "*GEÇİT YOK*!", "*MEVZİ AL*!", "*SAVUNMA HATTI OLUŞTUR*!", "*SİPER AL, ATEŞ*!", "*SABİT DUR*!", "*GERİ ÇEKİLMEK YOK*!", "*SAĞLAM DURUN*!", "*DİREN*!", "*SON ADAMA KADAR*!", "*CESARETİNİ TOPLA VE DİREN*!", "*GERİ ÇEKİLMEK YOK, DİREN*!")
 			if(COMMAND_ORDER_FOCUS)
-				spoken_order = pick("*HEDEFİNE ODAKLAN, ASKER*!", "*HEDEF SEÇ*!", "*NİŞAN AL*!", "*HEDEF AL, ATEŞ*!", "*ÖLDÜRÜN ONU*!", "*HEPSİNE ÖLÜM*!", "*BASKI ATEŞİ*!", "*HEDEFİ ETKİSİZ HALE GETİR*!", "*SİLAHINI HAZIRLA*!", "*ZAYIF NOKTALARINA NİŞAN AL*!", "*DÜŞMANA ODAKLAN*!", "*HEDEFİ GÖZDEN KAÇIRMA*!", "*CANLARINA OKU*!", "*HAZIR OL, ATEŞ*!", "*YAŞAMAZ, YAŞAMAZ*!", "*MERHAMET YOK*!", "*ODAKLAN, ATEŞ*!", "*GÖZÜNÜZÜ DÖRT AÇIN*!", "*ATEŞ HATTI OLUŞTUR*!", "*ATEŞ*!")
+				spoken_order = pick("*HEDEFİNE ODAKLAN, ASKER*!", "*NİŞAN AL*!", "*NİŞAN AL, ATEŞ*!", "*ÖLDÜRÜN ONU*!", "*HEPSİNE ÖLÜM*!", "*BASKI ATEŞİ*!", "*HEDEFİ ETKİSİZ HALE GETİR*!", "*SİLAHINI HAZIRLA*!", "*ZAYIF NOKTALARINA NİŞAN AL*!", "*DÜŞMANA ODAKLAN*!", "*HEDEFİ GÖZDEN KAÇIRMA*!", "*CANLARINA OKU*!", "*HAZIR OL, ATEŞ*!", "*YAŞAMAZ, YAŞAMAZ*!", "*MERHAMET YOK*!", "*ODAKLAN, ATEŞ*!", "*GÖZÜNÜZÜ DÖRT AÇIN*!", "*ATEŞ HATTI OLUŞTUR*!", "*ATEŞ*!")
 		say(spoken_order) // if someone thinks about adding new lines, it'll be better to split the current ones we have into two different lists per order for readability, and have a coin flip pick between spoken_orders 1 or 2
 	else
 		visible_message(SPAN_BOLDNOTICE("[src] gives an order to [order]!"), SPAN_BOLDNOTICE("You give an order to [order]!"))

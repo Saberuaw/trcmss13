@@ -457,7 +457,7 @@ GLOBAL_LIST_INIT(be_special_flags, list(
 			dat += "<b>Arkaplan:</b> <a href='byond://?_src_=prefs;preference=cycle_bg'><b>Cycle Background</b></a><br><br>"
 			dat += "<b>Gece Görüşü Rengi:</b> <a href='byond://?_src_=prefs;preference=prefnvg;task=input'><b>[night_vision_preference]</b></a><br>"
 
-			dat += "<b>Özel Teçhizat:</b> "
+			dat += "<b>Custom Loadout:</b> "
 			var/total_cost = 0
 
 			if(!islist(gear))
@@ -477,7 +477,7 @@ GLOBAL_LIST_INIT(be_special_flags, list(
 			else
 				dat += "None"
 
-			dat += "<br><a href='byond://?src=\ref[user];preference=loadout'><b>Özel Teçhizatı Göster</b></a>"
+			dat += "<br><a href='byond://?src=\ref[user];preference=loadout'><b>Open Loadout</b></a>"
 
 			dat += "</div>"
 
