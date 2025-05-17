@@ -13,6 +13,8 @@
 /// Simply removes the < and > characters, and limits the length of the message.
 #define STRIP_HTML_SIMPLE(text, limit) (GLOB.angular_brackets.Replace(copytext(text, 1, limit), ""))
 
+#define LOCALE_LOWER_TEXT(thing) locale_lowertext_("[thing]")
+
 /// defines related to text related procs
 
 #define SHOW_MESSAGE_VISIBLE 1

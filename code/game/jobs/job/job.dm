@@ -218,15 +218,12 @@
 	set waitfor = 0
 	sleep(10)
 	if(H && H.loc && H.client)
-		var/title_given
-		title_given = lowertext(disp_title)
-
 		//Document syntax cannot have tabs for proper formatting.
 		var/entrydisplay = boxed_message("\
 			[SPAN_ROLE_BODY("|______________________|")] \n\
-			[SPAN_ROLE_HEADER("You are \a [title_given]")] \n\
+			[SPAN_ROLE_HEADER("[locale_suffix_genitive("[disp_title]'s", FALSE)]")] \n\
 			[flags_startup_parameters & ROLE_ADMIN_NOTIFY ? SPAN_ROLE_HEADER("Oyunun ilerleyişi için oldukça önemli bir meslek oynuyorsun. Oyundan çıkman gereken bir durumda F1 atarak adminleri bilgilendir.") : ""] \n\
-			[SPAN_ROLE_BODY("[generate_entry_message(H)]<br>[M ? "Your account number is: <b>[M.account_number]</b>. Your account pin is: <b>[M.remote_access_pin]</b>." : "You do not have a bank account."]")] \n\
+			[SPAN_ROLE_BODY("[generate_entry_message(H)]<br>[M ? "Hesap numaranız: <b>[M.account_number]</b>. Hesap şifreniz: <b>[M.remote_access_pin]</b>." : "Banka hesabınız bulunmuyor."]")] \n\
 			[SPAN_ROLE_BODY("|______________________|")] \
 		")
 		to_chat_spaced(H, html = entrydisplay)
