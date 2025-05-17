@@ -4,11 +4,11 @@
 	spawn_positions = 2
 	allow_additional = 1
 	scaled = 1
-	supervisors = "the requisitions officer"
+	supervisors = "Lojistik Şefi"
 	selection_class = "job_ct"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_ship/cargo
-	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>Your job</a> is to dispense supplies to the marines, including weapon attachments. Stay in your department when possible to ensure the marines have full access to the supplies they may require. Listen to the radio in case someone requests a supply drop via the overwatch system."
+	entry_message_body = "Görevin, silah eklentileri gibi malzemeleri denizcilerin isteği doğrultusunda onlara temin etmektir. Denizcilerin ihtiyaç duyabilecekleri malzemelere her an erişebilmelerini sağlamak için mümkün olduğunca departmanınızdan ayrılmayın. Birinin malzeme talep etmesi ihtimaline karşı telsizi dinleyin."
 
 /datum/job/logistics/cargo/set_spawn_positions(count)
 	spawn_positions = ct_slot_formula(count)

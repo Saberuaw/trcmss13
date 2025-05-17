@@ -2,10 +2,10 @@
 	title = JOB_SQUAD_LEADER
 	total_positions = 4
 	spawn_positions = 4
-	supervisors = "the acting commanding officer"
+	supervisors = "Komutan"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_SQUAD
 	gear_preset = /datum/equipment_preset/uscm/leader
-	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>You are responsible for the men and women of your squad.</a> Make sure they are on task, working together, and communicating. You are also in charge of communicating with command and letting them know about the situation first hand. Keep out of harm's way."
+	entry_message_body = "Mangandaki askerlerden sen sorumlusun. Görevlerinin başında olduklarından, birlikte çalıştıklarından ve iletişim halinde olduklarından emin ol. Ayrıca komutayla iletişim kurmaktan ve onlara savaş alanındaki durumu ilk elden bildirmekle de sorumlusun. Tehlikeden uzak dur. Yolun açık olsun, çavuş!"
 
 /datum/job/marine/leader/whiskey
 	title = JOB_WO_SQUAD_LEADER

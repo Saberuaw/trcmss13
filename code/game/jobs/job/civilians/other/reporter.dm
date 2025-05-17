@@ -6,7 +6,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	selection_class = "job_cl"
-	supervisors = "the acting commanding officer"
+	supervisors = "Komutan"
 	gear_preset = /datum/equipment_preset/uscm_ship/reporter
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	selection_class = "job_cl"
@@ -25,10 +25,10 @@
 
 /datum/job/civilian/reporter/generate_entry_message(mob/living/carbon/human/H)
 	if(military)
-		. = {"The USCM has assigned you to the [MAIN_SHIP_NAME] to better handle messaging on how things run in the Neroid Sector. Get out there and show the universe that the USCM is doing great things!"}
+		. = {"USCM, Neroid Bölgesinde işlerin nasıl yürüdüğüne dair haberleşmeyi daha iyi idare edebilmek için sizi görevlendirdi! Dışarı çıkın ve evrene USCM'nin ne kadar harika şeyler yaptığını gösterin!"}
 	else
-		. = {"What a scoop! You've been assigned to the [MAIN_SHIP_NAME] to see what kinda mischief they'd get into and it seems trouble is here!
-This could be the story of the sector! 'Brave Marines responding to dangerous distress signal!' It'd surely get Mr. Parkerson to notice you in the office if you brought him a story like this!"}
+		. = {"Ne haber ama! Ne tür bir yaramazlık yapacaklarını görmek için görevlendirildiniz ve görünen o ki bela burada!
+Bu Bölgenin en iyi hikâyesi olma potansiyeli taşıyor! “Tehlikeli ve bilinmez yardım sinyaline cevap veren cesur denizciler!" Bay Kanarya'ya böyle bir hikaye götürürseniz dikkatini çekeceğinize hiçbir şüphe yok!"}
 
 /obj/effect/landmark/start/reporter
 	name = JOB_COMBAT_REPORTER
