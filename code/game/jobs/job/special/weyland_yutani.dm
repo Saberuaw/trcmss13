@@ -1,5 +1,5 @@
 /datum/job/special/wey_yu // Abstract type (null title)
-	supervisors = "Weyland-Yutani Corporate Office"
+	supervisors = "Weyland-Yutani"
 	selection_class = "job_cl"
 	flags_startup_parameters = ROLE_CUSTOM_SPAWN
 	gear_preset = /datum/equipment_preset/wy/trainee

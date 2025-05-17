@@ -209,9 +209,9 @@
 
 /datum/job/proc/generate_entry_message()
 	if(!entry_message_intro)
-		entry_message_intro = "You are the [title]!"
+		entry_message_intro = "[title]'sın!"
 	if(!entry_message_end)
-		entry_message_end = "As the [title] you answer to [supervisors]. Special circumstances may change this!"
+		entry_message_end = "[title] olarak [supervisors]'ndan emir alırsın. Özel durumlar bunu değiştirebilir!"
 	return "[entry_message_intro]<br>[entry_message_body]<br>[entry_message_end]"
 
 /datum/job/proc/announce_entry_message(mob/living/carbon/human/H, datum/money_account/M, whitelist_status) //The actual message that is displayed to the mob when they enter the game as a new player.

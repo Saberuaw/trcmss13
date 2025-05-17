@@ -6,9 +6,9 @@
 	scaled = TRUE
 	selection_class = "job_ot"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
-	supervisors = "the auxiliary support officer"
+	supervisors = "Destek Subayı"
 	gear_preset = /datum/equipment_preset/uscm_ship/chef
-	entry_message_body = "Görevin gemi mürettebatına yiyecek ve içecek servisi yapmak, gerektiğinde ise gemi mürettebatını eğlendirmektir. Genel olarak bir sorumluluğunuz yok. Özgürsünüz ve bununla ne yapacağınıza karar vermek size kalmış. İyi şanslar!"
+	entry_message_body = "Göreviniz gemi mürettebatına yiyecek ve içecek servisi yapmak, gerektiğinde ise gemi mürettebatını eğlendirmektir. Genel olarak bir sorumluluğunuz yok. Özgürsünüz ve bununla ne yapacağınıza karar vermek size kalmış. İyi şanslar!"
 
 /datum/job/civilian/chef/set_spawn_positions(count)
 	spawn_positions = mess_sergeant_slot_formula(count)
