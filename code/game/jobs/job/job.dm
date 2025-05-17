@@ -209,9 +209,9 @@
 
 /datum/job/proc/generate_entry_message()
 	if(!entry_message_intro)
-		entry_message_intro = "You are the [title]!"
+		entry_message_intro = "[title]'sın!"
 	if(!entry_message_end)
-		entry_message_end = "As the [title] you answer to [supervisors]. Special circumstances may change this!"
+		entry_message_end = "[title] olarak [supervisors]'ndan emir alırsın. Özel durumlar bunu değiştirebilir!"
 	return "[entry_message_intro]<br>[entry_message_body]<br>[entry_message_end]"
 
 /datum/job/proc/announce_entry_message(mob/living/carbon/human/H, datum/money_account/M, whitelist_status) //The actual message that is displayed to the mob when they enter the game as a new player.
@@ -223,7 +223,7 @@
 			[SPAN_ROLE_BODY("|______________________|")] \n\
 			[SPAN_ROLE_HEADER("[locale_suffix_genitive("[disp_title]'s", FALSE)]")] \n\
 			[flags_startup_parameters & ROLE_ADMIN_NOTIFY ? SPAN_ROLE_HEADER("Oyunun ilerleyişi için oldukça önemli bir meslek oynuyorsun. Oyundan çıkman gereken bir durumda F1 atarak adminleri bilgilendir.") : ""] \n\
-			[SPAN_ROLE_BODY("[generate_entry_message(H)]<br>[M ? "Hesap numaranız: <b>[M.account_number]</b>. Hesap şifreniz: <b>[M.remote_access_pin]</b>." : "Banka hesabınız bulunmuyor."]")] \n\
+			[SPAN_ROLE_BODY("[generate_entry_message(H)]<br>[M ? "Hesap Numaranız: <b>[M.account_number]</b>. Hesap Şifreniz: <b>[M.remote_access_pin]</b>." : "Bir banka hesabın yok."]")] \n\
 			[SPAN_ROLE_BODY("|______________________|")] \
 		")
 		to_chat_spaced(H, html = entrydisplay)

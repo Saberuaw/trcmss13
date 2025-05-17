@@ -4,7 +4,7 @@
 	selection_class = "job_cmp"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_ship/uscm_police/cmp
-	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>You</a> are held by a higher standard and are required to obey not only the server rules but the <a href='"+LAW_PLACEHOLDER+"'>Marine Law</a>. Failure to do so may result in a job ban or server ban. You lead the Military Police, ensure your officers maintain peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep! In addition, you are tasked with the security of high-ranking personnel, including the command staff. Keep them safe!"
+	entry_message_body = "Görevin gemideki asayişi sağlamak gibi oldukça büyük bir sorumluk olduğundan genel oyuncu topluluğuna göre daha yüksek bir standarda tabi tutulursun. Sadece sunucu kurallarına değil, Denizci Yasası'na da uyman gerekmektedir. Bunların ihlali rol veya sunucu banı ile sonuçlanabilir. İnzibatı yönetiyorsun, takımının gemide sükuneti ve istikrarı korumasını sağlamalısın. Buna ek olarak komuta kademesi de dahil olmak üzere yüksek rütbeli personelin güvenliğini sağlamakla görevlisiniz. Mürettebatı güvende tut!"
 	var/mob/living/carbon/human/active_cmp = null;
 
 /datum/job/command/warrant/generate_entry_conditions(mob/living/cmp, whitelist_status)
