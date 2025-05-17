@@ -114,10 +114,11 @@
 					return "[rawtext]'ye"
 
 /// Locative Suffix | -de, -da / -te, -ta
-/proc/locale_suffix_locative(rawtext)
+/proc/locale_suffix_locative(rawtext, possessive_suffix = FALSE)
 	var/text = replacetext(rawtext," ","")
 	var/static/list/consonant_assimilation = list("ç", "f", "h", "k", "s", "ş", "t", "p")
 	var/list/charlist = vowelcatcher(text)
+	possessive_suffix = possessive_suffix && !(rawtext in GLOB.skip_possessive_suffix)
 	switch(charlist[1])
 		if(NUMBER)
 			switch(charlist[2])
@@ -142,15 +143,16 @@
 		if(VOWEL)
 			switch(charlist[2])
 				if("e","i","ü","ö")
-					return "[rawtext]'de"
+					return "[rawtext]'[possessive_suffix ? "n":""]de"
 				if("a","ı","o","u")
-					return "[rawtext]'da"
+					return "[rawtext]'[possessive_suffix ? "n":""]da"
 
 /// Ablative Suffix | -den, -dan / -ten, -tan
-/proc/locale_suffix_ablative(rawtext)
+/proc/locale_suffix_ablative(rawtext, possessive_suffix = FALSE)
 	var/text = replacetext(rawtext," ","")
 	var/static/list/consonant_assimilation = list("ç", "f", "h", "k", "s", "ş", "t", "p")
 	var/list/charlist = vowelcatcher(text)
+	possessive_suffix = possessive_suffix && !(rawtext in GLOB.skip_possessive_suffix)
 	switch(charlist[1])
 		if(NUMBER)
 			switch(charlist[2])
@@ -175,9 +177,9 @@
 		if(VOWEL)
 			switch(charlist[2])
 				if("a","ı","o","u")
-					return "[rawtext]'dan"
+					return "[rawtext]'[possessive_suffix ? "n" : ""]dan"
 				if("e","i","ü","ö")
-					return "[rawtext]'den"
+					return "[rawtext]'[possessive_suffix ? "n" : ""]den"
 
 /// Genitive Suffix| -in, -un / -nin, -nun
 /proc/locale_suffix_genitive(rawtext, quotation = TRUE)
