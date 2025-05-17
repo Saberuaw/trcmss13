@@ -4,10 +4,10 @@
 	spawn_positions = 1
 	allow_additional = TRUE
 	scaled = TRUE
-	supervisors = "the auxiliary support officer"
+	supervisors = "Destek Subayı"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_ship/gp
-	entry_message_body = "<a href='"+WIKI_PLACEHOLDER+"'>Your job is to fly, protect, and maintain the ship's gunship.</a> While you are an officer, your authority is limited to the dropship, where you have authority over the enlisted personnel."
+	entry_message_body = "Görevin geminin savaş uçağını uçurmak, korumak ve bakımını yapmaktır. Bir subay olmana rağmen yetkin, pilotu olduğunuz uçağın içiyle sınırlıdır."
 	var/mob/living/carbon/human/active_cas_pilot
 
 /datum/job/command/pilot/cas_pilot/generate_entry_conditions(mob/living/cas_pilot, whitelist_status)

@@ -1,7 +1,7 @@
 //Commander
 /datum/job/command/commander
 	title = JOB_CO
-	supervisors = "USCM high command"
+	supervisors = "Genel Merkez"
 	selection_class = "job_co"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED
 	flags_whitelist = WHITELIST_COMMANDER
@@ -62,7 +62,7 @@
 	)
 
 /datum/job/command/commander/generate_entry_message()
-	entry_message_body = "<a href='[generate_wiki_link()]'>You are the Commanding Officer of the [MAIN_SHIP_NAME] as well as the operation.</a> Your goal is to lead the Marines on their mission as well as protect and command the ship and her crew. Your job involves heavy roleplay and requires you to behave like a high-ranking officer and to stay in character at all times. As the Commanding Officer your only superior is High Command itself. You must abide by the <a href='[CONFIG_GET(string/wikiarticleurl)]/[URL_WIKI_CO_RULES]'>Commanding Officer Code of Conduct</a>. Failure to do so may result in punitive action against you. Godspeed."
+	entry_message_body = "Operasyonun ana komutanısın. Görevin operasyona liderlik etmenin yanı sıra gemiyi ve mürettebatını korumak ve komuta etmektir. Her zaman karakterde kalman ve bir subaydan beklenecek şekilde hareket etmen beklenir. Birlik Komutanı olarak tek üstünüz Genel Merkez'in kendisidir ancak özel durumlar bunu değiştirebilir. Ayrıca BK Davranış İlkelerine uymak zorundasınız. Bunu ihlal etmeniz, size karşı cezai işlem uygulanmasına neden olabilir. Yolun açık olsun, Binbaşı!"
 	return ..()
 
 /datum/job/command/commander/get_whitelist_status(client/player)
