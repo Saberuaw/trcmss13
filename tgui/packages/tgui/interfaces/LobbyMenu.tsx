@@ -468,7 +468,7 @@ const LobbyButtons = (props: {
                     onClick={() => act('late_join')}
                     icon="users"
                   >
-                    USCM'ye Katıl
+                    USCM&#39;ye Katıl
                   </LobbyButton>
                 </Stack.Item>
                 <Stack.Item>
@@ -489,7 +489,7 @@ const LobbyButtons = (props: {
                     icon="viruses"
                     onClick={() => act('late_join_xeno')}
                   >
-                    Hive'a Katıl
+                    Hive&#39;a Katıl
                   </LobbyButton>
                 </Stack.Item>
                 <Stack.Item>
