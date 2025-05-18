@@ -88,6 +88,107 @@ GLOBAL_LIST_EMPTY(roles_with_gear)
 
 		qdel(equipping_gear)
 
+/datum/gear/clothing
+	category = "Clothing"
+	fluff_cost = 1
+
+/datum/gear/clothing/black_suit
+	display_name = "Black Suit Pants"
+	path = /obj/item/clothing/under/liaison_suit/black
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/blue_suit
+	display_name = "Blue Suit Pants"
+	path = /obj/item/clothing/under/liaison_suit/blue
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/brown_suit
+	display_name = "Brown Suit Pants"
+	path = /obj/item/clothing/under/liaison_suit/brown
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/field_suit
+	display_name = "Corporate Casual"
+	path = /obj/item/clothing/under/liaison_suit/field
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/orange
+	display_name = "Orange Outfit"
+	path = /obj/item/clothing/under/liaison_suit/orange
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/blue_workwear
+	display_name = "Blue Workwear"
+	path = /obj/item/clothing/under/colonist/workwear/blue
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/green_workwear
+	display_name = "Green Workwear"
+	path = /obj/item/clothing/under/colonist/workwear/green
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/ivy_suit
+	display_name = "Country Club Outfit"
+	path = /obj/item/clothing/under/liaison_suit/ivy
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/khaki_workwear
+	display_name = "Khaki Workwear"
+	path = /obj/item/clothing/under/colonist/workwear/khaki
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/marsoc
+	display_name = "SOF Uniform"
+	path = /obj/item/clothing/under/marine/veteran/marsoc
+	allowed_origins = USCM_ORIGINS
+	fluff_cost = 2
+
+/datum/gear/clothing/rmc
+	display_name = "RMC Uniform"
+	path = /obj/item/clothing/under/marine/veteran/royal_marine
+	allowed_origins = USCM_ORIGINS
+	fluff_cost = 2
+
+/datum/gear/clothing/jungle_boots
+	display_name = "Jungle pattern combat boots"
+	path = /obj/item/clothing/shoes/marine/jungle
+	fluff_cost = 2
+
+/datum/gear/clothing/brown_boots
+	display_name = "brown combat boots"
+	path = /obj/item/clothing/shoes/marine/brown
+	fluff_cost = 2
+
+/datum/gear/clothing/brown_gloves
+	display_name = "brown combat gloves"
+	path = /obj/item/clothing/gloves/marine/brown
+	fluff_cost = 2
+
+/datum/gear/clothing/grey_boots
+	display_name = "grey combat boots"
+	path = /obj/item/clothing/shoes/marine/grey
+	fluff_cost = 2
+
+/datum/gear/clothing/urban_boots
+	display_name = "Urban pattern combat boots"
+	path = /obj/item/clothing/shoes/marine/urban
+	fluff_cost = 2
+
+/datum/gear/clothing/grey_gloves
+	display_name = "grey combat gloves"
+	path = /obj/item/clothing/gloves/marine/grey
+	fluff_cost = 2
+
+/datum/gear/clothing/sof_helmet
+	display_name = "Replica SOF helmet"
+	path = /obj/item/clothing/head/helmet/marine/sof/replica
+	fluff_cost = 2
+
+/datum/gear/clothing/cmb_helmet
+	display_name = "M11R pattern helmet"
+	path = /obj/item/clothing/head/helmet/marine/veteran/cmb/replica
+	fluff_cost = 2
+
 /datum/gear/eyewear
 	category = "Eyewear"
 	slot = WEAR_EYES
@@ -172,17 +273,17 @@ GLOBAL_LIST_EMPTY(roles_with_gear)
 /datum/gear/eyewear/new_bimex/black
 	display_name = "BiMex tactical shades, black"
 	path = /obj/item/clothing/glasses/sunglasses/big/new_bimex/black
-	fluff_cost = 4
+	fluff_cost = 2
 
 /datum/gear/eyewear/new_bimex
 	display_name = "BiMex polarized shades, yellow"
 	path = /obj/item/clothing/glasses/sunglasses/big/new_bimex
-	fluff_cost = 4
+	fluff_cost = 2
 
 /datum/gear/eyewear/new_bimex/bronze
 	display_name = "BiMex polarized shades, bronze"
 	path = /obj/item/clothing/glasses/sunglasses/big/new_bimex/bronze
-	fluff_cost = 4
+	fluff_cost = 2
 
 /datum/gear/eyewear/prescription_sunglasses
 	display_name = "Prescription sunglasses"
@@ -722,7 +823,7 @@ GLOBAL_LIST_EMPTY(roles_with_gear)
 
 /datum/gear/weapon
 	category = "Weapons"
-	fluff_cost = 4
+	fluff_cost = 2
 
 /datum/gear/weapon/type_80_bayonet
 	display_name = "Type 80 Bayonet"
@@ -735,6 +836,10 @@ GLOBAL_LIST_EMPTY(roles_with_gear)
 /datum/gear/weapon/L5_Bayonet
 	display_name = "L5 Bayonet"
 	path = /obj/item/attachable/bayonet/rmc_replica
+
+/datum/gear/weapon/WY_Bayonet
+	display_name = "SA120 L7 bayonet"
+	path = /obj/item/attachable/bayonet/wy
 
 /datum/gear/weapon/custom_Bayonet
 	display_name = "M5 'Raven's Claw' tactical bayonet" // custom style bayonet with variants, exclusive to loadout and unique. Name might need changing.
@@ -772,7 +877,7 @@ GLOBAL_LIST_EMPTY(roles_with_gear)
 	display_name = "Type 73 Pistol"
 	path = /obj/item/storage/box/upp
 	slot = WEAR_IN_BACK
-	fluff_cost = 4
+	fluff_cost = 2
 
 /datum/gear/weapon/m4a3_custom
 	display_name = "M4A3 Custom Pistol"
@@ -1002,7 +1107,7 @@ GLOBAL_LIST_EMPTY(roles_with_gear)
 /datum/gear/smoking/cigarette/cigar_classic
 	display_name = "Classic cigar"
 	path = /obj/item/clothing/mask/cigarette/cigar/classic
-	fluff_cost = 3
+	fluff_cost = 2
 
 /datum/gear/smoking/cigarette/cigar_premium
 	display_name = "Premium cigar"
@@ -1012,7 +1117,7 @@ GLOBAL_LIST_EMPTY(roles_with_gear)
 /datum/gear/smoking/cigarette/tarbacks
 	display_name = "Tarbacks case"
 	path = /obj/item/storage/fancy/cigar/tarbacks
-	fluff_cost = 6
+	fluff_cost = 2
 
 /datum/gear/smoking/cigarette/tarbacktube
 	display_name = "Tarback tube"
@@ -1078,12 +1183,12 @@ GLOBAL_LIST_EMPTY(roles_with_gear)
 /datum/gear/smoking/zippo/gold
 	display_name = "Golden lighter, zippo"
 	path = /obj/item/tool/lighter/zippo/gold
-	fluff_cost = 3
+	fluff_cost = 1
 
 /datum/gear/smoking/zippo/executive
 	display_name = "Weyland-Yutani executive Zippo lighter"
 	path = /obj/item/tool/lighter/zippo/executive
-	fluff_cost = 3
+	fluff_cost = 1
 
 /datum/gear/smoking/zippo/blue
 	display_name = "Blue lighter, zippo"
@@ -1121,36 +1226,6 @@ GLOBAL_LIST_EMPTY(roles_with_gear)
 	display_name = "Fullbody paint"
 	path = /obj/item/facepaint/sniper
 	fluff_cost = 4 //To match with the skull paint amount of point, gave this amount of point for the same reason of the skull facepaint (too cool for everyone to be able to constantly use)
-
-/datum/gear/misc/jungle_boots
-	display_name = "Jungle pattern combat boots"
-	path = /obj/item/clothing/shoes/marine/jungle
-	fluff_cost = 2
-
-/datum/gear/misc/brown_boots
-	display_name = "brown combat boots"
-	path = /obj/item/clothing/shoes/marine/brown
-	fluff_cost = 2
-
-/datum/gear/misc/brown_gloves
-	display_name = "brown combat gloves"
-	path = /obj/item/clothing/gloves/marine/brown
-	fluff_cost = 2
-
-/datum/gear/misc/grey_boots
-	display_name = "grey combat boots"
-	path = /obj/item/clothing/shoes/marine/grey
-	fluff_cost = 2
-
-/datum/gear/misc/urban_boots
-	display_name = "Urban pattern combat boots"
-	path = /obj/item/clothing/shoes/marine/urban
-	fluff_cost = 2
-
-/datum/gear/misc/grey_gloves
-	display_name = "grey combat gloves"
-	path = /obj/item/clothing/gloves/marine/grey
-	fluff_cost = 2
 
 /datum/gear/misc/pdt_kit
 	display_name = "PDT/L kit"

@@ -373,6 +373,20 @@
 	new /obj/item/device/vulture_spotter_scope/skillless(src, WEAKREF(rifle))
 	new /obj/item/tool/screwdriver(src)
 
+/obj/item/storage/box/guncase/svd
+	name = "\improper Type-88 Designated Marksman Rifle case"
+	desc = "A gun case containing the Type-88 Designated Marksman Rifle probably stolen from an UPP outpost."
+	storage_slots = 7
+	can_hold = list(/obj/item/weapon/gun/rifle/sniper/svd, /obj/item/ammo_magazine/sniper/svd)
+
+/obj/item/storage/box/guncase/svd/fill_preset_inventory()
+	new /obj/item/weapon/gun/rifle/sniper/svd(src)
+	new /obj/item/ammo_magazine/sniper/svd(src)
+	new /obj/item/ammo_magazine/sniper/svd(src)
+	new /obj/item/ammo_magazine/sniper/svd(src)
+	new /obj/item/ammo_magazine/sniper/svd(src)
+	new /obj/item/ammo_magazine/sniper/svd(src)
+	new /obj/item/ammo_magazine/sniper/svd(src)
 
 /obj/item/storage/box/guncase/xm51
 	name = "\improper XM51 breaching scattergun case"

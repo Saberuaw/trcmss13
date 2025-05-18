@@ -626,10 +626,10 @@
 
 /obj/item/ammo_box/magazine/nsg23
 	name = "magazine box (NSG 23 x 12)"
-	icon_state = "base_nsg23"
+	icon_state = "base_deagle"
 	overlay_gun_type = "_nsg23"
-	overlay_ammo_type = "_l23_reg"
-	overlay_content = "_l23_reg"
+	overlay_ammo_type = "_reg"
+	overlay_content = "_reg"
 	magazine_type = /obj/item/ammo_magazine/rifle/nsg23
 	num_of_magazines = 12
 
@@ -638,8 +638,8 @@
 
 /obj/item/ammo_box/magazine/nsg23/ap
 	name = "magazine box (NSG 23 AP x 12)"
-	overlay_ammo_type = "_l23_ap"
-	overlay_content = "_l23_ap"
+	overlay_ammo_type = "_ap"
+	overlay_content = "_ap"
 	magazine_type = /obj/item/ammo_magazine/rifle/nsg23/ap
 	num_of_magazines = 12
 
@@ -713,6 +713,27 @@
 	magazine_type = /obj/item/ammo_magazine/rifle/l23/incendiary
 
 /obj/item/ammo_box/magazine/l23/incendiary/empty
+	empty = TRUE
+
+//-----------------------F903A2 Rifle Mag Boxes--------------------------------\\
+
+/obj/item/ammo_box/magazine/rmc_f90
+	name = "magazine box (F903A2 x 12)"
+	icon_state = "base_vp78"
+	overlay_gun_type = "_f903a2"
+	overlay_ammo_type = "_reg"
+	overlay_content = "_reg"
+	magazine_type = /obj/item/ammo_magazine/rifle/rmc_f90
+	num_of_magazines = 12
+/obj/item/ammo_box/magazine/f903a2/empty
+	empty = TRUE
+/obj/item/ammo_box/magazine/rmc_f90/ap
+	name = "magazine box (AP F903A2 x 12)"
+	overlay_ammo_type = "_ap"
+	overlay_content = "_ap"
+	magazine_type = /obj/item/ammo_magazine/rifle/rmc_f90/ap
+	num_of_magazines = 12
+/obj/item/ammo_box/magazine/f903a2/ap/empty
 	empty = TRUE
 
 //-----------------------Spearhead Autorevolver Speed Loaders Box-----------------------

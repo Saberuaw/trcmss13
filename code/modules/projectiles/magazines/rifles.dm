@@ -561,6 +561,13 @@
 	ammo_band_icon = "+aug_band"
 	ammo_band_icon_empty = "+aug_band_e"
 
+
+/obj/item/ammo_magazine/rifle/rmc_f90/ap
+	name = "\improper F903 AP magazine (10x24mm)"
+	desc = "A 10mm AP assault rifle magazine used by the royal marines."
+	default_ammo = /datum/ammo/bullet/rifle/ap
+	ammo_band_color = AMMO_BAND_COLOR_AP
+
 /obj/item/ammo_magazine/rifle/rmc_f90/marksman
 	name = "\improper F903A1 Marksman magazine (10x24mm)"
 	desc = "A 10mm armor-piercing assault rifle magazine used by the royal marines."
