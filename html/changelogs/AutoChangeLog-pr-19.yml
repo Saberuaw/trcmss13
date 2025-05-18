@@ -1,0 +1,6 @@
+author: "Ansekishoku"
+delete-after: True
+changes:
+  - rscadd: "Yeni loadout kategorisi, yeni silahlar ve daha fazlası."
+  - balance: "Yeni silahlar için ek balance değişiklikleri."
+  - imageadd: "Yeni silahlar için spritelar."
