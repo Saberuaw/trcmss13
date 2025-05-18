@@ -1,0 +1,5 @@
+author: "Anseishoku"
+delete-after: True
+changes:
+  - rscadd: "Siyah drop pouch"
+  - imageadd: "Yeni drop pouch spriteları"

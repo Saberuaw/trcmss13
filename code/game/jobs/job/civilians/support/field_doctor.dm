@@ -5,11 +5,11 @@
 	spawn_positions = 1
 	allow_additional = TRUE
 	scaled = TRUE
-	supervisors = "the chief medical officer"
+	supervisors = "Başhekim"
 	selection_class = "job_doctor"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_ship/uscm_medical/field_doctor
-	entry_message_body = "You are a <a href='"+WIKI_PLACEHOLDER+"'>Field Doctor</a> tasked with keeping the marines healthy and strong in the field, usually in the form of surgery. You must stay onboard the Almayer medical bay if there are no other doctors present and until the FOB is secured. Your superiors may also delay your deployment to the field."
+	entry_message_body = "Denizcileri sağlıklı ve savaşabilecek durumda tutmakla görevli bir saha doktorusunuz. Gemide başka doktor yoksa veya FOB güvenli değilse gemide kalmalısınız. Üstleriniz sahaya gönderilmenizi erteleyebilir."
 
 AddTimelock(/datum/job/civilian/field_doctor, list(
 	JOB_DOCTOR_ROLES = 5 HOURS

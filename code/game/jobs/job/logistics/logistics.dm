@@ -1,5 +1,5 @@
 /datum/job/logistics
-	supervisors = "the auxiliary support officer"
+	supervisors = "Destek Subayı"
 	total_positions = 1
 	spawn_positions = 1
 
