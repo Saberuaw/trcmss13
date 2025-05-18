@@ -454,7 +454,7 @@ GLOBAL_LIST_INIT(job_command_roles, JOB_COMMAND_ROLES_LIST)
 
 
 //---------- ANTAG ----------//
-#define JOB_PREDATOR "Predator"
+#define JOB_PREDATOR "Unknown"
 #define JOB_XENOMORPH    "Xenomorph"
 #define JOB_XENOMORPH_QUEEN  "Queen"
 
