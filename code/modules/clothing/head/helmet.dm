@@ -1152,6 +1152,13 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	built_in_visors = list(new /obj/item/device/helmet_visor/night_vision/marine_raider, new /obj/item/device/helmet_visor/security)
 	start_down_visor_type = /obj/item/device/helmet_visor/night_vision/marine_raider
 
+
+/obj/item/clothing/head/helmet/marine/sof/replica
+	name = "\improper M10 pattern SOF helmet"
+	desc = "An M10 Pattern Helmet worn by USCM SOF. This one is a replica, and not as useful."
+	flags_atom = NO_GAMEMODE_SKIN|NO_NAME_OVERRIDE
+	built_in_visors = list()
+
 //FIORINA / UA RIOT CONTROL HELMET//
 
 /obj/item/clothing/head/helmet/marine/veteran/ua_riot
@@ -1218,6 +1225,19 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	armor_internaldamage = CLOTHING_ARMOR_MEDIUMHIGH
 	built_in_visors = list(new /obj/item/device/helmet_visor/security, new /obj/item/device/helmet_visor/night_vision)
 
+
+/obj/item/clothing/head/helmet/marine/veteran/cmb/replica
+	name = "M11R pattern helmet"
+	desc = "A worn down replica of the CMB M10 pattern."
+	armor_melee = CLOTHING_ARMOR_MEDIUM
+	armor_bullet = CLOTHING_ARMOR_MEDIUM
+	armor_laser = CLOTHING_ARMOR_MEDIUMLOW
+	armor_energy = CLOTHING_ARMOR_LOW
+	armor_bomb = CLOTHING_ARMOR_LOW
+	armor_bio = CLOTHING_ARMOR_MEDIUM
+	armor_rad = CLOTHING_ARMOR_LOW
+	armor_internaldamage = CLOTHING_ARMOR_MEDIUM
+	built_in_visors = list(new /obj/item/device/helmet_visor)
 
 //==========================//DISTRESS\\=================================\\
 //=======================================================================\\

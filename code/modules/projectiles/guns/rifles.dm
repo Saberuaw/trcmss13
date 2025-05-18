@@ -2055,12 +2055,12 @@
 
 /obj/item/weapon/gun/rifle/rmc_f90/set_gun_config_values()
 	..()
-	fire_delay = FIRE_DELAY_TIER_11
-	burst_amount = BURST_AMOUNT_TIER_3
-	burst_delay = FIRE_DELAY_TIER_11
+	fire_delay = FIRE_DELAY_TIER_LMG
+	burst_amount = BURST_AMOUNT_TIER_4
+	burst_delay = FIRE_DELAY_TIER_LMG
 	accuracy_mult = BASE_ACCURACY_MULT + HIT_ACCURACY_MULT_TIER_4 + 2*HIT_ACCURACY_MULT_TIER_1
 	accuracy_mult_unwielded = BASE_ACCURACY_MULT - HIT_ACCURACY_MULT_TIER_7
-	scatter = SCATTER_AMOUNT_TIER_8
+	scatter = SCATTER_AMOUNT_TIER_10
 	burst_scatter_mult = SCATTER_AMOUNT_TIER_10
 	scatter_unwielded = SCATTER_AMOUNT_TIER_2
 	damage_mult = BASE_BULLET_DAMAGE_MULT + BULLET_DAMAGE_MULT_TIER_2
@@ -2383,20 +2383,15 @@
 	name = "\improper L42A3 battle rifle"
 	desc = "The L42A3 Battle Rifle, modification sold to TWE. This particular version of the weapon has been given a custom stock and variable zoom scope. Reliable and deadly."
 
-	current_mag = /obj/item/ammo_magazine/rifle/l42a/ap
+	current_mag = /obj/item/ammo_magazine/rifle/l42a
 
-	random_spawn_chance = 100 //L42A3 always spawns with attachments
-	random_spawn_muzzle = list(
+	starting_attachment_types = list(
 		/obj/item/attachable/suppressor/nsg,
-	)
-
-	random_spawn_under = list(
-		/obj/item/attachable/bipod,
 	)
 
 /obj/item/weapon/gun/rifle/l42a3/marksman/set_gun_config_values()
 	..()
-	set_fire_delay(FIRE_DELAY_TIER_11)
+	set_fire_delay(FIRE_DELAY_TIER_2)
 
 /obj/item/weapon/gun/rifle/l42a3/marksman/handle_starting_attachment() //Adds Marksman DMR's standard attachments.
 	..()
@@ -2408,6 +2403,11 @@
 	S.flags_attach_features &= ~ATTACH_REMOVABLE
 	S.Attach(src)
 	update_attachable(S.slot)
+	var/obj/item/attachable/bipod/U = new(src)
+	U.flags_attach_features &= ~ATTACH_REMOVABLE
+	U.Attach(src)
+	update_attachable(U.slot)
+
 
 /obj/item/weapon/gun/rifle/l42a3/fal // THE RIGHT ARM OF FREEDOM, MOTHERFU-
 	name = "\improper L42A3-F battle rifle"

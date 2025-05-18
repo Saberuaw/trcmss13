@@ -16,25 +16,44 @@
 
 /obj/structure/machinery/cm_vending/sorted/cargo_guns/squad_prep/populate_product_list(scale)
 	listed_products = list(
-		list("PRIMARY FIREARMS", -1, null, null),
-		list("M4RA Battle Rifle", floor(scale * 5), /obj/item/weapon/gun/rifle/m4ra, VENDOR_ITEM_REGULAR),
-		list("M37A2 Pump Shotgun", floor(scale * 10), /obj/item/weapon/gun/shotgun/pump, VENDOR_ITEM_REGULAR),
-		list("M39 Submachine Gun", floor(scale * 10), /obj/item/weapon/gun/smg/m39, VENDOR_ITEM_REGULAR),
+		list("ASSAULT RIFLES", -1, null, null),
 		list("M41A Pulse Rifle MK2", floor(scale * 15), /obj/item/weapon/gun/rifle/m41a, VENDOR_ITEM_RECOMMENDED),
+		list("F903A2 Rifle", floor(scale * 15), /obj/item/weapon/gun/rifle/rmc_f90/a_grip, VENDOR_ITEM_REGULAR),
+		list("NSG23 Assault Rifle", floor(scale * 10), /obj/item/weapon/gun/rifle/nsg23/no_lock/stripped, VENDOR_ITEM_REGULAR),
+
+		list("DESIGNATED MARKSMAN RIFLES", -1, null, null),
+		list("M4RA Battle Rifle", floor(scale * 5), /obj/item/weapon/gun/rifle/m4ra,  VENDOR_ITEM_RECOMMENDED),
+		list("L42A Battle Rifle", floor(scale * 5), /obj/item/weapon/gun/rifle/l42a, VENDOR_ITEM_REGULAR),
+		list("L42A3 Marksman Rifle", floor(scale * 1), /obj/item/weapon/gun/rifle/l42a3/marksman, VENDOR_ITEM_REGULAR),
+
+		list("SUBMACHINE GUNS", -1, null, null),
+		list("M39 Submachine Gun", floor(scale * 10), /obj/item/weapon/gun/smg/m39,  VENDOR_ITEM_RECOMMENDED),
+		list("MP5A5 Submachine Gun", floor(scale * 10), /obj/item/weapon/gun/smg/mp5/mp5a5, VENDOR_ITEM_REGULAR),
+		list("P90 Submachine Gun", floor(scale * 10), /obj/item/weapon/gun/smg/p90, VENDOR_ITEM_REGULAR),
+
+		list("SHOTGUNS", -1, null, null),
+		list("M37A2 Pump Shotgun", floor(scale * 10), /obj/item/weapon/gun/shotgun/pump,  VENDOR_ITEM_RECOMMENDED),
+		list("HG 37-12 Pump Shotgun", floor(scale * 10), /obj/item/weapon/gun/shotgun/pump/dual_tube/cmb, VENDOR_ITEM_REGULAR),
 
 		list("PRIMARY AMMUNITION", -1, null, null),
-		list("Box of Flechette Shells (12g)", floor(scale * 3), /obj/item/ammo_magazine/shotgun/flechette, VENDOR_ITEM_REGULAR),
-		list("Box of Buckshot Shells (12g)", floor(scale * 5), /obj/item/ammo_magazine/shotgun/buckshot, VENDOR_ITEM_REGULAR),
-		list("Box of Shotgun Slugs (12g)", floor(scale * 5), /obj/item/ammo_magazine/shotgun/slugs, VENDOR_ITEM_REGULAR),
-		list("M4RA Magazine (10x24mm)", floor(scale * 15), /obj/item/ammo_magazine/rifle/m4ra, VENDOR_ITEM_REGULAR),
-		list("M39 HV Magazine (10x20mm)", floor(scale * 15), /obj/item/ammo_magazine/smg/m39, VENDOR_ITEM_REGULAR),
 		list("M41A Magazine (10x24mm)", floor(scale * 15), /obj/item/ammo_magazine/rifle, VENDOR_ITEM_REGULAR),
+		list("F903A2 Magazine (10x24mm)", floor(scale * 15), /obj/item/ammo_magazine/rifle/rmc_f90, VENDOR_ITEM_REGULAR),
+		list("M4RA Magazine (10x24mm)", floor(scale * 15), /obj/item/ammo_magazine/rifle/m4ra, VENDOR_ITEM_REGULAR),
+		list("NSG23 Magazine (10x24mm)", floor(scale * 15), /obj/item/ammo_magazine/rifle/nsg23, VENDOR_ITEM_REGULAR),
+		list("L42A Magazine (10x24mm)", floor(scale * 15), /obj/item/ammo_magazine/rifle/l42a, VENDOR_ITEM_REGULAR),
+		list("M39 HV Magazine (10x20mm)", floor(scale * 15), /obj/item/ammo_magazine/smg/m39, VENDOR_ITEM_REGULAR),
+		list("MP5A5 Magazine (9mm)", floor(scale * 15), /obj/item/ammo_magazine/smg/mp5, VENDOR_ITEM_REGULAR),
+		list("P90 Magazine (5.7x28mm)", floor(scale * 15), /obj/item/ammo_magazine/smg/p90, VENDOR_ITEM_REGULAR),
+		list("Box of Buckshot Shells (12g)", floor(scale * 5), /obj/item/ammo_magazine/shotgun/buckshot, VENDOR_ITEM_REGULAR),
+		list("Box of Flechette Shells (12g)", floor(scale * 3), /obj/item/ammo_magazine/shotgun/flechette, VENDOR_ITEM_REGULAR),
+		list("Box of Shotgun Slugs (12g)", floor(scale * 5), /obj/item/ammo_magazine/shotgun/slugs, VENDOR_ITEM_REGULAR),
 
 		list("SIDEARMS", -1, null, null),
 		list("M10 Auto Pistol", floor(scale * 10), /obj/item/weapon/gun/pistol/m10, VENDOR_ITEM_REGULAR),
 		list("88 Mod 4 Combat Pistol", floor(scale * 10), /obj/item/weapon/gun/pistol/mod88, VENDOR_ITEM_REGULAR),
 		list("M44 Combat Revolver", floor(scale * 10), /obj/item/weapon/gun/revolver/m44, VENDOR_ITEM_REGULAR),
 		list("M4A3 Service Pistol", floor(scale * 10), /obj/item/weapon/gun/pistol/m4a3, VENDOR_ITEM_REGULAR),
+		list("M48A4 service pistol", floor(scale * 10), /obj/item/weapon/gun/pistol/m1911/socom, VENDOR_ITEM_REGULAR),
 		list("M82F Flare Gun", floor(scale * 5), /obj/item/weapon/gun/flare, VENDOR_ITEM_REGULAR),
 
 		list("SIDEARM AMMUNITION", -1, null, null),
@@ -42,8 +61,9 @@
 		list("88M4 AP Magazine (9mm)", floor(scale * 10), /obj/item/ammo_magazine/pistol/mod88, VENDOR_ITEM_REGULAR),
 		list("M44 Speedloader (.44)", floor(scale * 10), /obj/item/ammo_magazine/revolver, VENDOR_ITEM_REGULAR),
 		list("M4A3 Magazine (9mm)", floor(scale * 10), /obj/item/ammo_magazine/pistol, VENDOR_ITEM_REGULAR),
+		list("M48A4 Magazine (.45ACP)", floor(scale * 10), /obj/item/ammo_magazine/pistol/m1911, VENDOR_ITEM_REGULAR),
 
-		list("ATTACHMENTS", -1, null, null),
+		list("STOCK ATTACHMENTS", -1, null, null),
 		list("M39 Folding Stock", floor(scale * 5), /obj/item/attachable/stock/smg/collapsible, VENDOR_ITEM_REGULAR),
 		list("M41A Folding Stock", floor(scale * 5), /obj/item/attachable/stock/rifle/collapsible, VENDOR_ITEM_REGULAR),
 		list("Rail Flashlight", floor(scale * 10), /obj/item/attachable/flashlight, VENDOR_ITEM_RECOMMENDED),
@@ -129,6 +149,7 @@
 		list("M3 Pattern Smooth Marine Armor", floor(scale * 15), /obj/item/clothing/suit/storage/marine/medium/smooth, VENDOR_ITEM_REGULAR),
 		list("M3-EOD Pattern Heavy Armor", floor(scale * 10), /obj/item/clothing/suit/storage/marine/heavy, VENDOR_ITEM_REGULAR),
 		list("M3-L Pattern Light Armor", floor(scale * 10), /obj/item/clothing/suit/storage/marine/light, VENDOR_ITEM_REGULAR),
+		list("M3-VL Pattern Light Armor", floor(scale * 10), /obj/item/clothing/suit/storage/marine/light/vest, VENDOR_ITEM_REGULAR),
 
 		list("BACKPACK", -1, null, null, null),
 		list("Lightweight IMP Backpack", floor(scale * 15), /obj/item/storage/backpack/marine, VENDOR_ITEM_REGULAR),
@@ -276,14 +297,20 @@
 /obj/structure/machinery/cm_vending/sorted/cargo_ammo/squad/populate_product_list(scale)
 	listed_products = list(
 		list("ARMOR-PIERCING AMMUNITION", -1, null, null),
-		list("M4RA AP Magazine (10x24mm)", 3.5, /obj/item/ammo_magazine/rifle/m4ra/ap, VENDOR_ITEM_REGULAR),
-		list("M39 AP Magazine (10x20mm)", floor(scale * 3), /obj/item/ammo_magazine/smg/m39/ap, VENDOR_ITEM_REGULAR),
+
 		list("M41A AP Magazine (10x24mm)", floor(scale * 3), /obj/item/ammo_magazine/rifle/ap, VENDOR_ITEM_REGULAR),
+		list("F903A2 AP Magazine (10x24mm)", floor(scale * 3), /obj/item/ammo_magazine/rifle/rmc_f90/ap, VENDOR_ITEM_REGULAR),
+		list("M4RA AP Magazine (10x24mm)", 3.5, /obj/item/ammo_magazine/rifle/m4ra/ap, VENDOR_ITEM_REGULAR),
+		list("NSG23 AP Magazine (10x24mm)", floor(scale * 3), /obj/item/ammo_magazine/rifle/nsg23/ap, VENDOR_ITEM_REGULAR),
+		list("L42A AP Magazine (10x24mm)", floor(scale * 3), /obj/item/ammo_magazine/rifle/l42a/ap, VENDOR_ITEM_REGULAR),
+		list("M39 AP Magazine (10x20mm)", floor(scale * 3), /obj/item/ammo_magazine/smg/m39/ap, VENDOR_ITEM_REGULAR),
 
 		list("EXTENDED AMMUNITION", -1, null, null),
-		list("M4RA Extended Magazine (10x24mm)", 1.8, /obj/item/ammo_magazine/rifle/m4ra/extended, null, VENDOR_ITEM_REGULAR),
-		list("M39 Extended Magazine (10x20mm)", 1.8, /obj/item/ammo_magazine/smg/m39/extended, VENDOR_ITEM_REGULAR),
 		list("M41A Extended Magazine (10x24mm)", 1.9, /obj/item/ammo_magazine/rifle/extended, VENDOR_ITEM_REGULAR),
+		list("M4RA Extended Magazine (10x24mm)", 1.8, /obj/item/ammo_magazine/rifle/m4ra/extended, null, VENDOR_ITEM_REGULAR),
+		list("NSG23 Extended Magazine (10x24mm)", 1.8, /obj/item/ammo_magazine/rifle/nsg23/extended, VENDOR_ITEM_REGULAR),
+		list("L42A Extended Magazine (10x24mm)", 1.8, /obj/item/ammo_magazine/rifle/l42a/extended, VENDOR_ITEM_REGULAR),
+		list("M39 Extended Magazine (10x20mm)", 1.8, /obj/item/ammo_magazine/smg/m39/extended, VENDOR_ITEM_REGULAR),
 		list("M10 HV extended magazine (10x20mm)", floor(scale * 5), /obj/item/ammo_magazine/pistol/m10/extended , VENDOR_ITEM_REGULAR),
 		list("M10 HV drum magazine (10x20mm)", floor(scale * 5), /obj/item/ammo_magazine/pistol/m10/drum , VENDOR_ITEM_REGULAR),
 
@@ -293,6 +320,7 @@
 		list("M44 Heavy Speed Loader (.44)", floor(scale * 2), /obj/item/ammo_magazine/revolver/heavy, VENDOR_ITEM_REGULAR),
 		list("M44 Marksman Speed Loader (.44)", floor(scale * 2), /obj/item/ammo_magazine/revolver/marksman, VENDOR_ITEM_REGULAR),
 		list("M4A3 AP Magazine", floor(scale * 2), /obj/item/ammo_magazine/pistol/ap, VENDOR_ITEM_REGULAR),
+		list("M4A3 HP Magazine", floor(scale * 1), /obj/item/ammo_magazine/pistol/hp, VENDOR_ITEM_REGULAR),
 
 		list("RESTRICTED FIREARM AMMUNITION", -1, null, null),
 		list("VP78 Magazine", floor(scale * 5), /obj/item/ammo_magazine/pistol/vp78, VENDOR_ITEM_REGULAR),

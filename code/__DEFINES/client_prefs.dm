@@ -80,7 +80,7 @@
 //oldest a character can be
 #define AGE_MAX 90
 ///Used in chargen for loadout limit.
-#define MAX_GEAR_COST 7
+#define MAX_GEAR_COST 15
 
 //dual_wield_pref from /datum/preferences
 //=================================================
