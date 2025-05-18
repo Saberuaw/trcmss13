@@ -1157,7 +1157,15 @@ GLOBAL_LIST_INIT(allowed_helmet_items, list(
 	name = "\improper M10 pattern SOF helmet"
 	desc = "An M10 Pattern Helmet worn by USCM SOF. This one is a replica, and not as useful."
 	flags_atom = NO_GAMEMODE_SKIN|NO_NAME_OVERRIDE
-	built_in_visors = list()
+	armor_melee = CLOTHING_ARMOR_MEDIUM
+	armor_bullet = CLOTHING_ARMOR_MEDIUM
+	armor_laser = CLOTHING_ARMOR_MEDIUMLOW
+	armor_energy = CLOTHING_ARMOR_LOW
+	armor_bomb = CLOTHING_ARMOR_LOW
+	armor_bio = CLOTHING_ARMOR_MEDIUM
+	armor_rad = CLOTHING_ARMOR_LOW
+	armor_internaldamage = CLOTHING_ARMOR_MEDIUM
+	built_in_visors = list(new /obj/item/device/helmet_visor)
 
 //FIORINA / UA RIOT CONTROL HELMET//
 

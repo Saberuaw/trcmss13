@@ -88,6 +88,107 @@ GLOBAL_LIST_EMPTY(roles_with_gear)
 
 		qdel(equipping_gear)
 
+/datum/gear/clothing
+	category = "Clothing"
+	fluff_cost = 1
+
+/datum/gear/clothing/black_suit
+	display_name = "Black Suit Pants"
+	path = /obj/item/clothing/under/liaison_suit/black
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/blue_suit
+	display_name = "Blue Suit Pants"
+	path = /obj/item/clothing/under/liaison_suit/blue
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/brown_suit
+	display_name = "Brown Suit Pants"
+	path = /obj/item/clothing/under/liaison_suit/brown
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/field_suit
+	display_name = "Corporate Casual"
+	path = /obj/item/clothing/under/liaison_suit/field
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/orange
+	display_name = "Orange Outfit"
+	path = /obj/item/clothing/under/liaison_suit/orange
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/blue_workwear
+	display_name = "Blue Workwear"
+	path = /obj/item/clothing/under/colonist/workwear/blue
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/green_workwear
+	display_name = "Green Workwear"
+	path = /obj/item/clothing/under/colonist/workwear/green
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/ivy_suit
+	display_name = "Country Club Outfit"
+	path = /obj/item/clothing/under/liaison_suit/ivy
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/khaki_workwear
+	display_name = "Khaki Workwear"
+	path = /obj/item/clothing/under/colonist/workwear/khaki
+	allowed_origins = USCM_ORIGINS
+
+/datum/gear/clothing/marsoc
+	display_name = "SOF Uniform"
+	path = /obj/item/clothing/under/marine/veteran/marsoc
+	allowed_origins = USCM_ORIGINS
+	fluff_cost = 2
+
+/datum/gear/clothing/rmc
+	display_name = "RMC Uniform"
+	path = /obj/item/clothing/under/marine/veteran/royal_marine
+	allowed_origins = USCM_ORIGINS
+	fluff_cost = 2
+
+/datum/gear/clothing/jungle_boots
+	display_name = "Jungle pattern combat boots"
+	path = /obj/item/clothing/shoes/marine/jungle
+	fluff_cost = 2
+
+/datum/gear/clothing/brown_boots
+	display_name = "brown combat boots"
+	path = /obj/item/clothing/shoes/marine/brown
+	fluff_cost = 2
+
+/datum/gear/clothing/brown_gloves
+	display_name = "brown combat gloves"
+	path = /obj/item/clothing/gloves/marine/brown
+	fluff_cost = 2
+
+/datum/gear/clothing/grey_boots
+	display_name = "grey combat boots"
+	path = /obj/item/clothing/shoes/marine/grey
+	fluff_cost = 2
+
+/datum/gear/clothing/urban_boots
+	display_name = "Urban pattern combat boots"
+	path = /obj/item/clothing/shoes/marine/urban
+	fluff_cost = 2
+
+/datum/gear/clothing/grey_gloves
+	display_name = "grey combat gloves"
+	path = /obj/item/clothing/gloves/marine/grey
+	fluff_cost = 2
+
+/datum/gear/clothing/sof_helmet
+	display_name = "Replica SOF helmet"
+	path = /obj/item/clothing/head/helmet/marine/sof/replica
+	fluff_cost = 2
+
+/datum/gear/clothing/cmb_helmet
+	display_name = "M11R pattern helmet"
+	path = /obj/item/clothing/head/helmet/marine/veteran/cmb/replica
+	fluff_cost = 2
+
 /datum/gear/eyewear
 	category = "Eyewear"
 	slot = WEAR_EYES
@@ -548,107 +649,6 @@ GLOBAL_LIST_EMPTY(roles_with_gear)
 	display_name = "USCM chaplain helmet patch"
 	path = /obj/item/prop/helmetgarb/chaplain_patch
 	allowed_origins = USCM_ORIGINS
-
-/datum/gear/clothing
-	category = "Clothing"
-	fluff_cost = 1
-
-/datum/gear/clothing/black_suit
-	display_name = "Black Suit Pants"
-	path = /obj/item/clothing/under/liaison_suit/black
-	allowed_origins = USCM_ORIGINS
-
-/datum/gear/clothing/blue_suit
-	display_name = "Blue Suit Pants"
-	path = /obj/item/clothing/under/liaison_suit/blue
-	allowed_origins = USCM_ORIGINS
-
-/datum/gear/clothing/brown_suit
-	display_name = "Brown Suit Pants"
-	path = /obj/item/clothing/under/liaison_suit/brown
-	allowed_origins = USCM_ORIGINS
-
-/datum/gear/clothing/field_suit
-	display_name = "Corporate Casual"
-	path = /obj/item/clothing/under/liaison_suit/field
-	allowed_origins = USCM_ORIGINS
-
-/datum/gear/clothing/orange
-	display_name = "Orange Outfit"
-	path = /obj/item/clothing/under/liaison_suit/orange
-	allowed_origins = USCM_ORIGINS
-
-/datum/gear/clothing/blue_workwear
-	display_name = "Blue Workwear"
-	path = /obj/item/clothing/under/colonist/workwear/blue
-	allowed_origins = USCM_ORIGINS
-
-/datum/gear/clothing/green_workwear
-	display_name = "Green Workwear"
-	path = /obj/item/clothing/under/colonist/workwear/green
-	allowed_origins = USCM_ORIGINS
-
-/datum/gear/clothing/ivy_suit
-	display_name = "Country Club Outfit"
-	path = /obj/item/clothing/under/liaison_suit/ivy
-	allowed_origins = USCM_ORIGINS
-
-/datum/gear/clothing/khaki_workwear
-	display_name = "Khaki Workwear"
-	path = /obj/item/clothing/under/colonist/workwear/khaki
-	allowed_origins = USCM_ORIGINS
-
-/datum/gear/clothing/marsoc
-	display_name = "SOF Uniform"
-	path = /obj/item/clothing/under/marine/veteran/marsoc
-	allowed_origins = USCM_ORIGINS
-	fluff_cost = 2
-
-/datum/gear/clothing/rmc
-	display_name = "RMC Uniform"
-	path = /obj/item/clothing/under/marine/veteran/royal_marine
-	allowed_origins = USCM_ORIGINS
-	fluff_cost = 2
-
-/datum/gear/clothing/jungle_boots
-	display_name = "Jungle pattern combat boots"
-	path = /obj/item/clothing/shoes/marine/jungle
-	fluff_cost = 2
-
-/datum/gear/clothing/brown_boots
-	display_name = "brown combat boots"
-	path = /obj/item/clothing/shoes/marine/brown
-	fluff_cost = 2
-
-/datum/gear/clothing/brown_gloves
-	display_name = "brown combat gloves"
-	path = /obj/item/clothing/gloves/marine/brown
-	fluff_cost = 2
-
-/datum/gear/clothing/grey_boots
-	display_name = "grey combat boots"
-	path = /obj/item/clothing/shoes/marine/grey
-	fluff_cost = 2
-
-/datum/gear/clothing/urban_boots
-	display_name = "Urban pattern combat boots"
-	path = /obj/item/clothing/shoes/marine/urban
-	fluff_cost = 2
-
-/datum/gear/clothing/grey_gloves
-	display_name = "grey combat gloves"
-	path = /obj/item/clothing/gloves/marine/grey
-	fluff_cost = 2
-
-/datum/gear/clothing/sof_helmet
-	display_name = "Replica SOF helmet"
-	path = /obj/item/clothing/head/helmet/marine/sof/replica
-	fluff_cost = 2
-
-/datum/gear/clothing/cmb_helmet
-	display_name = "M11R pattern helmet"
-	path = /obj/item/clothing/head/helmet/marine/veteran/cmb/replica
-	fluff_cost = 2
 
 /datum/gear/paperwork
 	category = "Paperwork"
