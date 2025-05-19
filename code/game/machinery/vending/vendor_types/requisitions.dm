@@ -441,6 +441,7 @@
 		list("M5 Bayonet", 10.5, /obj/item/attachable/bayonet, VENDOR_ITEM_REGULAR),
 		list("Recoil Compensator", 6.5, /obj/item/attachable/compensator, VENDOR_ITEM_REGULAR),
 		list("Suppressor", 6.5, /obj/item/attachable/suppressor, VENDOR_ITEM_REGULAR),
+		list("B11 Suppressor", 6.5, /obj/item/attachable/scope/mini/nsg23, VENDOR_ITEM_REGULAR),
 		list("Shotgun Choke", 4.5, /obj/item/attachable/shotgun_choke, VENDOR_ITEM_REGULAR),
 
 		list("RAIL", -1, null, null),
@@ -448,6 +449,7 @@
 		list("Magnetic Harness", 8.5, /obj/item/attachable/magnetic_harness, VENDOR_ITEM_REGULAR),
 		list("Rail Flashlight", 10.5, /obj/item/attachable/flashlight, VENDOR_ITEM_REGULAR),
 		list("S4 2x Telescopic Mini-Scope", 4.5, /obj/item/attachable/scope/mini, VENDOR_ITEM_REGULAR),
+		list("NSG 2x Telescopic Mini-Scope", 4.5, /obj/item/attachable/scope/mini/nsg23, VENDOR_ITEM_REGULAR),
 		list("S5 Red-Dot Sight", 9.5, /obj/item/attachable/reddot, VENDOR_ITEM_REGULAR),
 		list("S6 Reflex Sight", 9.5, /obj/item/attachable/reflex, VENDOR_ITEM_REGULAR),
 		list("S8 4x Telescopic Scope", 4.5, /obj/item/attachable/scope, VENDOR_ITEM_REGULAR),
