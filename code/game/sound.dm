@@ -328,6 +328,8 @@
 				sound = pick('sound/weapons/gun_nsg23_1.ogg','sound/weapons/gun_nsg23_2.ogg')
 			if("gun_pkd")
 				sound = pick('sound/weapons/gun_pkd_fire01.ogg','sound/weapons/gun_pkd_fire02.ogg','sound/weapons/gun_pkd_fire03.ogg')
+			if("gun_f903")
+				sound = pick('sound/weapons/gun_f903_1.ogg','sound/weapons/gun_f903_2.ogg','sound/weapons/gun_f903_3.ogg','sound/weapons/gun_f903_4.ogg')
 
 			// Xeno
 			if("acid_hit")
