@@ -28,7 +28,7 @@
 		. = {"USCM, Neroid Bölgesinde işlerin nasıl yürüdüğüne dair haberleşmeyi daha iyi idare edebilmek için sizi görevlendirdi! Dışarı çıkın ve evrene USCM'nin ne kadar harika şeyler yaptığını gösterin!"}
 	else
 		. = {"Ne haber ama! Ne tür bir yaramazlık yapacaklarını görmek için görevlendirildiniz ve görünen o ki bela burada!
-Bu Bölgenin en iyi hikâyesi olma potansiyeli taşıyor! “Tehlikeli ve bilinmez yardım sinyaline cevap veren cesur denizciler!" Bay Kanarya'ya böyle bir hikaye götürürseniz dikkatini çekeceğinize hiçbir şüphe yok!"}
+Bu Bölgenin en iyi hikâyesi olma potansiyeli taşıyor! “Tehlikeli ve bilinmez yardım sinyaline cevap veren cesur askerler!" Bay Kanarya'ya böyle bir hikaye götürürseniz dikkatini çekeceğinize hiçbir şüphe yok!"}
 
 /obj/effect/landmark/start/reporter
 	name = JOB_COMBAT_REPORTER

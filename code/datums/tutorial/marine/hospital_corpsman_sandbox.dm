@@ -27,8 +27,8 @@
 #define FRACTURE "fracture"
 
 /datum/tutorial/marine/hospital_corpsman_sandbox
-	name = "Marine - Hospital Corpsman (Sandbox)"
-	desc = "Test your medical skills against an endless wave of wounded Marines!"
+	name = "Asker - Sıhhiyeci (Medic) (Sandbox)"
+	desc = "Durmaksızın gelen yaralı askerleri iyileştirerek yeteneklerini test et geliştir!"
 	tutorial_id = "marine_hm_3"
 	required_tutorial = "marine_basic_1"
 	icon_state = "medic"
@@ -100,8 +100,8 @@
 	START_PROCESSING(SSfastobj, src)
 	init_mob()
 	init_npcs()
-	message_to_player("Welcome to the Hospital Corpsman tutorial sandbox mode!")
-	message_to_player("Gear up in your preferred HM kit, then press the orange 'Ready Up' arrow at the top of your HUD to begin the first round!")
+	message_to_player("Sıhhiyeci eğitimine hoş geldin!")
+	message_to_player("Hazırlan ve HUD'unun üstündeki turuncu tuşa basarak ilk roundu başlat!")
 
 /datum/tutorial/marine/hospital_corpsman_sandbox/proc/handle_round_progression()
 
@@ -151,7 +151,7 @@
 		min_survival_agents = 4
 		max_survival_agents = 6
 		playsound(tutorial_mob.loc, 'sound/effects/siren.ogg', 50)
-		message_to_player("Warning! Mass-Casualty event detected!")
+		message_to_player("Dikkat! Toplu kaza olayı tespit edildi!")
 		last_masscas_round = survival_wave
 	// 50% chance per wave of increasing difficulty by one step
 	// two round grace period from start
@@ -159,9 +159,9 @@
 		var/current_difficulty = survival_difficulty
 		if(current_difficulty != TUTORIAL_HM_INJURY_SEVERITY_MAXIMUM)
 			survival_difficulty = next_in_list(current_difficulty, difficulties)
-			difficulty_upgrade_warning = " Difficulty has increased, watch out!!"
+			difficulty_upgrade_warning = "Zorluk arttırıldı, dikkatli ol!!"
 
-	CMO_npc.say("Now entering round [survival_wave]![difficulty_upgrade_warning]")
+	CMO_npc.say("[survival_wave]. rounda giriyorsun![difficulty_upgrade_warning]")
 
 	addtimer(CALLBACK(src, PROC_REF(spawn_agents)), 2 SECONDS)
 	terminate_movement_timer = addtimer(CALLBACK(src, PROC_REF(terminate_agent_processing)), 15 SECONDS, TIMER_STOPPABLE)
@@ -171,7 +171,7 @@
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/structure/machinery/door/airlock/multi_tile/almayer/medidoor, prep_door)
 	var/turf/boundry = get_turf(loc_from_corner(4, 1))
 	if(tutorial_mob.x <= boundry.x)
-		message_to_player("Please exit the preparations room before progressing into the next round!")
+		message_to_player("Yeni rounda geçmeden önce lütfen hazırlık odasından çık!")
 		return
 	prep_door.close(TRUE)
 	prep_door.lock(TRUE)
@@ -188,12 +188,12 @@
 	stage = TUTORIAL_HM_PHASE_MAIN // just in case it wasnt already
 
 	if(last_resupply_round == 1)
-		message_to_player("Phew! We have entered a resupply phase of the tutorial!")
-		message_to_player("Use this rare opportunity to refill, restock, and resupply yourself for future rounds.")
-		message_to_player("Remember, on the field, immediate resupply will not always be possible! You won't know for certain when your next chance will arrive, so stock up while you can!")
-		message_to_player("When you are ready, leave the supply room, then click the 'Ready Up' action on the top left of your screen to begin your next round.")
+		message_to_player("Vay be! Eğitimin ikmal kısmına geldin!")
+		message_to_player("Bu şansı gelecekte karşılaşacağın yaralanmalarla baş edebilmek için eşyalarını yenilemek için kullan!")
+		message_to_player("Unutma, sahada anında ikmal çoğu zaman mümkün olmayacak! Bir dahaki ikmak şansının ne zaman geleceğini bilemezsin, o yüzden şimdi şansın varken alabildiğin kadar eşya al!")
+		message_to_player("Hazır olduğunda hazırlık odasını terk et ve sol üstteki 'Ready up' tuşuna basarak bir sonraki roundu başlat.")
 	else
-		message_to_player("Now enterering a resupply phase. Stock up while you can!")
+		message_to_player("İkmak aşamasına geçiyorsuz. Alabildiğin kadar eşya al!")
 
 	last_resupply_round = survival_wave
 	give_action(tutorial_mob, /datum/action/hm_tutorial/sandbox/ready_up, null, null, src)
@@ -338,19 +338,19 @@
 	for(var/obj/limb/limb as anything in target.limbs)
 		if(limb.status & LIMB_BROKEN)
 			var/targetlimb = limb.display_name
-			help_me |= list("Need a [targetlimb] splint please Doc", "Splint [targetlimb]", "Can you splint my [targetlimb] please")
+			help_me |= list("[targetlimb] splinti lazım doktor", "Splint [targetlimb]", "[targetlimb]'i splintleyebilir misin acaba?")
 
 	help_me |= list(
-		"Doc can I get some pills?",
-		"Need a patch up please",
-		"Im hurt Doc...",
-		"Can I get some healthcare?",
-		"Pill me real quick",
-		"HEEEEEELP!!!",
-		"M-Medic.. I'm dying",
-		"I'll pay you 20 bucks to patch me up",
-		"MEDIC!!!!! HEEEEEELP!!!!",
-		"HEEEELP MEEEEEE!!!!!"
+		"Birkaç tane hap verebilir misin?",
+		"Bir sargıya ihtiyacım var",
+		"Canım acıyor, doktor...",
+		"Birazcık yardım alabilir miyim?",
+		"Bana birkaç tane yap ver, hemen!!",
+		"YARDIIIMMMMMMM!!!",
+		"Doktor.. Ölüyorum...",
+		"Beni iyileştirmen için sana ne istersen veririm",
+		"DOKTOORR!!!!! YARDIM EETTT!!!!",
+		"YARDIIIMMMM EDİİNNN!!!!!"
 	)
 
 	target.say("[pick(help_me)]")
@@ -441,10 +441,10 @@
 	agent.updatehealth()
 	if(!bypass)
 		if(agent.undefibbable == TRUE)
-			agent.balloon_alert_to_viewers("[agent.name] permanently dead!", null, DEFAULT_MESSAGE_RANGE, null, COLOR_RED)
+			agent.balloon_alert_to_viewers("[agent.name] kalıcı olarak öldü!", null, DEFAULT_MESSAGE_RANGE, null, COLOR_RED)
 			playsound(agent.loc, 'sound/items/defib_failed.ogg', 20)
 		else
-			agent.balloon_alert_to_viewers("[agent.name] fully treated!")
+			agent.balloon_alert_to_viewers("[agent.name] tamamen iyileştirildi!")
 			playsound(agent.loc, 'sound/machines/terminal_success.ogg', 20)
 	agents -= agent
 	if(agent in active_agents) // failsafe in case patient NPC was healed, despite never reaching their dropzone
@@ -490,27 +490,27 @@
 
 	for(var/datum/reagent/medical/chemical as anything in target.reagents.reagent_list)
 		if(chemical.volume >= chemical.overdose_critical)
-			status_message |= "Critical [chemical.name] overdose detected"
+			status_message |= "Kritik [chemical.name] Overdose'u tespit edildi!"
 	for(var/datum/internal_organ/organ as anything in target.internal_organs)
 		if(organ.damage >= organ.min_broken_damage)
 			if((locate(/datum/reagent/medical/peridaxon) in target.reagents.reagent_list) || (target.stat == DEAD))
-				status_message |= "Ruptured [organ.name] detected"
+				status_message |= "Ağır hasarlı [organ.name] tespit edildi!"
 			else
-				medevac_bed.balloon_alert_to_viewers("Organ damage detected! Please stabilize patient with Peridaxon before transit.", null, DEFAULT_MESSAGE_RANGE, null, COLOR_RED)
+				medevac_bed.balloon_alert_to_viewers("Organ hasarı tespit edildi! Lütfen hastayı nakilden önce Peridaxon ile stabilize edin.", null, DEFAULT_MESSAGE_RANGE, null, COLOR_RED)
 				playsound(medevac_bed.loc, 'sound/machines/twobeep.ogg', 20)
 				return
 
 	if(tutorial_mob == target)
-		medevac_bed.balloon_alert_to_viewers("Error! Unable to self-evacuate!", null, DEFAULT_MESSAGE_RANGE, null, COLOR_RED)
+		medevac_bed.balloon_alert_to_viewers("Hata! Kendi kendini tahliye edemezsin!", null, DEFAULT_MESSAGE_RANGE, null, COLOR_RED)
 		playsound(medevac_bed.loc, 'sound/machines/twobeep.ogg', 20)
 		return
 	if(length(status_message))
-		medevac_bed.balloon_alert_to_viewers("[pick(status_message)]! Evacuating patient!!", null, DEFAULT_MESSAGE_RANGE, null, LIGHT_COLOR_BLUE)
+		medevac_bed.balloon_alert_to_viewers("[pick(status_message)]! Hasta tahliye ediliyor!!", null, DEFAULT_MESSAGE_RANGE, null, LIGHT_COLOR_BLUE)
 		playsound(medevac_bed.loc, pick_weight(list('sound/machines/ping.ogg' = 9, 'sound/machines/juicer.ogg' = 1)), 20)
 		make_agent_leave(target, TRUE)
 		addtimer(CALLBACK(src, PROC_REF(animate_medevac_bed), target), 2.7 SECONDS)
 	else
-		medevac_bed.balloon_alert_to_viewers("Error! Patient condition does not warrant evacuation!", null, DEFAULT_MESSAGE_RANGE, null, COLOR_RED)
+		medevac_bed.balloon_alert_to_viewers("Hata! Hastanın durumu tahliye gerektirmiyor!", null, DEFAULT_MESSAGE_RANGE, null, COLOR_RED)
 		playsound(medevac_bed.loc, 'sound/machines/twobeep.ogg', 20)
 		return
 

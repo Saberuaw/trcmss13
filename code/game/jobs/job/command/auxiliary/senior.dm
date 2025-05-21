@@ -7,7 +7,7 @@
 	job_options = list("Gunnery Sergeant" = "GySGT", "Master Sergeant" = "MSgt", "First Sergeant" = "1Sgt", "Master Gunnery Sergeant" = "MGySgt", "Sergeant Major" = "SgtMaj")
 
 /datum/job/command/senior/on_config_load()
-	entry_message_body = "Yetkililere özel bir rol oynadığınızdan genel oyuncu topluluğuna göre daha yüksek bir standarda tabi tutulursunuz. Sadece Denizci Yasasu değil, ayrıca Standart Operasyon Prosedürüne de uymanız gerekir. Bunu ihlal etmeniz Mentorluğunuzun alınmasına neden olabilir. Birincil göreviniz başkalarına oyunu ve oyunun mekaniklerini öğretmek ve gemideki tüm USCM Departmanlarına ve Personeline tavsiyelerde bulunmaktır."
+	entry_message_body = "Yetkililere özel bir rol oynadığınızdan genel oyuncu topluluğuna göre daha yüksek bir standarda tabi tutulursunuz. Sadece Denizci Yasası değil, ayrıca Standart Operasyon Prosedürüne de uymanız gerekir. Bunu ihlal etmeniz Mentorluğunuzun alınmasına neden olabilir. Birincil göreviniz başkalarına oyunu ve oyunun mekaniklerini öğretmek ve gemideki tüm USCM Departmanlarına ve Personeline tavsiyelerde bulunmaktır."
 	return ..()
 
 /datum/job/command/senior/announce_entry_message(mob/living/carbon/human/H)

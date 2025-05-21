@@ -9,7 +9,7 @@
 	selection_class = "job_doctor"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_ship/uscm_medical/field_doctor
-	entry_message_body = "Denizcileri sağlıklı ve savaşabilecek durumda tutmakla görevli bir saha doktorusunuz. Gemide başka doktor yoksa veya FOB güvenli değilse gemide kalmalısınız. Üstleriniz sahaya gönderilmenizi erteleyebilir."
+	entry_message_body = "Askerleri sağlıklı ve savaşabilecek durumda tutmakla görevli bir saha doktorusunuz. Gemide başka doktor yoksa veya FOB güvenli değilse gemide kalmalısınız. Üstleriniz sahaya gönderilmenizi erteleyebilir."
 
 AddTimelock(/datum/job/civilian/field_doctor, list(
 	JOB_DOCTOR_ROLES = 5 HOURS

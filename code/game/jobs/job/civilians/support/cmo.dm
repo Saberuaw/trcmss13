@@ -7,7 +7,7 @@
 	selection_class = "job_cmo"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_ship/uscm_medical/cmo
-	entry_message_body = "Medbay ve Araştırma departmanlarından sorumlusun, emirlerin ancak İK ve BK tarafından geçersiz kılınabilir. Genel olarak medikal personelinden, ameliyatlardan, stimulantlardan, kısaca denizcilerin sağlığından sorumlusun."
+	entry_message_body = "Medbay ve Araştırma departmanlarından sorumlusun, emirlerin ancak İK ve BK tarafından geçersiz kılınabilir. Genel olarak medikal personelinden, ameliyatlardan, stimulantlardan, kısaca askerlerin sağlığından sorumlusun."
 	var/mob/living/carbon/human/active_cmo
 
 /datum/job/civilian/professor/generate_entry_conditions(mob/living/cmo, whitelist_status)

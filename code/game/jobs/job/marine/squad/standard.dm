@@ -8,7 +8,7 @@
 	gear_preset = /datum/equipment_preset/uscm/pfc
 
 /datum/job/marine/standard/on_config_load()
-	entry_message_body = "Sen USCM'nin sıradan bir denizcisisin ve diğer denizcilerle birlikte savaş alanındaki ana güç unsurunu oluşturuyorsun. Tek başına eksikliğini hissettiğin şeyi, etrafındaki denizcilerle omuz omuza durarak kazanabilirsin. Ooh-rah!"
+	entry_message_body = "Sen USCM'nin sıradan bir askersin ve diğer askerlerle birlikte savaş alanındaki ana güç unsurunu oluşturuyorsun. Tek başına eksikliğini hissettiğin şeyi, etrafındaki askerlerle omuz omuza durarak kazanabilirsin. Ooh-rah!"
 	return ..()
 
 /datum/job/marine/standard/set_spawn_positions(count)
