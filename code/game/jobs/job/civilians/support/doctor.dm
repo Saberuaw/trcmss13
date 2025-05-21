@@ -32,9 +32,9 @@
 //check what job option you took and generate the corresponding the good texte.
 /datum/job/civilian/doctor/generate_entry_message(mob/living/carbon/human/H)
 	if(doctor)
-		. = {"Denizcileri sağlıklı ve savaşabilecek durumda tutmakla görevli bir doktorsunuz. Tıp ile ilgili her işte uzmansınız. İlaç hazırlayabilir ve ameliyat yapabilirsiniz."}
+		. = {"Askerleri sağlıklı ve savaşabilecek durumda tutmakla görevli bir doktorsunuz. Tıp ile ilgili her işte uzmansınız. İlaç hazırlayabilir ve ameliyat yapabilirsiniz."}
 	else
-		. = {"Denizcileri sağlıklı ve savaşabilecek durumda tutmakla görevli bir cerrahsınız. Tıp ile ilgili her işte uzmansınız. İlaç hazırlayabilir ve ameliyat yapabilirsiniz."}
+		. = {"Askerleri sağlıklı ve savaşabilecek durumda tutmakla görevli bir cerrahsınız. Tıp ile ilgili her işte uzmansınız. İlaç hazırlayabilir ve ameliyat yapabilirsiniz."}
 
 /datum/job/civilian/doctor/set_spawn_positions(count)
 	spawn_positions = doc_slot_formula(count)

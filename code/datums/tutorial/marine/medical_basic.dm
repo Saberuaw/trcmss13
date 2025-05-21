@@ -1,6 +1,6 @@
 /datum/tutorial/marine/medical_basic
-	name = "Marine - Medical (Basic)"
-	desc = "Learn how to treat common injuries you may face as a marine."
+	name = "Asker - Medikal (Temel)"
+	desc = "Bir askerin savaş alanında sık sık karşılaşabileceği temel yaralanmaları nasıl tedavi edebileceğini öğretir."
 	tutorial_id = "marine_medical_1"
 	tutorial_template = /datum/map_template/tutorial/s7x7
 	required_tutorial = "marine_basic_1"
@@ -13,18 +13,18 @@
 		return
 
 	init_mob()
-	message_to_player("This is the tutorial for the basics of medical that you will need to know for playing a marine role.")
+	message_to_player("Bu, asker olarak oynarken ihtiyacın olabilecek basit tedavileri içeren bir eğitimdir.")
 	addtimer(CALLBACK(src, PROC_REF(brute_tutorial)), 4 SECONDS)
 
 /datum/tutorial/marine/medical_basic/proc/brute_tutorial()
-	message_to_player("The first kind of damage is <b>Brute</b>, the most common kind. It represents physical trauma from things like punches, weapons, or guns.")
+	message_to_player("İlk hasar tipi <b>Brute</b> hasardır. En sık karşılaşacağınız hasar tipidir. Yumruklanmak ve mermi yemek gibi fiziksel şeylerden kaynaklanır.")
 	var/mob/living/living_mob = tutorial_mob
 	living_mob.adjustBruteLoss(10)
 	addtimer(CALLBACK(src, PROC_REF(brute_tutorial_2)), 4 SECONDS)
 
 /datum/tutorial/marine/medical_basic/proc/brute_tutorial_2()
-	message_to_player("You can observe if you have <b>Brute</b> or <b>Burn</b> damage by clicking on yourself with an empty hand on help intent.")
-	update_objective("Click on yourself with an empty hand.")
+	message_to_player("<b>Brute</b> veya <b>Burn</b> hasarın olduğunu düşünüyorsan bunu kendine elin boş ve help intentindeyken tıklayarak öğrenebilirsin.")
+	update_objective("Elin boşken kendine tıkla.")
 	RegisterSignal(tutorial_mob, COMSIG_LIVING_ATTACKHAND_HUMAN, PROC_REF(on_health_examine))
 
 /datum/tutorial/marine/medical_basic/proc/on_health_examine(datum/source, mob/living/carbon/human/attacked_mob)
@@ -34,8 +34,8 @@
 		return
 
 	UnregisterSignal(tutorial_mob, COMSIG_LIVING_ATTACKHAND_HUMAN)
-	message_to_player("Good. Now, you have taken some brute damage. <b>Bicaridine</b> is used to fix brute over time. Pick up the <b>bicaridine EZ autoinjector</b> and use it in-hand.")
-	update_objective("Inject yourself with the bicaridine injector.")
+	message_to_player("Güzel. Şimdi, görebileceğin üzere karakterini biraz yaraladım. <b>Bicaridine</b>, brute hasarı zaman geçtikçe iyileştiren bir kimasaldır. Masanın üstündeki <b>bicaridine EZ autoinjector</b>u al ve kendine tıklayarak kullan.")
+	update_objective("Bicaridine injector'u kendine enjekte et.")
 	var/obj/item/reagent_container/hypospray/autoinjector/bicaridine/skillless/one_use/brute_injector = new(loc_from_corner(0, 4))
 	add_to_tracking_atoms(brute_injector)
 	add_highlight(brute_injector)
@@ -50,15 +50,15 @@
 	UnregisterSignal(tutorial_mob, COMSIG_LIVING_HYPOSPRAY_INJECTED)
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/item/reagent_container/hypospray/autoinjector/bicaridine/skillless/one_use, brute_injector)
 	remove_highlight(brute_injector)
-	message_to_player("All medicines take time to work after injection. Next is <b>Burn</b> damage. It is obtained from things like acid or being set on fire.")
+	message_to_player("Bütün ilaçlar vücuda girdikten biraz sonra etki gösterir. Bir sonraki hasar tipi <b>Burn</b> hasarı. Asit tarafından hasar almak veya ateşe girmek gibi sebeplerden kaynaklanır.")
 	update_objective("")
 	var/mob/living/living_mob = tutorial_mob
 	living_mob.adjustFireLoss(10)
 	addtimer(CALLBACK(src, PROC_REF(burn_tutorial)), 4 SECONDS)
 
 /datum/tutorial/marine/medical_basic/proc/burn_tutorial()
-	message_to_player("<b>Kelotane</b> is used to fix burn over time. Inject yourself with the <b>kelotane EZ autoinjector</b>.")
-	update_objective("Inject yourself with the kelotane injector.")
+	message_to_player("<b>Kelotane</b>, burn hasarı zaman geçtikçe iyileştiren bir kimyasaldır. Masanın üstündeki <b>kelotane EZ autoinjector</b>.'u al ve kendine tıkla.")
+	update_objective("Kelotane injector'u kendine enjekte et.")
 	var/obj/item/reagent_container/hypospray/autoinjector/kelotane/skillless/one_use/burn_injector = new(loc_from_corner(0, 4))
 	add_to_tracking_atoms(burn_injector)
 	add_highlight(burn_injector)
@@ -74,15 +74,15 @@
 	UnregisterSignal(tutorial_mob, COMSIG_LIVING_HYPOSPRAY_INJECTED)
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/item/reagent_container/hypospray/autoinjector/kelotane/skillless/one_use, burn_injector)
 	remove_highlight(burn_injector)
-	message_to_player("Good. Now, when you normally take damage, you will also feel <b>pain</b>. Pain slows you down and can knock you out if left unchecked.")
+	message_to_player("Güzel. Şimdi sana biraz acıdan bahsedeceğim. Normalde hasar aldığında bu hasar acıya da sebep olur. Acı seni yavaşlatır ve ekstrem durumlarda bayılmana bile neden olabilir.")
 	update_objective("")
 	var/mob/living/living_mob = tutorial_mob
 	living_mob.pain.apply_pain(PAIN_CHESTBURST_STRONG)
 	addtimer(CALLBACK(src, PROC_REF(pain_tutorial)), 4 SECONDS)
 
 /datum/tutorial/marine/medical_basic/proc/pain_tutorial()
-	message_to_player("<b>Tramadol</b> is used to reduce your pain. Inject yourself with the <b>tramadol EZ autoinjector</b>.")
-	update_objective("Inject yourself with the tramadol injector.")
+	message_to_player("<b>Tramadol</b> hissedilen acıyı azaltmak için kullanılan bir ağrı kesicidir. Masanın üstündeki <b>tramadol EZ autoinjector</b>'u al ve kendine tıkla.")
+	update_objective("Tramadol injector'u kendine enjekte et.")
 	var/obj/item/reagent_container/hypospray/autoinjector/tramadol/skillless/one_use/pain_injector = new(loc_from_corner(0, 4))
 	add_to_tracking_atoms(pain_injector)
 	add_highlight(pain_injector)
@@ -97,14 +97,14 @@
 	UnregisterSignal(tutorial_mob, COMSIG_LIVING_HYPOSPRAY_INJECTED)
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/item/reagent_container/hypospray/autoinjector/tramadol/skillless/one_use, pain_injector)
 	remove_highlight(pain_injector)
-	message_to_player("Good. Keep in mind that you can overdose on chemicals, so don't inject yourself with the same chemical too much too often. In the field, injectors have 3 uses.")
-	update_objective("Don't overdose! Generally, 3 injections of a chemical will overdose you.")
+	message_to_player("Güzel. unutma, kimyasallar çok kullanıldıklarında Overdosa'a neden olurlar. Bu yüzden aynı kimyasalı biraz zaman geçmeden kendine tekrardan enjekte etme.")
+	update_objective("Overdose olma! Bir enjektörün içindeki kimyasalı 2 kere art arda enjekte etmek, karakterini genelde OD sınırına getirir. 3 kullanım ise karakterini OD yapar.")
 	var/mob/living/living_mob = tutorial_mob
 	living_mob.pain.apply_pain(-PAIN_CHESTBURST_STRONG) // just to make sure
 	addtimer(CALLBACK(src, PROC_REF(bleed_tutorial)), 4 SECONDS)
 
 /datum/tutorial/marine/medical_basic/proc/bleed_tutorial()
-	message_to_player("You can sometimes start <b>bleeding</b> from things like bullets or slashes. Losing blood will accumulate <b>oxygen</b> damage, eventually causing death.")
+	message_to_player("Mermi veya kesiklerin sana isabet etmesi sonucunda <b>Kanama</b>ya başlayabilirsin. Kan kaybı, kalıcı <b>oksijen</b> hasarlarına, ilerleyen süreçte yüksek <b>toksin</b> hasarına ve son noktada canlandırıldıktan hemen sonra anında ölüme neden olabilir.")
 	update_objective("")
 	var/mob/living/carbon/human/human_mob = tutorial_mob
 	var/obj/limb/chest/mob_chest = locate(/obj/limb/chest) in human_mob.limbs
@@ -112,8 +112,8 @@
 	addtimer(CALLBACK(src, PROC_REF(bleed_tutorial_2)), 4 SECONDS)
 
 /datum/tutorial/marine/medical_basic/proc/bleed_tutorial_2()
-	message_to_player("Bleeding wounds can clot themselves over time, or you can fix it quickly with <b>gauze</b>. Pick up the gauze and click on yourself while targeting your <b>chest</b>.")
-	update_objective("Gauze your chest, or let it clot on its own.")
+	message_to_player("Kanama zaman içinde kendi kendine durabilir veya <b>gauze</b> kullanarak kanamayı hızlıca durdurabilirsin. Gauze'u al ve sağ alttaki karakterin <b>göğsünü</b> seçtikten sonra kendine tıkla.")
+	update_objective("Kanayan göğsünü sargıla.")
 	var/obj/item/stack/medical/bruise_pack/two/bandage = new(loc_from_corner(0, 4))
 	add_to_tracking_atoms(bandage)
 	add_highlight(bandage)
@@ -137,8 +137,8 @@
 	remove_highlight(bandage)
 	qdel(bandage)
 
-	message_to_player("Good. Sometimes, a bullet or bone shard can result in you getting <b>shrapnel</b>, dealing damage over time. Pick up the <b>knife</b> and use it in-hand to remove the shrapnel.")
-	update_objective("Remove your shrapnel by using the knife in-hand.")
+	message_to_player("Güzel. Bazen patlamalar ve çeşitli sebeplerden dolayı vücuduna <b>şarapnel</b>ler girebilir. Vücudunda şarapnel varken hareket edersen kemiğin kırılabilir veya organların hasar görebilir. Şarapneli çıkarmak için <b>bıçağını</b> al ve <b>[retrieve_bind("activate_inhand")]</b> tuşuna basarak şarapneli çıkar.")
+	update_objective("Bıçağını kullanarak şarapnelleri çıkar.")
 	var/mob/living/living_mob = tutorial_mob
 	living_mob.pain.feels_pain = FALSE
 
@@ -157,8 +157,8 @@
 	UnregisterSignal(tutorial_mob, COMSIG_HUMAN_SHRAPNEL_REMOVED)
 	TUTORIAL_ATOM_FROM_TRACKING(/obj/item/attachable/bayonet, knife)
 	remove_highlight(knife)
-	message_to_player("Good. This is the end of the basic marine medical tutorial. The tutorial will end shortly.")
-	update_objective("Tutorial completed.")
+	message_to_player("Güzel. Eğitimin sonuna geldin. Kısa süre içinde lobiye gönderileceksin.")
+	update_objective("Eğitim tamamlandı..")
 	tutorial_end_in(5 SECONDS)
 
 // END OF SCRIPTING

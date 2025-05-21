@@ -6,7 +6,7 @@
 	scaled = FALSE
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 	gear_preset = /datum/equipment_preset/uscm_ship/so
-	entry_message_body = "Göreviniz denizcileri izlemek, komutana yardımcı olmak ve üstlerinizi dinlemektir. Lojistikten ikmalini denetlemelisiniz ve gözetleme sisteminden sorumlusunuz. Ayrıca diğer üst rütbeli subaylardan sonra komutayı devralma sırasındasınız."
+	entry_message_body = "Göreviniz askerleri izlemek, komutana yardımcı olmak ve üstlerinizi dinlemektir. Lojistikten ikmalini denetlemelisiniz ve gözetleme sisteminden sorumlusunuz. Ayrıca diğer üst rütbeli subaylardan sonra komutayı devralma sırasındasınız."
 
 /datum/job/command/bridge/set_spawn_positions(count)
 	spawn_positions = so_slot_formula(count)

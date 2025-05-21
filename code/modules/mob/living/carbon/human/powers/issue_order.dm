@@ -54,7 +54,7 @@
 		var/spoken_order = ""
 		switch(order)
 			if(COMMAND_ORDER_MOVE)
-				spoken_order = pick("*HAREKETE GEÇİN*!", "*GİDİYORUZ*!", "*İLERLE, İLERLE*!", "*HÜCUM*!", "*HAREKET ET, ASKER*!", "*ÇABUK*!", "*ÇABUK OL, ASKER*!", "*HEPSİ ÖLENE KADAR DURMAK YOK*!", "HADİ, HADİ, HADİ*!", "*İLERİ*!", "*KIÇINIZI KALDIRIN*!", "*CESUR OL, ASKER.*!", "GİDİYORUZ, ASKER*!", "*İLERİ, ASKER*!", "*HÜCUM*!", "*HIZLI OL, ASKER*!", "*İLERİ, HÜCUM*!", "*HAREKETE GEÇİYORUZ, ASKER*!", "*ÇABUK OLUN, İLERLİYORUZ*!", "*HAREKET ET, ASKER *!")
+				spoken_order = pick("*HAREKETE GEÇİN*!", "*GİDİYORUZ*!", "*İLERLE, İLERLE*!", "*HÜCUM*!", "*HAREKET ET, ASKER*!", "*ÇABUK*!", "*ÇABUK OL, ASKER*!", "*HEPSİ ÖLENE KADAR DURMAK YOK*!", "HADİ, HADİ, HADİ*!", "*İLERİ*!", "*KIÇINIZI KALDIRIN*!", "*CESUR OL, ASKER.*!", "GİDİYORUZ, ASKER*!", "*İLERİ, ASKER*!", "*HÜCUM*!", "*HIZLI OL, ASKER*!", "*İLERİ, HÜCUM*!", "*HAREKETE GEÇİYORUZ, ASKER*!", "*ÇABUK OLUN, İLERLİYORUZ*!", "*HAREKET ET, ASKER*!")
 			if(COMMAND_ORDER_HOLD)
 				spoken_order = pick("*YAT VE KAPAN*!", "*HATTI TUTUN*!", "*MEVZİNİZİ KORUYUN*!", "*YERİNDE KAL*!", "*DİREN VE SAVAŞ*!", "*MEVZİNİ TERKETME, ASKER*!", "*GEÇİT YOK*!", "*MEVZİ AL*!", "*SAVUNMA HATTI OLUŞTUR*!", "*SİPER AL, ATEŞ*!", "*SABİT DUR*!", "*GERİ ÇEKİLMEK YOK*!", "*SAĞLAM DURUN*!", "*DİREN*!", "*SON ADAMA KADAR*!", "*CESARETİNİ TOPLA VE DİREN*!", "*GERİ ÇEKİLMEK YOK, DİREN*!")
 			if(COMMAND_ORDER_FOCUS)
@@ -64,7 +64,7 @@
 		visible_message(SPAN_BOLDNOTICE("[src] gives an order to [order]!"), SPAN_BOLDNOTICE("You give an order to [order]!"))
 
 /mob/living/carbon/human/proc/make_aura_available()
-	to_chat(src, SPAN_NOTICE("You can issue an order again."))
+	to_chat(src, SPAN_NOTICE("Tekrardan emir verebilirsin."))
 	command_aura_available = TRUE
 	for(var/datum/action/A in actions)
 		A.update_button_icon()
