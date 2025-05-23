@@ -62,7 +62,7 @@
 	)
 
 /datum/job/command/commander/generate_entry_message()
-	entry_message_body = "Operasyonun ana komutanısın. Görevin operasyona liderlik etmenin yanı sıra gemiyi ve mürettebatını korumak ve komuta etmektir. Her zaman karakterde kalman ve bir subaydan beklenecek şekilde hareket etmen beklenir. Birlik Komutanı olarak tek üstünüz Genel Merkez'in kendisidir ancak özel durumlar bunu değiştirebilir. Ayrıca BK Davranış İlkelerine uymak zorundasınız. Bunu ihlal etmeniz, size karşı cezai işlem uygulanmasına neden olabilir. Yolun açık olsun, Binbaşı!"
+	entry_message_body = "Operasyonun ana komutanısın. Görevin operasyona liderlik etmenin yanı sıra gemiyi ve mürettebatını korumak ve komuta etmektir. Her zaman karakterde kalman ve bir subaydan beklenecek şekilde hareket etmen beklenir. Commanding Officer olarak tek üstünüz Genel Merkez'in kendisidir ancak özel durumlar bunu değiştirebilir. Ayrıca BK Davranış İlkelerine uymak zorundasınız. Bunu ihlal etmeniz, size karşı cezai işlem uygulanmasına neden olabilir. Yolun açık olsun, Binbaşı!"
 	return ..()
 
 /datum/job/command/commander/get_whitelist_status(client/player)

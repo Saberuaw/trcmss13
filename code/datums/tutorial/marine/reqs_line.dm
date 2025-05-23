@@ -10,7 +10,7 @@
 
 /// Simulates the Requisitions Line experience for newcomers
 /datum/tutorial/marine/reqs_line
-	name = "Asker - Kargo Sırası"
+	name = "Marine - Kargo Sırası"
 	desc = "Lojistik Teknisyeni olarak kargo sırasını nasıl idare edeceğini öğren."
 	icon_state = "cargotech"
 	tutorial_id = "marine_req_1"

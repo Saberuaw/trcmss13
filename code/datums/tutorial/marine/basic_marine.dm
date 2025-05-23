@@ -1,6 +1,6 @@
 /datum/tutorial/marine/basic
-	name = "Asker - Temeller"
-	desc = "Asker olarak ihtiyacınız olacak temel bilgileri öğrenmenizi sağlayacak bir eğitim."
+	name = "Marine - Temeller"
+	desc = "Marine olarak ihtiyacınız olacak temel bilgileri öğrenmenizi sağlayacak bir eğitim."
 	tutorial_id = "marine_basic_1"
 	tutorial_template = /datum/map_template/tutorial/s8x9/no_baselight
 	/// How many items need to be vended from the clothing vendor for the script to continue, if something vends 2 items (for example), increase this number by 2.

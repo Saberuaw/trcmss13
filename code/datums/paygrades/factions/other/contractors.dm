@@ -6,7 +6,7 @@
 /datum/paygrade/contractors/standard
 	paygrade = PAY_SHORT_VAI_S
 	name = "VAI Mercenary"
-	prefix = "Merc."
+	prefix = "Prl. Ask."
 
 /datum/paygrade/contractors/med
 	paygrade = PAY_SHORT_VAI_M
@@ -23,7 +23,7 @@
 /datum/paygrade/contractors/engi
 	paygrade = PAY_SHORT_VAI_E
 	name = "VAI Engineering Specialist"
-	prefix = "Eng."
+	prefix = "Mhnds."
 	pay_multiplier = 1.75
 
 /datum/paygrade/contractors/syn
