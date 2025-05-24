@@ -486,8 +486,8 @@ GLOBAL_LIST_INIT(be_special_flags, list(
 			dat += "<b>Memleket:</b> <a href='byond://?_src_=prefs;preference=origin;task=input'><b>[origin]</b></a><br/>"
 			dat += "<b>Din:</b> <a href='byond://?_src_=prefs;preference=religion;task=input'><b>[religion]</b></a><br/>"
 
-			dat += "<b>Şirkete Karşı Tutumun:</b> <a href='byond://?_src_=prefs;preference=wy_relation;task=input'><b>[weyland_yutani_relation]</b></a><br>"
-			dat += "<b>Tercih Edilen Manga:</b> <a href='byond://?_src_=prefs;preference=prefsquad;task=input'><b>[preferred_squad]</b></a><br>"
+			dat += "<b>Şirket İlişkilerin:</b> <a href='byond://?_src_=prefs;preference=wy_relation;task=input'><b>[weyland_yutani_relation]</b></a><br>"
+			dat += "<b>Tercih Edilen Squad:</b> <a href='byond://?_src_=prefs;preference=prefsquad;task=input'><b>[preferred_squad]</b></a><br>"
 
 			dat += "<h2><b><u>Ekstra Bilgiler:</u></b></h2>"
 			if(jobban_isbanned(user, "Records"))
@@ -1624,12 +1624,12 @@ GLOBAL_LIST_INIT(be_special_flags, list(
 						backbag = GLOB.backbaglist.Find(new_backbag)
 
 				if("wy_relation")
-					var/new_relation = input(user, "Choose your relation to the Weyland-Yutani company. Note that this represents what others can find out about your character by researching your background, not what your character actually thinks.", "Character Preference")  as null|anything in list("Loyal", "Supportive", "Neutral", "Skeptical", "Opposed")
+					var/new_relation = input(user, "Weyland-Yutani şirketi ile ilişkinizi seçin. Bunun, karakterinizin gerçekte ne düşündüğünü değil, başkalarının geçmişinizi araştırarak karakteriniz hakkında ne bulabileceğini temsil ettiğini unutmayın.", "Character Preference")  as null|anything in list("Sadık", "Destekçi", "Nötr", "Şüpheci", "Muhalif")
 					if(new_relation)
 						weyland_yutani_relation = new_relation
 
 				if("prefsquad")
-					var/new_pref_squad = input(user, "Choose your preferred squad.", "Character Preference")  as null|anything in list("Alpha", "Bravo", "Charlie", "Delta", "None")
+					var/new_pref_squad = input(user, "Tercih ettiğin squadı seç.", "Character Preference")  as null|anything in list("Alpha", "Bravo", "Charlie", "Delta", "Yok")
 					if(new_pref_squad)
 						preferred_squad = new_pref_squad
 
@@ -1725,21 +1725,21 @@ GLOBAL_LIST_INIT(be_special_flags, list(
 						return
 
 				if("origin")
-					var/choice = tgui_input_list(user, "Please choose your character's origin.", "Origin Selection", GLOB.player_origins)
+					var/choice = tgui_input_list(user, "Karakterinizin memleketini seçin.", "Origin Selection", GLOB.player_origins)
 					var/datum/origin/picked_choice = GLOB.origins[choice]
 					if(!picked_choice)
 						return
-					if(tgui_alert(user, "You've selected [picked_choice.name]. [picked_choice.desc]", "Selected Origin", list("Confirm", "Cancel")) == "Cancel")
+					if(tgui_alert(user, "[picked_choice.name]'yı seçtin. [picked_choice.desc]", "Selected Origin", list("Confirm", "Cancel")) == "Cancel")
 						return
 					if(choice)
 						origin = choice
 
 				if("religion")
-					var/choice = tgui_input_list(user, "Please choose a religion.", "Religion choice", GLOB.religion_choices + "Other")
+					var/choice = tgui_input_list(user, "Bir din seçin.", "Religion choice", GLOB.religion_choices + "Diğer")
 					if(!choice)
 						return
-					if(choice == "Other")
-						var/raw_choice = input(user, "Please enter a religon.")  as text|null
+					if(choice == "Diğer")
+						var/raw_choice = input(user, "Bir din girin.")  as text|null
 						if(raw_choice)
 							religion = strip_html(raw_choice) // This only updates itself in the UI when another change is made, eg. save slot or changing other char settings.
 						return

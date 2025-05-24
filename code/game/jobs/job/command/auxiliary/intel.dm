@@ -8,7 +8,7 @@
 	supervisors = "Destek Subayı"
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_SQUAD
 	gear_preset = "USCM Intelligence Officer (IO) (Cryo)"
-	entry_message_body = "Görevin, gezegene inip mevcut operasyonla ilgili istihbarat toplamaktır. Operasyon sahasında bulabileceğiniz tüm veri disklerini, dosyaları ve notları toplamak ve USCM'ye ek kaynaklar sağlamak için şifrelerini çözmektir."
+	entry_message_body = "Görevin, gezegene inip mevcut operasyonla ilgili istihbarat toplamaktır. Operasyon sahasında bulabileceğiniz tüm veri disklerini, dosyaları ve notları toplamak ve TRCM'ye ek kaynaklar sağlamak için şifrelerini çözmektir."
 
 /datum/job/command/intel/set_spawn_positions(count)
 	spawn_positions = int_slot_formula(count)
