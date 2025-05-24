@@ -680,18 +680,18 @@
 	icon_state = "rocreed"
 
 /obj/structure/sign/prop1
-	name = "\improper USCM Poster"
-	desc = "The symbol of the United States Colonial Marines corps."
+	name = "\improper Atatürk Portresi"
+	desc = "Mustafa Kemal Atatürk portresi."
 	icon_state = "prop1"
 
 /obj/structure/sign/prop2
-	name = "\improper USCM Poster"
-	desc = "A deeply faded poster of a group of glamorous Colonial Marines in uniform. Probably taken pre-Alpha."
+	name = "\improper TRCM Posteri"
+	desc = "Üniformalı bir grup askerin soluk bir posteri. Oldukça eski duruyor."
 	icon_state = "prop2"
 
 /obj/structure/sign/prop3
-	name = "\improper USCM Poster"
-	desc = "An old recruitment poster for the USCM. Looking at it floods you with a mixture of pride and sincere regret."
+	name = "\improper TRCM Posteri"
+	desc = "TRCM'nin eski bir askere alım posteri. Ona bakarken gurur ve pişmanlık karışımı bir duyguya kapılıyorsun."
 	icon_state = "prop3"
 
 
