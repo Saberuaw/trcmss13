@@ -14,9 +14,9 @@
 			NP =  "[NP][P.prefix] "
 			if(P.prefix == "C")//Override for Civilian ranks that don't have occupational prefixes.
 				if(gender && gender == FEMALE)
-					NP = "Ms. "
+					NP = "Bayan. "
 				else if(gender && gender == MALE)
-					NP = "Mr. "
+					NP = "Bay. "
 				else
 					NP = "Mx. " //inclusivity win!
 		return NP

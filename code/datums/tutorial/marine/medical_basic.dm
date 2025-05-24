@@ -1,5 +1,5 @@
 /datum/tutorial/marine/medical_basic
-	name = "Asker - Medikal (Temel)"
+	name = "Marine - Medikal (Temel)"
 	desc = "Bir askerin savaş alanında sık sık karşılaşabileceği temel yaralanmaları nasıl tedavi edebileceğini öğretir."
 	tutorial_id = "marine_medical_1"
 	tutorial_template = /datum/map_template/tutorial/s7x7
@@ -13,7 +13,7 @@
 		return
 
 	init_mob()
-	message_to_player("Bu, asker olarak oynarken ihtiyacın olabilecek basit tedavileri içeren bir eğitimdir.")
+	message_to_player("Bu, Marine olarak oynarken ihtiyacın olabilecek basit tedavileri içeren bir eğitimdir.")
 	addtimer(CALLBACK(src, PROC_REF(brute_tutorial)), 4 SECONDS)
 
 /datum/tutorial/marine/medical_basic/proc/brute_tutorial()

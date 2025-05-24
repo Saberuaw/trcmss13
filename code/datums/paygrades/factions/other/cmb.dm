@@ -5,12 +5,12 @@
 /datum/paygrade/cmb/standard
 	paygrade = PAY_SHORT_CMBD
 	name = "CMB Deputy"
-	prefix = "Dep."
+	prefix = "Vkl."
 
 /datum/paygrade/cmb/leader
 	paygrade = PAY_SHORT_CMBM
 	name = "CMB Marshal"
-	prefix = "Marshal"
+	prefix = "Müfettiş"
 	officer_grade = GRADE_OFFICER
 
 /datum/paygrade/cmb/syn
@@ -26,7 +26,7 @@
 /datum/paygrade/cmb/riot
 	paygrade = PAY_SHORT_CMBR
 	name = "CMB Riot Control Officer"
-	prefix = "Off."
+	prefix = "Asİz."
 
 /datum/paygrade/cmb/med
 	paygrade = PAY_SHORT_CMBMT
@@ -36,7 +36,7 @@
 /datum/paygrade/cmb/eng
 	paygrade = PAY_SHORT_CMBBT
 	name = "CMB Breaching Technician"
-	prefix = "Brech."
+	prefix = "Grş."
 
 /datum/paygrade/cmb/spec
 	paygrade = PAY_SHORT_CMBSWS
@@ -46,12 +46,12 @@
 /datum/paygrade/cmb/icc
 	paygrade = PAY_SHORT_ICCA
 	name = "Interstellar Commerce Commission Agent"
-	prefix = "Agent"
+	prefix = "Ajan"
 
 /datum/paygrade/cmb/icc/liaison
 	paygrade = PAY_SHORT_ICCL
 	name = "Interstellar Commerce Commission Corporate Liaison"
-	prefix = "Exec."
+	prefix = "Yntc."
 
 /datum/paygrade/cmb/observer
 	paygrade = PAY_SHORT_IHRO

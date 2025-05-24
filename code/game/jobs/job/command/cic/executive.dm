@@ -5,7 +5,7 @@
 	gear_preset = /datum/equipment_preset/uscm_ship/xo
 
 /datum/job/command/executive/generate_entry_message(mob/living/carbon/human/H)
-	entry_message_body = "Geminin ikinci komutanısınız ve Birlik Komutanı'ndan sonra emir komuta zincirinin en tepesindesiniz. Personel eksikliği olan alanlarda başka görevler üstlenmeniz gerekebilir ve bunu yapabilmeniz için gerekli bütün izinlere sahipsiniz. USCM'yi gururlandırın, yüzbaşı!"
+	entry_message_body = "Geminin ikinci komutanısınız ve Commanding Officer'dan sonra emir komuta zincirinin en tepesindesiniz. Personel eksikliği olan alanlarda başka görevler üstlenmeniz gerekebilir ve bunu yapabilmeniz için gerekli bütün izinlere sahipsiniz. USCM'yi gururlandırın, yüzbaşı!"
 	return ..()
 
 /datum/job/command/executive/generate_entry_conditions(mob/living/M, whitelist_status)

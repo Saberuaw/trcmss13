@@ -5,12 +5,12 @@
 /datum/paygrade/civilian/civilian
 	paygrade = PAY_SHORT_CIV
 	name = "Civilian"
-	prefix = "C"
+	prefix = "S"
 
 /datum/paygrade/civilian/nurse
 	paygrade = PAY_SHORT_CNUR
 	name = "Nurse"
-	prefix = "Nrs."
+	prefix = "Hmşr."
 
 /datum/paygrade/civilian/paramedic
 	paygrade = PAY_SHORT_CPARA
@@ -34,19 +34,19 @@
 /datum/paygrade/civillian/representative
 	paygrade = PAY_SHORT_CREP
 	name = "Representative"
-	prefix = "Rep."
+	prefix = "Tmslc."
 	pay_multiplier = 1
 
 /datum/paygrade/civillian/officer
 	paygrade = PAY_SHORT_CPO
 	name = "Officer"
-	prefix = "Off."
+	prefix = "Sby."
 	pay_multiplier = 0.66
 
 /datum/paygrade/civillian/officer/senior
 	paygrade = PAY_SHORT_CSPO
 	name = "Senior Officer"
-	prefix = "Sr. Off."
+	prefix = "Kıd.Sby."
 	pay_multiplier = 0.8
 	officer_grade = GRADE_OFFICER
 

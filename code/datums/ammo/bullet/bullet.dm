@@ -66,8 +66,8 @@
 	shake_camera(execution_target, 3, 4)
 	execution_target.update_headshot_overlay(headshot_state) //...and add a gory headshot overlay.
 
-	execution_target.visible_message(SPAN_HIGHDANGER(uppertext("[execution_target] WAS EXECUTED!")),
-		SPAN_HIGHDANGER("You WERE EXECUTED!"))
+	execution_target.visible_message(SPAN_HIGHDANGER(uppertext("[execution_target] İNFAZ EDİLDİ!")),
+		SPAN_HIGHDANGER("İNFAZ EDİLDİN!"))
 
 	user.count_niche_stat(STATISTICS_NICHE_EXECUTION, 1, firing_projectile.weapon_cause_data?.cause_name)
 

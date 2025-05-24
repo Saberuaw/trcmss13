@@ -27,7 +27,7 @@
 #define FRACTURE "fracture"
 
 /datum/tutorial/marine/hospital_corpsman_sandbox
-	name = "Asker - Sıhhiyeci (Medic) (Sandbox)"
+	name = "Marine - Medic (Sandbox)"
 	desc = "Durmaksızın gelen yaralı askerleri iyileştirerek yeteneklerini test et geliştir!"
 	tutorial_id = "marine_hm_3"
 	required_tutorial = "marine_basic_1"
